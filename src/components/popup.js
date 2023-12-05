@@ -38,7 +38,7 @@ function Popup(props) {
   const createDestination = async () => {
     const generateImage = async (name, country) => {
       // Generate image URL based on name and country
-      const query = ` ${name} ${country} surfing `;
+      const query = ` ${name}  surfing `;
       const url = `https://api.unsplash.com/photos/random?query=${query}`;
       const token = "Client-ID NqJL9YuQCoBadK9v4WV5LPmiitfKvc2CHPLYbUI6e-Y";
 
@@ -46,6 +46,9 @@ function Popup(props) {
         const response = await fetch(url, {
           headers: {
             Authorization: token,
+            Params: {
+              query : "surf"
+            }
           },
         });
 

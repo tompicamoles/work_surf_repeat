@@ -5,15 +5,15 @@ import Bloc from "./card.js"
 
 
 
-const CardTable = ({cards}) => {
+const CardTable = (props) => {
     
   
   
     return (
       <div>
         <div className="card-container">
-          {cards.map((card, index) => (
-            <Bloc key={index} data={card} />
+          {props.cards.map((card, index) => (
+            <Bloc key={index} data={card} updateData={props.updateData} />
           ))}
         </div>
       </div>

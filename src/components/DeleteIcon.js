@@ -1,34 +1,27 @@
 import React from "react";
-import { Popover } from "@radix-ui/react-popover";
+import { Popover, Box, Button } from "@radix-ui/themes";
 import { Cross1Icon, Cross2Icon } from "@radix-ui/react-icons";
 
-function DeleteIcon() {
-
+function DeleteIcon(props) {
   return (
-    <>
-    <Popover.Root>
-      <Popover.Trigger>
-        <Cross1Icon />
-      </Popover.Trigger>
+    <Box>
+      <Popover.Root>
+        <Popover.Trigger>
+          <Cross1Icon />
+        </Popover.Trigger>
 
-      <Popover.Portal>
         <Popover.Content>
-
           <div>
             <p>Do you want to delete this destination ?</p>
           </div>
 
           <Popover.Close className="PopoverClose" aria-label="Close">
-            <Cross2Icon />
+            <Button onClick={props.deleteCard}>DELETE</Button>
           </Popover.Close>
-
         </Popover.Content>
-      </Popover.Portal>
-
-
-    </Popover.Root>
-    </>
+      </Popover.Root>
+    </Box>
   );
 }
 
-export default DeleteIcon 
+export default DeleteIcon;

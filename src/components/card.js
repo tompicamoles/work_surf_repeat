@@ -7,6 +7,7 @@ function Bloc(props) {
   return (
     <Card size="2" style={{ maxWidth: 240 }}>
       <Inset clip="padding-box" side="top" pb="current">
+      <DeleteContainer id={props.data.id} updateData={props.updateData}/>
         <Text >{props.data.name}</Text>
         
 

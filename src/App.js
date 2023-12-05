@@ -24,6 +24,7 @@ function App() {
         const cardsData = data.records.map((record) => {
           return {
             // Extract the fields you need
+            id: record.id,
             name: record.fields.name,
             country: record.fields.country,
             level: record.fields.level,
@@ -46,7 +47,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <Flex direction="column" gap="3">
-          <CardTable cards={cards} />
+          <CardTable cards={cards} updateData={updateData} />
           <Popup updateData={updateData}/>
         </Flex>
       </header>
