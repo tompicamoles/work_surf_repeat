@@ -32,3 +32,5 @@ function DeleteContainer(props) {
 }
 
 export default DeleteContainer;
+
+console.log("test")
