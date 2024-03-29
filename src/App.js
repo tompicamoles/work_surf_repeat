@@ -1,58 +1,27 @@
 import "./App.css";
-import React, { useState, useEffect } from "react";
-import { Flex, Button, Box, Text, TextArea, TextField } from "@radix-ui/themes";
-import CardTable from "./components/card-table";
-import Popup from "./components/popup.js";
+import Root from "./components/Root";
+import HomePage from "./components/Homepage";
 
-function App() {
-  const [cards, setCards] = useState([]);
+import {
+  RouterProvider,
+  createBrowserRouter,
+  createRoutesFromElements,
+  Route,
+} from "react-router-dom";
 
-  const updateData = () => {
-    const url =
-      "https://api.airtable.com/v0/appEifpsElq8TYpAy/Table%201?maxRecords=5&view=Grid%20view";
-    const token =
-      "Bearer patsL0oBwMroW70T7.86828429085137c56a7993317233085e045e0924c348253c60cb8c1b9508d71c";
+const appRouter = createBrowserRouter(
+  createRoutesFromElements(
+    <Route path="/" element={<Root />}>
+       <Route path="/" element={<HomePage />} />
+    {/*<Route path="/search" element={<SearchPage/>}/>
+    <Route path=":destination/:id" element={<Destination />} />
+    <Route path="/login" element={<LogIn/>} />
+    <Route path="/blog" element={<Blog/>} />
+    <Route path="/error" element={<ErrorPage/>} /> */}
+    </Route>
+  )
+);
 
-    fetch(url, {
-      headers: {
-        Authorization: token,
-      },
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        // Extract the data you need from each record and store it in an array
-        const cardsData = data.records.map((record) => {
-          return {
-            // Extract the fields you need
-            id: record.id,
-            name: record.fields.name,
-            country: record.fields.country,
-            level: record.fields.level,
-            image: record.fields.image,
-            // Add more fields as needed
-          };
-        });
-        // Set the cards data in the state
-        setCards(cardsData);
-      })
-      .catch((error) => {
-        console.error("Error fetching data:", error);
-      });
-  };
-  useEffect(() => {
-    updateData();
-  }, []);
-
-  return (
-    <div className="App">
-      <header className="App-header">
-        <Flex direction="column" gap="3">
-          <CardTable cards={cards} updateData={updateData} />
-          <Popup updateData={updateData}/>
-        </Flex>
-      </header>
-    </div>
-  );
+export default function App() {
+  return <RouterProvider router={appRouter} />;
 }
-
-export default App;
