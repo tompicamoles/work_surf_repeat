@@ -1,6 +1,6 @@
 import { Flex, Button, Box, Text, TextArea, TextField } from "@radix-ui/themes";
-import CardTable from "./card-table";
-import Popup from "./popup.js";
+import CardTable from "../components/card-table.js";
+import Popup from "../components/popup.js";
 import { useState, useEffect } from "react";
 
 function HomePage() {
