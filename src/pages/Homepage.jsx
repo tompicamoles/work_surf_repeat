@@ -1,6 +1,6 @@
 import { Flex, Button, Box, Text, TextArea, TextField } from "@radix-ui/themes";
-import CardTable from "../components/card-table.js";
-import Popup from "../components/popup.js";
+import CardTable from "../components/Spots.jsx";
+import Popup from "../components/Popup.jsx";
 import { useState, useEffect } from "react";
 
 function HomePage() {
@@ -18,6 +18,7 @@ function HomePage() {
       },
     })
       .then((response) => response.json())
+ 
       .then((data) => {
         // Extract the data you need from each record and store it in an array
         const cardsData = data.records.map((record) => {

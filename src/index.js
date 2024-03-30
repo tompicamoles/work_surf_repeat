@@ -1,18 +1,20 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
-import App from "./App";
+import App from "./app/App";
 import reportWebVitals from "./reportWebVitals";
 import "@radix-ui/themes/styles.css";
-import { Theme } from '@radix-ui/themes';
-
+import { Theme } from "@radix-ui/themes";
+import { Provider } from "react-redux";
+import store from "./app/store";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <Theme accentColor="crimson" grayColor="sand" radius="large" scaling="95%">
-      
-      <App />
+      <Provider store={store}>
+        <App />
+      </Provider>
     </Theme>
   </React.StrictMode>
 );

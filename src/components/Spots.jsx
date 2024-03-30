@@ -1,11 +1,21 @@
 import React, { useState, useEffect } from 'react';
-import Bloc from "./card.js"
-
+import Bloc from "./SpotCard"
+import { loadSpots, selectSpots, failedToLoadSpots, isLoadingSpots } from './spotsSlice';
+import { useDispatch, useSelector } from "react-redux";
 
 
 
 
 const CardTable = (props) => {
+
+  const dispatch = useDispatch();
+
+  useEffect( () => {
+    dispatch(loadSpots())
+
+
+  }, [])
+
     
   
   
