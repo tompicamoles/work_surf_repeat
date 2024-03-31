@@ -9,19 +9,26 @@ import {
   TextField,
   SelectGroup,
 } from "@radix-ui/themes";
+import { StarIcon } from "@radix-ui/react-icons";
+
 import { createSpot } from "./spotsSlice";
 import { useDispatch } from "react-redux";
+import WifiRating from "./formCompents/WifiRating";
+import LevelSelector from "./formCompents/LevelSelector";
 
-
-function SpotCreationPopup(props) {
-
+function SpotCreationPopup() {
   const dispatch = useDispatch();
 
   const [formData, setFormData] = useState({
     name: "",
     country: "",
-    level: "",
+    level: [],
+    surfSeason: [],
     image: "",
+    wifiQuality: null,
+    hasCoworking: false,
+    hasColiving: false,
+    lifeCost: null,
   });
 
   const handleInputChange = (e) => {
@@ -33,22 +40,21 @@ function SpotCreationPopup(props) {
     console.log(name);
   };
 
-  const handleLevelInputChange = (value, id) => {
+  const handleOtherInputChange = (key, value) => {
     setFormData((prevData) => ({
       ...prevData,
-      [id]: value,
+      [key]: value,
     }));
-    console.log(id);
   };
 
-  const createDestination =  () => {
-    console.log("country to send" ,formData.country)
+  const createDestination = () => {
+    console.log("country to send", formData.country);
     const spotData = {
       name: formData.name,
       country: formData.country,
-      level: formData.level
-    }
-    dispatch(createSpot(spotData))
+      level: formData.level,
+    };
+    dispatch(createSpot(spotData));
 
     setFormData({
       name: "",
@@ -64,7 +70,7 @@ function SpotCreationPopup(props) {
         <Popover.Trigger>
           <Button>Create a destination</Button>
         </Popover.Trigger>
-        <Popover.Content style={{ width: 600 }}>
+        <Popover.Content style={{ width: 1000 }}>
           <Flex gap="3">
             <Box>
               <Text as="p">Name:</Text>
@@ -91,29 +97,17 @@ function SpotCreationPopup(props) {
             <Box>
               <Text as="p">Surfing Level:</Text>
 
-              <Select.Root
-                value={formData.level}
-                onValueChange={(value) =>
-                  handleLevelInputChange(value, "level")
-                }
-              >
-                <Select.Trigger placeholder="Level" />
-
-                <Select.Content id="level" name="level">
-                  <Select.Group>
-                    <Select.Label>Level</Select.Label>
-                    <Select.Item id="level" name="level" value="Beginner">
-                      Beginner
-                    </Select.Item>
-                    <Select.Item id="level" name="level" value="Intermediate">
-                      Intermediate
-                    </Select.Item>
-                    <Select.Item id="level" name="level" value="Advanced">
-                      Advanced
-                    </Select.Item>
-                  </Select.Group>
-                </Select.Content>
-              </Select.Root>
+              <LevelSelector
+                level={formData.level}
+                handleOtherInputChange={handleOtherInputChange}
+              ></LevelSelector>
+            </Box>
+            <Box>
+              <Text as="p">Wifi Quality:</Text>
+              <WifiRating
+                handleOtherInputChange={handleOtherInputChange}
+                wifiQuality={formData.wifiQuality}
+              ></WifiRating>
             </Box>
             <Box>
               <Popover.Close>
