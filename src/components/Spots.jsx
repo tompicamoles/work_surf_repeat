@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Bloc from "./SpotCard";
+import SpotCard from "./SpotCard";
 import {
   loadSpots,
   selectSpots,
@@ -8,7 +8,7 @@ import {
 } from "./spotsSlice";
 import { useDispatch, useSelector } from "react-redux";
 
-const CardTable = (props) => {
+const Spots = () => {
   const dispatch = useDispatch();
   const spots = useSelector(selectSpots);
   console.log("spots in component", spots);
@@ -21,12 +21,12 @@ const CardTable = (props) => {
     <div>
       <div className="card-container">
         
-        {Object.entries(spots).map(([key, value]) => (
-          <Bloc key={key} data={value} updateData={props.updateData} />
+        {Object.entries(spots).map(([id]) => (
+          <SpotCard id={id} />
         ))}
       </div>
     </div>
   );
 };
 
-export default CardTable;
+export default Spots;

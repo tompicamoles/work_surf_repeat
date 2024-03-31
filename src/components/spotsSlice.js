@@ -1,12 +1,76 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
-export const loadSpots = createAsyncThunk("spots/loadSpots", async () => {
-  const url =
-    "https://api.airtable.com/v0/appEifpsElq8TYpAy/Table%201?maxRecords=5&view=Grid%20view";
-  const token =
-    "Bearer patsL0oBwMroW70T7.86828429085137c56a7993317233085e045e0924c348253c60cb8c1b9508d71c";
+const url = "https://api.airtable.com/v0/appEifpsElq8TYpAy/Table%201";
+const token =
+  "Bearer patsL0oBwMroW70T7.86828429085137c56a7993317233085e045e0924c348253c60cb8c1b9508d71c"; // Replace with your actual API key
 
-  const response = await fetch(url, {
+export const createSpot = createAsyncThunk(
+  "spots/createSpot",
+  async (name, country, level) => {
+    const generateImage = async (name) => {
+      // Generate image URL based on name and country
+      const query = ` ${name}  surfing `;
+      const url = `https://api.unsplash.com/photos/random?query=${query}`;
+      const token = "Client-ID NqJL9YuQCoBadK9v4WV5LPmiitfKvc2CHPLYbUI6e-Y";
+
+      try {
+        const response = await fetch(url, {
+          headers: {
+            Authorization: token,
+            Params: {
+              query: "surf",
+            },
+          },
+        });
+
+        if (!response.ok) {
+          throw new Error("Failed to fetch image");
+        }
+
+        const data = await response.json();
+        const imgUrl = data.urls.regular;
+        return imgUrl;
+      } catch (error) {
+        console.error("Error fetching data:", error);
+        throw error; // You can handle or propagate the error as needed
+      }
+    };
+
+    const image = await generateImage(name); //
+
+    const data = {
+      records: [
+        {
+          fields: {
+            name: name,
+            country: country,
+            level: level,
+            image: image,
+          },
+        },
+      ],
+    };
+
+    const response = await fetch(url, {
+      method: "POST",
+      headers: {
+        Authorization: token,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+
+    const json = await response.json();
+    console.log(json)
+    
+    
+  }
+);
+
+export const loadSpots = createAsyncThunk("spots/loadSpots", async () => {
+  const getUrl = `${url}?maxRecords=5&view=Grid%20view`;
+
+  const response = await fetch(getUrl, {
     headers: {
       Authorization: token,
     },
@@ -15,7 +79,7 @@ export const loadSpots = createAsyncThunk("spots/loadSpots", async () => {
   console.log(json);
 
   const cardsData = json.records.reduce((spots, record) => {
-    console.log("spot before:", spots)
+    console.log("spot before:", spots);
     spots[record.id] = {
       id: record.id,
       name: record.fields.name,
@@ -23,9 +87,9 @@ export const loadSpots = createAsyncThunk("spots/loadSpots", async () => {
       level: record.fields.level,
       image: record.fields.image,
     };
-    console.log("spots after" , spots)
+    console.log("spots after", spots);
     return spots;
-  },{});
+  }, {});
 
   return cardsData;
 });
@@ -36,12 +100,10 @@ export const spotsSlice = createSlice({
     spots: {},
     isLoadingSpots: false,
     failedToLoadSpots: false,
+    isLoadingSpotCreation: false,
+    failedToCreateSpot: false,
   },
   reducers: {
-    addSpot: (state, action) => {
-      console.log("spot added");
-    },
-
     updateSpot: (state, action) => {
       console.log("spot updated");
     },
@@ -69,7 +131,21 @@ export const spotsSlice = createSlice({
         state.isLoadingSpots = false;
         state.failedToLoadSpots = false;
         state.spots = action.payload;
-        console.log("spots", action.payload)
+        console.log("spots", action.payload);
+      })
+      .addCase(createSpot.pending, (state) => {
+        state.isLoadingSpotCreation = true;
+        state.failedToCreateSpot = false;
+      })
+      .addCase(createSpot.rejected, (state) => {
+        state.isLoadingSpotCreation = false;
+        state.failedToCreateSpot = true;
+      })
+      .addCase(createSpot.fulfilled, (state, action) => {
+        state.isLoadingSpotCreation = false;
+        state.failedToCreateSpot = false;
+        //state.spots[action.id] = action.payload;
+        console.log("new spot created:", action.payload);
       });
   },
 });

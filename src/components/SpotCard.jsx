@@ -2,21 +2,28 @@ import { Card, Text, Strong, Inset } from "@radix-ui/themes";
 import { Cross1Icon} from '@radix-ui/react-icons';
 import DeleteContainer from "../Containers/DeleteContainer";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { selectSpots } from "./spotsSlice";
 
 
-function Bloc(props) {
+function SpotCard({id}) {
+ const spot = useSelector(selectSpots)[id]
+ 
+ 
+
+  
   return (
     <Card size="2" style={{ maxWidth: 240 }}>
       <Inset clip="padding-box" side="top" pb="current">
-      <DeleteContainer id={props.data.id} updateData={props.updateData}/>
-        <Link to={`/${props.data.id}`} name={props.data.name}>
-        <Text >{props.data.name}</Text>
-        <Text as="p" size="4">{props.data.country}</Text>
+      <DeleteContainer  />
+        <Link to={`/${spot.id}`} name={spot.name}>
+        <Text >{spot.name}</Text>
+        <Text as="p" size="4">{spot.country}</Text>
         
         </Link>
         
         <img
-          src={props.data.image}
+          src={spot.image}
           alt="Bold typography"
           style={{
             display: "block",
@@ -28,11 +35,11 @@ function Bloc(props) {
         />
       </Inset>
       <Text as="p" size="3">
-        <Strong>Surfing level : </Strong> {props.data.level}
+        <Strong>Surfing level : </Strong> {spot.level}
       </Text>
       
     </Card>
   );
 }
 
-export default Bloc
+export default SpotCard
