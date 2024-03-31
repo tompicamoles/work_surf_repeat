@@ -1,6 +1,4 @@
 import { Card, Text, Strong, Inset } from "@radix-ui/themes";
-import { Cross1Icon} from '@radix-ui/react-icons';
-import DeleteContainer from "../Containers/DeleteContainer";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { selectSpots } from "./spotsSlice";

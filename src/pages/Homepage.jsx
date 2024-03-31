@@ -1,7 +1,6 @@
-import { Flex, Button, Box, Text, TextArea, TextField } from "@radix-ui/themes";
+import { Flex } from "@radix-ui/themes";
 import Spots from "../components/Spots.jsx";
 import SpotCreationPopup from "../components/SpotCreationPopup.jsx";
-import { useState, useEffect } from "react";
 
 function HomePage() {
   

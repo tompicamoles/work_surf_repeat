@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
-const url = "https://api.airtable.com/v0/appEifpsElq8TYpAy/Table%201";
+const url = "https://api.airtable.com/v0/appEifpsElq8TYpAy/spots";
 const token =
   "Bearer patsL0oBwMroW70T7.86828429085137c56a7993317233085e045e0924c348253c60cb8c1b9508d71c"; // Replace with your actual API key
 
