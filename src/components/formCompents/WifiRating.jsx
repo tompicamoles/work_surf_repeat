@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { StarIcon } from '@radix-ui/react-icons';
+import { FaWifi } from "react-icons/fa";
+
 
 const WifiRating = ({handleOtherInputChange, wifiQuality}) => {
  const [hover, setHover] = useState(null);
@@ -15,7 +17,7 @@ const WifiRating = ({handleOtherInputChange, wifiQuality}) => {
             onMouseLeave={() => setHover(null)}
             onClick={() => handleOtherInputChange("wifiQuality",starValue)}
           >
-            <StarIcon
+            <FaWifi
               style={{
                 color: starValue <= (hover || wifiQuality) ? '#ffe101' : '#ccc',
               }}

@@ -15,6 +15,7 @@ import { createSpot } from "./spotsSlice";
 import { useDispatch } from "react-redux";
 import WifiRating from "./formCompents/WifiRating";
 import LevelSelector from "./formCompents/LevelSelector";
+import LifeCost from "./formCompents/LifeCost";
 
 function SpotCreationPopup() {
   const dispatch = useDispatch();
@@ -108,6 +109,13 @@ function SpotCreationPopup() {
                 handleOtherInputChange={handleOtherInputChange}
                 wifiQuality={formData.wifiQuality}
               ></WifiRating>
+            </Box>
+            <Box>
+              <Text as="p">LifeCost:</Text>
+              <LifeCost
+                handleOtherInputChange={handleOtherInputChange}
+                lifeCost={formData.lifeCost}
+              ></LifeCost>
             </Box>
             <Box>
               <Popover.Close>
