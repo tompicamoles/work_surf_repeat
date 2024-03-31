@@ -15,7 +15,7 @@ function SpotCard({id}) {
   return (
     <Card size="2" style={{ maxWidth: 240 }}>
       <Inset clip="padding-box" side="top" pb="current">
-      <DeleteContainer  />
+      
         <Link to={`/${spot.id}`} name={spot.name}>
         <Text >{spot.name}</Text>
         <Text as="p" size="4">{spot.country}</Text>

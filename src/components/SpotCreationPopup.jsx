@@ -42,7 +42,13 @@ function SpotCreationPopup(props) {
   };
 
   const createDestination =  () => {
-    dispatch(createSpot(formData.name, formData.country, formData.level))
+    console.log("country to send" ,formData.country)
+    const spotData = {
+      name: formData.name,
+      country: formData.country,
+      level: formData.level
+    }
+    dispatch(createSpot(spotData))
 
     setFormData({
       name: "",

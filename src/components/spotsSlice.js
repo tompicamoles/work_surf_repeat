@@ -6,7 +6,9 @@ const token =
 
 export const createSpot = createAsyncThunk(
   "spots/createSpot",
-  async (name, country, level) => {
+  async (spotData) => {
+    const { name, country, level } = spotData;
+    console.log("name", name, "country", country, "level", level);
     const generateImage = async (name) => {
       // Generate image URL based on name and country
       const query = ` ${name}  surfing `;
@@ -61,10 +63,19 @@ export const createSpot = createAsyncThunk(
     });
 
     const json = await response.json();
-    console.log(json)
-    
-    
+    const spot = json.records[0];
+
+    const newSpot = {
+      id: spot.id,
+      name: spot.fields.name,
+      country: spot.fields.country,
+      level: spot.fields.level,
+      image: spot.fields.image,
+    };
+
+    return newSpot
   }
+
 );
 
 export const loadSpots = createAsyncThunk("spots/loadSpots", async () => {
@@ -144,7 +155,7 @@ export const spotsSlice = createSlice({
       .addCase(createSpot.fulfilled, (state, action) => {
         state.isLoadingSpotCreation = false;
         state.failedToCreateSpot = false;
-        //state.spots[action.id] = action.payload;
+        state.spots[action.payload.id] = action.payload;
         console.log("new spot created:", action.payload);
       });
   },
