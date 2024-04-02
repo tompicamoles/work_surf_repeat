@@ -22,7 +22,7 @@ const Spots = () => {
       <div className="card-container">
         
         {Object.entries(spots).map(([id]) => (
-          <SpotCard id={id} />
+          <SpotCard id={id} key={id} />
         ))}
       </div>
     </div>

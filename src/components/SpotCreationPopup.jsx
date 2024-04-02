@@ -10,12 +10,15 @@ import {
   SelectGroup,
 } from "@radix-ui/themes";
 import { StarIcon } from "@radix-ui/react-icons";
+import { FormGroup, FormControlLabel, Checkbox } from "@mui/material";
 
 import { createSpot } from "./spotsSlice";
 import { useDispatch } from "react-redux";
 import WifiRating from "./formCompents/WifiRating";
 import LevelSelector from "./formCompents/LevelSelector";
 import LifeCost from "./formCompents/LifeCost";
+import MonthSelector from "./formCompents/MonthSelector";
+import FileUploader from "./formCompents/FileUploader";
 
 function SpotCreationPopup() {
   const dispatch = useDispatch();
@@ -33,12 +36,19 @@ function SpotCreationPopup() {
   });
 
   const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
-    console.log(name);
+    const { name, value, checked } = e.target;
+    // Check if the input is a checkbox
+    if (name === "hasCoworking" || name === "hasColiving") {
+      setFormData((prevData) => ({
+        ...prevData,
+        [name]: checked, // Use checked property for checkboxes
+      }));
+    } else {
+      setFormData((prevData) => ({
+        ...prevData,
+        [name]: value,
+      }));
+    }
   };
 
   const handleOtherInputChange = (key, value) => {
@@ -116,6 +126,42 @@ function SpotCreationPopup() {
                 handleOtherInputChange={handleOtherInputChange}
                 lifeCost={formData.lifeCost}
               ></LifeCost>
+            </Box>
+            <Box>
+              <Text>Best surfing season</Text>
+              <MonthSelector
+                handleInputChange={handleInputChange}
+                surfSeason={formData.surfSeason}
+              />
+            </Box>
+            <Box>
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    checked={formData.hasCoworking}
+                    id="hasCoworking"
+                    name="hasCoworking"
+                    onChange={handleInputChange}
+                  />
+                }
+                label="Has Coworking"
+              />
+            </Box>
+            <Box>
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    checked={formData.hasColiving}
+                    name="hasColiving"
+                    id="hasColiving"
+                    onChange={handleInputChange}
+                  />
+                }
+                label="Has Coliving"
+              />
+            </Box>
+            <Box>
+              <FileUploader />
             </Box>
             <Box>
               <Popover.Close>
