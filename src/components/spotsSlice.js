@@ -7,8 +7,8 @@ const token =
 export const createSpot = createAsyncThunk(
   "spots/createSpot",
   async (spotData) => {
-    const { name, country, level } = spotData;
-    console.log("name", name, "country", country, "level", level);
+    const { name, country, level, surfSeason, wifiQuality, hasCoworking, hasColiving, lifeCost } = spotData;
+    
     const generateImage = async (name) => {
       // Generate image URL based on name and country
       const query = ` ${name}  surfing `;
@@ -48,6 +48,11 @@ export const createSpot = createAsyncThunk(
             country: country,
             level: level,
             image: image,
+            surf_season: surfSeason,
+            wifi_quality: wifiQuality,
+            has_coworking: hasCoworking,
+            has_coliving: hasColiving,
+            life_cost: lifeCost,
           },
         },
       ],
@@ -65,12 +70,18 @@ export const createSpot = createAsyncThunk(
     const json = await response.json();
     const spot = json.records[0];
 
+    // get spot ID and Create new spot object in the current slice
     const newSpot = {
       id: spot.id,
       name: spot.fields.name,
       country: spot.fields.country,
       level: spot.fields.level,
       image: spot.fields.image,
+      surfSeason: spot.fields.surf_season,
+      wifiQuality: spot.fields.wifi_quality,
+      hasCoworking: spot.fields.has_coworking,
+      hasColiving: spot.fields.has_coliving,
+      lifeCost: spot.fields.life_cost
     };
 
     return newSpot
@@ -97,6 +108,12 @@ export const loadSpots = createAsyncThunk("spots/loadSpots", async () => {
       country: record.fields.country,
       level: record.fields.level,
       image: record.fields.image,
+      surfSeason: record.fields.surf_season,
+      wifiQuality: record.fields.wifi_quality,
+      hasCoworking: record.fields.has_coworking,
+      hasColiving: record.fields.has_coliving,
+      lifeCost: record.fields.life_cost
+
     };
     console.log("spots after", spots);
     return spots;

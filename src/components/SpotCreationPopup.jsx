@@ -64,14 +64,24 @@ function SpotCreationPopup() {
       name: formData.name,
       country: formData.country,
       level: formData.level,
+      surfSeason: formData.surfSeason,
+      wifiQuality:formData.wifiQuality,
+      hasCoworking: formData.hasCoworking,
+      hasColiving: formData.hasColiving,
+      lifeCost: formData.lifeCost
     };
     dispatch(createSpot(spotData));
 
     setFormData({
       name: "",
       country: "",
-      level: "",
+      level: [],
+      surfSeason: [],
       image: "",
+      wifiQuality: null,
+      hasCoworking: false,
+      hasColiving: false,
+      lifeCost: null,
     });
   };
 
@@ -160,9 +170,7 @@ function SpotCreationPopup() {
                 label="Has Coliving"
               />
             </Box>
-            <Box>
-              <FileUploader />
-            </Box>
+
             <Box>
               <Popover.Close>
                 <Button type="button" onClick={createDestination}>
