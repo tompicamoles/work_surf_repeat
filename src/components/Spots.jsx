@@ -7,6 +7,8 @@ import {
   isLoadingSpots,
 } from "./spotsSlice";
 import { useDispatch, useSelector } from "react-redux";
+import Box from "@mui/material/Box";
+import Grid from "@mui/material/Grid";
 
 const Spots = () => {
   const dispatch = useDispatch();
@@ -18,14 +20,19 @@ const Spots = () => {
   }, []);
 
   return (
-    <div>
-      <div className="card-container">
-        
-        {Object.entries(spots).map(([id]) => (
-          <SpotCard id={id} key={id} />
-        ))}
-      </div>
-    </div>
+  
+     
+
+      <Box sx={{ width: "100%" }}>
+        <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
+          {Object.entries(spots).map(([id]) => (
+            <Grid item xs={6} md={3} >
+              <SpotCard id={id} key={id} />
+            </Grid>
+          ))}
+        </Grid>
+      </Box>
+    
   );
 };
 

@@ -1,11 +1,12 @@
 
 import { Outlet } from 'react-router-dom';
+import Navbar from '../components/NavBar';
 
 
 function Root() {
   return(
     <div>
-        <h1> work surf Repeat</h1>
+        <Navbar/>
         <Outlet/>
     </div>
   )
