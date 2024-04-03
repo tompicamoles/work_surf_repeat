@@ -5,6 +5,9 @@ import { selectSpots } from "./spotsSlice";
 import { Box, Card, Container, Grid, Typography } from "@mui/material";
 import { FaWifi } from "react-icons/fa";
 import { AiFillLike } from "react-icons/ai";
+import { FaHouseLaptop } from "react-icons/fa6";
+import { RiComputerFill } from "react-icons/ri";
+import { BiDollar } from "react-icons/bi";
 
 function SpotCard({ id }) {
   const spot = useSelector(selectSpots)[id];
@@ -39,7 +42,7 @@ function SpotCard({ id }) {
 
       <Card>
         <Container>
-          <Grid container spacing={2}>
+          <Grid container  spacing={2}>
             <Grid item xs={9}>
               <Link to={`/${spot.id}`} name={spot.name}>
                 <Typography variant="h3" align="left">
@@ -53,20 +56,46 @@ function SpotCard({ id }) {
 
             <Grid item xs={3}>
               <Box>
-                {[...Array(spot.wifiQuality)].map((_, index) => {
-                  return <FaWifi size={20}></FaWifi>;
+                {[...Array(5)].map((_, index) => {
+                  return (
+                    <FaWifi
+                      size={20}
+                      color={index <= spot.wifiQuality ? "blue" : "grey"}
+                    ></FaWifi>
+                  );
                 })}
               </Box>
 
-              <Box>cowork</Box>
+              <Box>
+                {spot.hasCoworking ? (
+                  <RiComputerFill color="blue" />
+                ) : (
+                  <RiComputerFill color="grey" />
+                )}
+              </Box>
 
-              <Box>coliving</Box>
+              <Box>
+                {spot.hasColiving ? (
+                  <FaHouseLaptop color="blue" />
+                ) : (
+                  <FaHouseLaptop color="grey" />
+                )}
+              </Box>
             </Grid>
 
             <Grid item xs={9}>
-              <Box>Surf Season</Box>
-              <Box>Level</Box>
-              <Box>LifeCost</Box>
+              <Box align="left">Surf Season</Box>
+              <Box align="left">Level</Box>
+              <Box align="left">
+                {[...Array(5)].map((_, index) => {
+                  return (
+                    <BiDollar
+                      size={20}
+                      color={index <= spot.lifeCost ? "blue" : "grey"}
+                    ></BiDollar>
+                  );
+                })}
+              </Box>
             </Grid>
 
             <Grid item xs={3}>
