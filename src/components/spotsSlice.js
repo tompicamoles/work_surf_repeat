@@ -90,7 +90,7 @@ export const createSpot = createAsyncThunk(
 );
 
 export const loadSpots = createAsyncThunk("spots/loadSpots", async () => {
-  const getUrl = `${url}?maxRecords=5&view=Grid%20view`;
+  const getUrl = `${url}?maxRecords=12&view=Grid%20view`;
 
   const response = await fetch(getUrl, {
     headers: {

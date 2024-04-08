@@ -3,19 +3,19 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./app/App";
 import reportWebVitals from "./reportWebVitals";
-import "@radix-ui/themes/styles.css";
-import { Theme } from "@radix-ui/themes";
 import { Provider } from "react-redux";
 import store from "./app/store";
+import { ThemeProvider } from "@mui/material";
+import { theme } from "./app/theme";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <Theme accentColor="crimson" grayColor="sand" radius="large" scaling="95%">
-      <Provider store={store}>
+    <Provider store={store}>
+      <ThemeProvider theme={theme}>
         <App />
-      </Provider>
-    </Theme>
+      </ThemeProvider>
+    </Provider>
   </React.StrictMode>
 );
 

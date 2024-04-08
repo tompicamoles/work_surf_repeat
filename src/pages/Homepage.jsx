@@ -1,23 +1,19 @@
-import { Flex } from "@radix-ui/themes";
 import Spots from "../components/Spots.jsx";
 import SpotCreationPopup from "../components/SpotCreationPopup.jsx";
+import { Box, Container, Grid, Stack } from "@mui/material";
+import SideBar from "../components/SideBar.jsx";
+import SearchPanel from "../components/SearchPanel.jsx";
 
 function HomePage() {
-  
-
-
- 
-      
-
   return (
-    <div className="App">
-      <header className="App-header">
-        <Flex direction="column" gap="3">
-          <Spots />
-          <SpotCreationPopup />
-        </Flex>
-      </header>
-    </div>
+    <Stack id="homepage" container  direction="row" spacing={2} p={3}>
+      <SideBar />
+      <Stack flex={7} spacing={2} >
+        <SearchPanel />
+        <Spots />
+        
+      </Stack>
+    </Stack>
   );
 }
 

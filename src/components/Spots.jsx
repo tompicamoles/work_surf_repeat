@@ -20,19 +20,21 @@ const Spots = () => {
   }, []);
 
   return (
-  
-     
 
-      <Box sx={{ width: "100%" }}>
-        <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-          {Object.entries(spots).map(([id]) => (
-            <Grid item xs={6} md={4} >
-              <SpotCard id={id} key={id} />
-            </Grid>
-          ))}
-        </Grid>
-      </Box>
-    
+    <Grid
+      id="spotsGrid"
+      container
+      direction="row"
+      justifyContent="flex-start"
+      alignItems="center"
+      
+    >
+      {Object.entries(spots).map(([id]) => (
+       
+          <SpotCard id={id} key={id} />
+        
+      ))}
+    </Grid>
   );
 };
 
