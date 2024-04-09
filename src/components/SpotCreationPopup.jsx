@@ -9,9 +9,13 @@ import {
   Button,
   Typography,
   Modal,
+  Rating,
+  Switch,
+  Autocomplete,
 } from "@mui/material";
 
-
+import { Wifi, MonetizationOn } from "@mui/icons-material";
+import { CountrySelect } from "./formCompents/CountrySelect";
 
 import { createSpot } from "./spotsSlice";
 import { useDispatch } from "react-redux";
@@ -22,13 +26,13 @@ import MonthSelector from "./formCompents/MonthSelector";
 import FileUploader from "./formCompents/FileUploader";
 
 const style = {
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
   width: 400,
-  bgcolor: 'background.paper',
-  border: '2px solid #000',
+  bgcolor: "background.paper",
+  border: "2px solid #000",
   boxShadow: 24,
   p: 4,
 };
@@ -103,95 +107,99 @@ function SpotCreationPopup() {
   };
 
   return (
-    <div>
-      <Button variant="contained"  onClick={handleOpen}>Create a spot</Button>
-     
+    <Box>
+      <Button variant="contained" onClick={handleOpen}>
+        Create a spot
+      </Button>
+
       <Modal
         open={open}
         onClose={handleClose}
         aria-labelledby="spot-creation-modal"
         aria-describedby="modal-to-create-spot"
       >
+        <Box component="form" sx={style} onSubmit={createDestination}>
+          <Typography as="p">Name:</Typography>
+          <TextField
+            placeholder="Name"
+            type="text"
+            id="name"
+            name="name"
+            value={formData.name}
+            onChange={handleInputChange}
+            required
+          />
 
-        <Box  sx={style}  >
-        <Typography as="p">Name:</Typography>
-        <TextField
-          placeholder="Name"
-          type="text"
-          id="name"
-          name="name"
-          value={formData.name}
-          onChange={handleInputChange}
-          required
-        />
+          <Typography as="p">Country:</Typography>
 
-        <Typography as="p">Country:</Typography>
-        <TextField
-          placeholder="Country"
-          type="text"
-          id="country"
-          name="country"
-          value={formData.country}
-          onChange={handleInputChange}
-          required
-        />
+          <CountrySelect value={formData.country} handleInputChange={handleInputChange}  />
 
-        <Typography as="p">Surfing Level:</Typography>
+          
 
-        <LevelSelector
-          level={formData.level}
-          handleOtherInputChange={handleOtherInputChange}
-        ></LevelSelector>
+          <Typography as="p">Surfing Level:</Typography>
 
-        <Typography as="p">Wifi Quality:</Typography>
-        <WifiRating
-          handleOtherInputChange={handleOtherInputChange}
-          wifiQuality={formData.wifiQuality}
-        ></WifiRating>
+          <LevelSelector
+            level={formData.level}
+            handleOtherInputChange={handleOtherInputChange}
+          ></LevelSelector>
 
-        <Typography as="p">LifeCost:</Typography>
-        <LifeCost
-          handleOtherInputChange={handleOtherInputChange}
-          lifeCost={formData.lifeCost}
-        ></LifeCost>
+          <Typography as="p">Wifi Quality:</Typography>
+          <Rating
+            name="wifiQuality"
+            defaultValue={2}
+            icon={<Wifi fontSize="inherit" />}
+            emptyIcon={<Wifi fontSize="inherit" />}
+            onChange={handleInputChange}
+            value={formData.wifiQuality}
+          ></Rating>
 
-        <Typography>Best surfing season</Typography>
-        <MonthSelector
-          handleInputChange={handleInputChange}
-          surfSeason={formData.surfSeason}
-        />
+          <Typography as="p">LifeCost:</Typography>
+          <Rating
+            name="lifeCost"
+            defaultValue={2}
+            icon={<MonetizationOn fontSize="inherit" />}
+            emptyIcon={<MonetizationOn fontSize="inherit" />}
+            onChange={handleInputChange}
+            value={formData.lifeCost}
+          ></Rating>
 
-        <FormControlLabel
-          control={
-            <Checkbox
-              checked={formData.hasCoworking}
-              id="hasCoworking"
-              name="hasCoworking"
-              onChange={handleInputChange}
+          <Typography>Best surfing season</Typography>
+          <MonthSelector
+            handleInputChange={handleInputChange}
+            surfSeason={formData.surfSeason}
+          />
+          <FormGroup>
+            <FormControlLabel
+              control={
+                <Switch
+                  checked={formData.hasCoworking}
+                  id="hasCoworking"
+                  name="hasCoworking"
+                  onChange={handleInputChange}
+                />
+              }
+              label="Has Coworking"
             />
-          }
-          label="Has Coworking"
-        />
 
-        <FormControlLabel
-          control={
-            <Checkbox
-              checked={formData.hasColiving}
-              name="hasColiving"
-              id="hasColiving"
-              onChange={handleInputChange}
+            <FormControlLabel
+              control={
+                <Switch
+                  checked={formData.hasColiving}
+                  name="hasColiving"
+                  id="hasColiving"
+                  onChange={handleInputChange}
+                />
+              }
+              label="Has Coliving"
             />
-          }
-          label="Has Coliving"
-        />
+          </FormGroup>
 
-        <Button type="submit" variant="contained" onClick={createDestination} >Save destination</Button>
-
+          <Button type="submit" variant="contained">
+            Save destination
+          </Button>
         </Box>
-      
       </Modal>
-      
-    </div>
+    </Box>
   );
 }
 
