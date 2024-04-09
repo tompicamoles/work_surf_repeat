@@ -104,7 +104,7 @@ function SpotCreationPopup() {
 
   return (
     <div>
-      <Button onClick={handleOpen}>Create a spot</Button>
+      <Button variant="contained"  onClick={handleOpen}>Create a spot</Button>
      
       <Modal
         open={open}
@@ -113,7 +113,7 @@ function SpotCreationPopup() {
         aria-describedby="modal-to-create-spot"
       >
 
-        <Box sx={style}>
+        <Box  sx={style}  >
         <Typography as="p">Name:</Typography>
         <TextField
           placeholder="Name"
@@ -122,6 +122,7 @@ function SpotCreationPopup() {
           name="name"
           value={formData.name}
           onChange={handleInputChange}
+          required
         />
 
         <Typography as="p">Country:</Typography>
@@ -132,6 +133,7 @@ function SpotCreationPopup() {
           name="country"
           value={formData.country}
           onChange={handleInputChange}
+          required
         />
 
         <Typography as="p">Surfing Level:</Typography>
@@ -183,7 +185,7 @@ function SpotCreationPopup() {
           label="Has Coliving"
         />
 
-        <Button type="button" onClick={createDestination}>Save destination</Button>
+        <Button type="submit" variant="contained" onClick={createDestination} >Save destination</Button>
 
         </Box>
       
