@@ -14,7 +14,9 @@ const appRouter = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<Root />}>
        <Route path="/" element={<HomePage />} />
-       <Route path=":id" element={<Destinations />} />
+       <Route path="/destination/:id" element={<Destinations />} />
+       <Route path=":search" element={<HomePage />} />
+
 
     {/*<Route path="/search" element={<SearchPage/>}/>
     
