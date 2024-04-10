@@ -46,7 +46,7 @@ function SpotCreationPopup() {
 
   const [formData, setFormData] = useState({
     name: "",
-    country: "",
+    country: null,
     level: [],
     surfSeason: [],
     image: "",
@@ -79,7 +79,10 @@ function SpotCreationPopup() {
     }));
   };
 
-  const createDestination = () => {
+  const createDestination = (event) => {
+
+    event.preventDefault()
+
     console.log("country to send", formData.country);
     const spotData = {
       name: formData.name,
@@ -95,7 +98,7 @@ function SpotCreationPopup() {
 
     setFormData({
       name: "",
-      country: "",
+      country: null,
       level: [],
       surfSeason: [],
       image: "",
@@ -104,6 +107,8 @@ function SpotCreationPopup() {
       hasColiving: false,
       lifeCost: null,
     });
+    handleClose()
+
   };
 
   return (
@@ -132,9 +137,10 @@ function SpotCreationPopup() {
 
           <Typography as="p">Country:</Typography>
 
-          <CountrySelect value={formData.country} handleInputChange={handleInputChange}  />
-
-          
+          <CountrySelect
+            value={formData.country}
+            handleOtherInputChange={handleOtherInputChange}
+          />
 
           <Typography as="p">Surfing Level:</Typography>
 
