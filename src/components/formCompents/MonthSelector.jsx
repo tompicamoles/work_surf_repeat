@@ -45,7 +45,7 @@ export default function MonthSelector({surfSeason, handleInputChange}) {
 
   return (
     <div>
-      <FormControl sx={{ m: 1, width: 300 }}>
+      <FormControl required sx={{ m: 1, width: 300 }}>
         <InputLabel id="demo-multiple-name-label">Surf Season</InputLabel>
         <Select
           labelId="surfSeason"

@@ -12,6 +12,8 @@ import {
   Rating,
   Switch,
   Autocomplete,
+  Stack,
+
 } from "@mui/material";
 
 import { Wifi, MonetizationOn } from "@mui/icons-material";
@@ -42,7 +44,20 @@ function SpotCreationPopup() {
 
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  const handleClose = () => {
+    setFormData({
+      name: "",
+      country: null,
+      level: [],
+      surfSeason: [],
+      image: "",
+      wifiQuality: null,
+      hasCoworking: false,
+      hasColiving: false,
+      lifeCost: null,
+    });
+    setOpen(false);
+  };
 
   const [formData, setFormData] = useState({
     name: "",
@@ -80,8 +95,7 @@ function SpotCreationPopup() {
   };
 
   const createDestination = (event) => {
-
-    event.preventDefault()
+    event.preventDefault();
 
     console.log("country to send", formData.country);
     const spotData = {
@@ -96,19 +110,7 @@ function SpotCreationPopup() {
     };
     dispatch(createSpot(spotData));
 
-    setFormData({
-      name: "",
-      country: null,
-      level: [],
-      surfSeason: [],
-      image: "",
-      wifiQuality: null,
-      hasCoworking: false,
-      hasColiving: false,
-      lifeCost: null,
-    });
-    handleClose()
-
+    handleClose();
   };
 
   return (
@@ -124,85 +126,92 @@ function SpotCreationPopup() {
         aria-describedby="modal-to-create-spot"
       >
         <Box component="form" sx={style} onSubmit={createDestination}>
-          <Typography as="p">Name:</Typography>
-          <TextField
-            placeholder="Name"
-            type="text"
-            id="name"
-            name="name"
-            value={formData.name}
-            onChange={handleInputChange}
-            required
-          />
+          <Stack spacing={2}>
+            <Typography variant="h4" gutterBottom>
+              {" "}
+              Submit a spot
+            </Typography>
 
-          <Typography as="p">Country:</Typography>
-
-          <CountrySelect
-            value={formData.country}
-            handleOtherInputChange={handleOtherInputChange}
-          />
-
-          <Typography as="p">Surfing Level:</Typography>
-
-          <LevelSelector
-            level={formData.level}
-            handleOtherInputChange={handleOtherInputChange}
-          ></LevelSelector>
-
-          <Typography as="p">Wifi Quality:</Typography>
-          <Rating
-            name="wifiQuality"
-            defaultValue={2}
-            icon={<Wifi fontSize="inherit" />}
-            emptyIcon={<Wifi fontSize="inherit" />}
-            onChange={handleInputChange}
-            value={formData.wifiQuality}
-          ></Rating>
-
-          <Typography as="p">LifeCost:</Typography>
-          <Rating
-            name="lifeCost"
-            defaultValue={2}
-            icon={<MonetizationOn fontSize="inherit" />}
-            emptyIcon={<MonetizationOn fontSize="inherit" />}
-            onChange={handleInputChange}
-            value={formData.lifeCost}
-          ></Rating>
-
-          <Typography>Best surfing season</Typography>
-          <MonthSelector
-            handleInputChange={handleInputChange}
-            surfSeason={formData.surfSeason}
-          />
-          <FormGroup>
-            <FormControlLabel
-              control={
-                <Switch
-                  checked={formData.hasCoworking}
-                  id="hasCoworking"
-                  name="hasCoworking"
-                  onChange={handleInputChange}
-                />
-              }
-              label="Has Coworking"
+            <TextField
+              label="Spot Name"
+              placeholder="Name"
+              type="text"
+              id="name"
+              name="name"
+              value={formData.name}
+              onChange={handleInputChange}
+              required
             />
 
-            <FormControlLabel
-              control={
-                <Switch
-                  checked={formData.hasColiving}
-                  name="hasColiving"
-                  id="hasColiving"
-                  onChange={handleInputChange}
-                />
-              }
-              label="Has Coliving"
+            <CountrySelect
+              value={formData.country}
+              handleOtherInputChange={handleOtherInputChange}
             />
-          </FormGroup>
 
-          <Button type="submit" variant="contained">
-            Save destination
-          </Button>
+            <LevelSelector
+              id="level"
+              level={formData.level}
+              handleOtherInputChange={handleOtherInputChange}
+            ></LevelSelector>
+
+       
+              <Typography component="legend">Wifi Quality:</Typography>
+              <Rating
+                id="wifiQuality"
+                name="wifiQuality"
+                defaultValue={2}
+                icon={<Wifi fontSize="inherit" />}
+                emptyIcon={<Wifi fontSize="inherit" />}
+                onChange={handleInputChange}
+                value={formData.wifiQuality}
+              ></Rating>
+
+              <Typography component="legend">LifeCost:</Typography>
+              <Rating
+                id="lifeCost"
+                name="lifeCost"
+                defaultValue={2}
+                icon={<MonetizationOn fontSize="inherit" />}
+                emptyIcon={<MonetizationOn fontSize="inherit" />}
+                onChange={handleInputChange}
+                value={formData.lifeCost}
+              ></Rating>
+            
+
+            <MonthSelector
+              handleInputChange={handleInputChange}
+              surfSeason={formData.surfSeason}
+            />
+            <FormGroup>
+              <FormControlLabel
+                control={
+                  <Switch
+                    checked={formData.hasCoworking}
+                    id="hasCoworking"
+                    name="hasCoworking"
+                    onChange={handleInputChange}
+                  />
+                }
+                label="Has Coworking"
+              />
+
+              <FormControlLabel
+                control={
+                  <Switch
+                    checked={formData.hasColiving}
+                    name="hasColiving"
+                    id="hasColiving"
+                    onChange={handleInputChange}
+                  />
+                }
+                label="Has Coliving"
+              />
+            </FormGroup>
+
+            <Button type="submit" variant="contained">
+              Save destination
+            </Button>
+          </Stack>
         </Box>
       </Modal>
     </Box>
