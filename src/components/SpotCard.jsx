@@ -1,13 +1,14 @@
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { selectSpots } from "./spotsSlice";
-import { Box, Card, Container, Grid, Paper, Typography } from "@mui/material";
+import { Box, Card, Container, Grid, Paper, Typography, Checkbox } from "@mui/material";
 import { FaWifi } from "react-icons/fa";
 import { AiFillLike } from "react-icons/ai";
 import { FaHouseLaptop } from "react-icons/fa6";
 import { RiComputerFill } from "react-icons/ri";
 import { BiDollar } from "react-icons/bi";
 import { GiWaveSurfer } from "react-icons/gi";
+import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 
 function SpotCard({ id }) {
   const spot = useSelector(selectSpots)[id];
@@ -39,7 +40,7 @@ function SpotCard({ id }) {
           </Grid>
 
           <Grid item container  xs={2}  alignContent={"center"} direction="row-reverse" >
-            <AiFillLike size={50} color="main" />
+          <Checkbox  icon={<ThumbUpIcon fontSize="large" />} checkedIcon={<ThumbUpIcon fontSize="large" />} />
           </Grid>
 
           < Grid item xs={12} >
