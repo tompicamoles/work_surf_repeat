@@ -1,11 +1,12 @@
 import { Typography, Box } from "@mui/material";
 import { lightBlue } from "@mui/material/colors";
+import {Paper} from "@mui/material";
 
 function SideBar() {
   return (
-    <Box flex={1} bgcolor="lightBlue" id="sideBar" >
+    <Paper sx={{width:"100%"}} id="sideBar" >
       <Typography> SideBar</Typography>
-    </Box>
+    </Paper>
   );
 }
 

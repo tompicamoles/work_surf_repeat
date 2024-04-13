@@ -13,10 +13,11 @@ import {
   Switch,
   Autocomplete,
   Stack,
+  Fab,
 
 } from "@mui/material";
 
-import { Wifi, MonetizationOn } from "@mui/icons-material";
+import { Wifi, AttachMoney } from "@mui/icons-material";
 import { CountrySelect } from "./formCompents/CountrySelect";
 
 import { createSpot } from "./spotsSlice";
@@ -26,6 +27,7 @@ import LevelSelector from "./formCompents/LevelSelector";
 import LifeCost from "./formCompents/LifeCost";
 import MonthSelector from "./formCompents/MonthSelector";
 import FileUploader from "./formCompents/FileUploader";
+import AddIcon from '@mui/icons-material/Add';
 
 const style = {
   position: "absolute",
@@ -115,9 +117,10 @@ function SpotCreationPopup() {
 
   return (
     <Box>
-      <Button variant="contained" onClick={handleOpen}>
-        Create a spot
-      </Button>
+      <Fab color="primary" aria-label="add" onClick={handleOpen}>
+  <AddIcon />
+</Fab>
+      
 
       <Modal
         open={open}
@@ -171,8 +174,8 @@ function SpotCreationPopup() {
                 id="lifeCost"
                 name="lifeCost"
                 defaultValue={2}
-                icon={<MonetizationOn fontSize="inherit" />}
-                emptyIcon={<MonetizationOn fontSize="inherit" />}
+                icon={<AttachMoney fontSize="inherit" />}
+                emptyIcon={<AttachMoney fontSize="inherit" />}
                 onChange={handleInputChange}
                 value={formData.lifeCost}
               ></Rating>

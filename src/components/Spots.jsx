@@ -62,8 +62,7 @@ const Spots = () => {
       id="spotsGrid"
       container
       direction="row"
-      justifyContent="flex-start"
-      alignItems="center"
+      
     >
       {Object.entries(spots).map(([id]) => (
         <SpotCard id={id} key={id} />

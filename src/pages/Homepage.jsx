@@ -6,17 +6,24 @@ import SearchPanel from "../components/SearchPanel.jsx";
 
 function HomePage() {
   return (
-    <Stack id="homepage" container  direction="row" spacing={2} p={3}
-    sx={{
-      width: "100%"
-    }}>
-      <SideBar />
-      <Stack flex={7} spacing={2} >
+    <Grid
+      container
+      direction="row"
+      justifyContent="center"
+      alignItems="stretch"
+    >
+      <Grid xs={12} item p={2}>
         <SearchPanel />
+      </Grid>
+
+      <Grid xs={2} item container p={2}>
+        <SideBar />
+      </Grid>
+
+      <Grid xs={10} item p={2} container>
         <Spots />
-        
-      </Stack>
-    </Stack>
+      </Grid>
+    </Grid>
   );
 }
 

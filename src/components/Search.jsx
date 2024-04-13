@@ -10,28 +10,33 @@ const Search = () => {
     const { value } = target;
     setSearch(value);
 
-    const query = createSearchParams({spot:value});
+    const query = createSearchParams({ spot: value });
 
-    if (value !== ""){
-        navigate({
-            pathname: '/:search',
-            search: `?${query}`  
-          });
+    if (value !== "") {
+      navigate({
+        pathname: "/:search",
+        search: `?${query}`,
+      });
     } else {
-        navigate({
-            pathname: '/', 
-          });
+      navigate({
+        pathname: "/",
+      });
     }
-    
-
-
   };
 
   return (
-    <Box>
-      <TextField value={search} onChange={handleChange}></TextField>
-      
-    </Box>
+    <TextField
+    variant="filled"
+
+      sx={{
+        '& .MuiFilledInput-root': {
+          backgroundColor: 'white', // Set the background color of the input area to white
+        },
+      }}
+      fullWidth
+      value={search}
+      onChange={handleChange}
+    ></TextField>
   );
 };
 
