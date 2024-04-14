@@ -261,6 +261,7 @@ function SpotCard({ id }) {
             <Typography variant="h5" align="left">
               {spot.name}
             </Typography>
+            
             <Typography variant="h7" align="left" gutterBottom>
               {spot.country}
             </Typography>
