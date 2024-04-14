@@ -1,31 +1,49 @@
-import React, { useState } from 'react';
-import { BiDollar } from "react-icons/bi";
+import { Rating, Box, Typography } from "@mui/material";
+import { AttachMoney } from "@mui/icons-material";
+import { useState } from "react";
 
+const lifeCostLabels = {
+  1: "Penny Pinching Paradise",
+  2: "Budget Busters",
+  3: "Cost of Living: A Fun Adventure",
+  4: "Living on a Shoestring",
+  5: "Luxury Living on a Budget"
+};
 
-const LifeCost = ({handleOtherInputChange, lifeCost}) => {
- const [hover, setHover] = useState(null);
+const LifeCost = ({ value, handleInputChange }) => {
+  const [hover, setHover] = useState(-1);
 
- return (
-    <div>
-      {[...Array(5)].map((_, index) => {
-        const costValue = index + 1;
-        return (
-          <button
-            key={index}
-            onMouseEnter={() => setHover(costValue)}
-            onMouseLeave={() => setHover(null)}
-            onClick={() => handleOtherInputChange("lifeCost",costValue)}
-          >
-            <BiDollar
-              style={{
-                color: costValue <= (hover || lifeCost) ? '#ffe101' : '#ccc',
-              }}
-            />
-          </button>
-        );
-      })}
-    </div>
- );
+  
+
+  function getLabelText(value) {
+    return ` ${lifeCostLabels[value]}`;
+  }
+
+  return (
+    <Box sx={{
+      
+      display: 'flex',
+      alignItems: 'center',
+    }}>
+      <Rating
+        id="lifeCost"
+        name="lifeCost"
+        
+        icon={<AttachMoney color="primary" fontSize="inherit" />}
+        emptyIcon={<AttachMoney  color="disabled" fontSize="inherit" />}
+        getLabelText={getLabelText}
+        onChangeActive={(event, newHover) => {
+          setHover(newHover);
+        }}
+        value={value}
+        onChange={handleInputChange}
+      />
+      <Typography variant="body2" sx={{ ml: 2 }}>{lifeCostLabels[hover !== -1 ? hover : value]}</Typography>
+    </Box>
+  );
 };
 
 export default LifeCost;
+export {lifeCostLabels}
+
+

@@ -1,32 +1,49 @@
-import React, { useState } from 'react';
-import { StarIcon } from '@radix-ui/react-icons';
-import { FaWifi } from "react-icons/fa";
+import { Rating, Box, Typography } from "@mui/material";
+import { Wifi } from "@mui/icons-material";
+import { useState } from "react";
 
 
-const WifiRating = ({handleOtherInputChange, wifiQuality}) => {
- const [hover, setHover] = useState(null);
+const wifiLabels = {
+  1: `Emails only (> 100 kbps).`,
+  2: "Some laggy Youtube videos (>1 Mbps).",
+  3: "Zoom calls, no problemo (> 5 Mbps).",
+  4: "Stream 4K Netflix all night (>20 Mbps).",
+  5: "Fastest wifi you'll ever get (> 100 Mbps).",
+};
 
- return (
-    <div>
-      {[...Array(5)].map((_, index) => {
-        const starValue = index + 1;
-        return (
-          <button
-            key={index}
-            onMouseEnter={() => setHover(starValue)}
-            onMouseLeave={() => setHover(null)}
-            onClick={() => handleOtherInputChange("wifiQuality",starValue)}
-          >
-            <FaWifi
-              style={{
-                color: starValue <= (hover || wifiQuality) ? '#ffe101' : '#ccc',
-              }}
-            />
-          </button>
-        );
-      })}
-    </div>
- );
+
+const WifiRating = ({ value, handleInputChange }) => {
+  const [hover, setHover] = useState(-1);
+
+  
+  function getLabelText(value) {
+    return ` ${wifiLabels[value]}`;
+  }
+
+  return (
+    <Box sx={{
+      
+      display: 'flex',
+      alignItems: 'center',
+    }}>
+      <Rating
+        id="wifiQuality"
+        name="wifiQuality"
+        
+        icon={<Wifi color="primary" fontSize="inherit" />}
+        emptyIcon={<Wifi  color="disabled" fontSize="inherit" />}
+        getLabelText={getLabelText}
+        onChangeActive={(event, newHover) => {
+          setHover(newHover);
+        }}
+        value={value}
+        onChange={handleInputChange}
+      />
+      <Typography variant="body2" sx={{ ml: 2 }}>{wifiLabels[hover !== -1 ? hover : value]}</Typography>
+    </Box>
+  );
 };
 
 export default WifiRating;
+export {wifiLabels}
+

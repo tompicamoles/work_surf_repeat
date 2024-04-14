@@ -14,7 +14,6 @@ import {
   Autocomplete,
   Stack,
   Fab,
-
 } from "@mui/material";
 
 import { Wifi, AttachMoney } from "@mui/icons-material";
@@ -27,8 +26,7 @@ import LevelSelector from "./formCompents/LevelSelector";
 import LifeCost from "./formCompents/LifeCost";
 import MonthSelector from "./formCompents/MonthSelector";
 import FileUploader from "./formCompents/FileUploader";
-import AddIcon from '@mui/icons-material/Add';
-
+import AddIcon from "@mui/icons-material/Add";
 const style = {
   position: "absolute",
   top: "50%",
@@ -45,6 +43,10 @@ function SpotCreationPopup() {
   const dispatch = useDispatch();
 
   const [open, setOpen] = useState(false);
+
+  function getLabelText(label, value) {
+    return `${label[value]}`;
+  }
   const handleOpen = () => setOpen(true);
   const handleClose = () => {
     setFormData({
@@ -118,9 +120,8 @@ function SpotCreationPopup() {
   return (
     <Box>
       <Fab color="primary" aria-label="add" onClick={handleOpen}>
-  <AddIcon />
-</Fab>
-      
+        <AddIcon />
+      </Fab>
 
       <Modal
         open={open}
@@ -157,29 +158,17 @@ function SpotCreationPopup() {
               handleOtherInputChange={handleOtherInputChange}
             ></LevelSelector>
 
-       
-              <Typography component="legend">Wifi Quality:</Typography>
-              <Rating
-                id="wifiQuality"
-                name="wifiQuality"
-                defaultValue={2}
-                icon={<Wifi fontSize="inherit" />}
-                emptyIcon={<Wifi fontSize="inherit" />}
-                onChange={handleInputChange}
-                value={formData.wifiQuality}
-              ></Rating>
+            <Typography component="legend">Wifi Quality:</Typography>
 
-              <Typography component="legend">LifeCost:</Typography>
-              <Rating
-                id="lifeCost"
-                name="lifeCost"
-                defaultValue={2}
-                icon={<AttachMoney fontSize="inherit" />}
-                emptyIcon={<AttachMoney fontSize="inherit" />}
-                onChange={handleInputChange}
-                value={formData.lifeCost}
-              ></Rating>
-            
+            <WifiRating
+              value={formData.wifiQuality}
+              handleInputChange={handleInputChange}
+            />
+            <Typography component="legend">LifeCost:</Typography>
+            <LifeCost
+              handleInputChange={handleInputChange}
+              value={formData.lifeCost}
+            ></LifeCost>
 
             <MonthSelector
               handleInputChange={handleInputChange}
