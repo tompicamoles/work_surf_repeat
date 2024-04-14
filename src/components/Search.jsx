@@ -29,9 +29,8 @@ const Search = () => {
     variant="filled"
 
       sx={{
-        '& .MuiFilledInput-root': {
-          backgroundColor: 'white', // Set the background color of the input area to white
-        },
+        bgcolor: 'white',
+        borderRadius:2,
       }}
       fullWidth
       value={search}

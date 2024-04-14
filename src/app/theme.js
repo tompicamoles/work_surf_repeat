@@ -3,7 +3,6 @@ import { createTheme } from "@mui/material";
 
 export const theme = createTheme({
   palette: {
-  
     mode: "light",
     primary: {
       main: "#05668D",
@@ -11,28 +10,26 @@ export const theme = createTheme({
     secondary: {
       main: "#f0f3bd",
     },
+
     text: {
       secondary: "rgba(61,61,61,0.6)",
       disabled: "rgba(74,74,74,0.38)",
     },
   },
-  typography:{
-    fontFamily:"Ubuntu",
+  typography: {
+    fontFamily: "Ubuntu",
     h1: {
       fontSize: "4rem",
-      fontWeight: 500
-    }
-    
+      fontWeight: 500,
+    },
   },
-  
+
   props: {
     MuiAppBar: {
       color: "transparent",
     },
   },
   components: {
-    
-    
     MuiStack: {
       styleOverrides: {
         // Apply border radius to the grid container
@@ -42,12 +39,14 @@ export const theme = createTheme({
         // Optionally, apply border radius to grid items
       },
     },
+  
+
     MuiTooltip: {
-      styleOverrides:{
+      styleOverrides: {
         root: {
-          bgcolor: "white"
-        }
-      }
-    }
+          bgcolor: "white",
+        },
+      },
+    },
   },
 });

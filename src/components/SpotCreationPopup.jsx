@@ -27,6 +27,7 @@ import LifeCost from "./formCompents/LifeCost";
 import MonthSelector from "./formCompents/MonthSelector";
 import FileUploader from "./formCompents/FileUploader";
 import AddIcon from "@mui/icons-material/Add";
+
 const style = {
   position: "absolute",
   top: "50%",
@@ -34,7 +35,9 @@ const style = {
   transform: "translate(-50%, -50%)",
   width: 400,
   bgcolor: "background.paper",
-  border: "2px solid #000",
+  border: "2px solid",
+  borderColor:"primary.main",
+  borderRadius:3,
   boxShadow: 24,
   p: 4,
 };
@@ -130,8 +133,8 @@ function SpotCreationPopup() {
         aria-describedby="modal-to-create-spot"
       >
         <Box component="form" sx={style} onSubmit={createDestination}>
-          <Stack spacing={2}>
-            <Typography variant="h4" gutterBottom>
+          <Stack spacing={2} alignItems={"stretch"}>
+            <Typography variant="h4" color="primary" gutterBottom>
               {" "}
               Submit a spot
             </Typography>
