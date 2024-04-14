@@ -16,11 +16,11 @@ function HomePage() {
         <SearchPanel />
       </Grid>
 
-      <Grid xs={2} item container p={2}>
+      {/* <Grid xs={2} item container p={2}>
         <SideBar />
-      </Grid>
+      </Grid> */}
 
-      <Grid xs={10} item p={2} container>
+      <Grid xs={12} item p={2} container>
         <Spots />
       </Grid>
     </Grid>
