@@ -1,7 +1,5 @@
 import Spots from "../components/Spots.jsx";
-import SpotCreationPopup from "../components/SpotCreationPopup.jsx";
-import { Box, Container, Grid, Stack } from "@mui/material";
-import SideBar from "../components/SideBar.jsx";
+import { Grid} from "@mui/material";
 import SearchPanel from "../components/SearchPanel.jsx";
 
 function HomePage() {

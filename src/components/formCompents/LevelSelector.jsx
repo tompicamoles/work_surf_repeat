@@ -1,5 +1,4 @@
 import {
-  Box,
   Checkbox,
   FormControl,
   FormLabel,

@@ -1,29 +1,22 @@
-import { Link as RouterLink, MemoryRouter } from "react-router-dom";
+import { Link as RouterLink } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { selectSpots } from "./spotsSlice";
 import {
   Box,
-  Card,
-  Container,
   Grid,
   Paper,
   Typography,
-  Checkbox,
   Link,
-  Chip,
   Fab,
   Tooltip,
 } from "@mui/material";
 import {
   Wifi,
   AttachMoney,
-  BeachAccess,
-  AcUnit,
   LaptopMac,
   House,
   Favorite,
 } from "@mui/icons-material";
-import { styled } from "@mui/system";
 import { commaSeparator } from "../modules/commaSeparator";
 import { wifiLabels } from "./formCompents/WifiRating";
 import { lifeCostLabels } from "./formCompents/LifeCost";
@@ -60,7 +53,6 @@ function SpotCard({ id }) {
           backgroundRepeat: "no-repeat",
           backgroundImage: `url(${spot.image})`,
           display: "flex",
-
           minHeight: 200,
           width: "100%",
         }}

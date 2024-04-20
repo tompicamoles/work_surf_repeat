@@ -4,19 +4,15 @@ import {
   TextField,
   FormGroup,
   FormControlLabel,
-  Checkbox,
   Box,
   Button,
   Typography,
   Modal,
-  Rating,
   Switch,
-  Autocomplete,
   Stack,
   Fab,
 } from "@mui/material";
 
-import { Wifi, AttachMoney } from "@mui/icons-material";
 import { CountrySelect } from "./formCompents/CountrySelect";
 
 import { createSpot } from "./spotsSlice";
@@ -25,7 +21,6 @@ import WifiRating from "./formCompents/WifiRating";
 import LevelSelector from "./formCompents/LevelSelector";
 import LifeCost from "./formCompents/LifeCost";
 import MonthSelector from "./formCompents/MonthSelector";
-import FileUploader from "./formCompents/FileUploader";
 import AddIcon from "@mui/icons-material/Add";
 
 const style = {
@@ -47,9 +42,7 @@ function SpotCreationPopup() {
 
   const [open, setOpen] = useState(false);
 
-  function getLabelText(label, value) {
-    return `${label[value]}`;
-  }
+
   const handleOpen = () => setOpen(true);
   const handleClose = () => {
     setFormData({

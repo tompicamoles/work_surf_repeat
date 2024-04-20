@@ -11,10 +11,9 @@ import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
-import AdbIcon from "@mui/icons-material/Adb";
 import SurfingIcon from "@mui/icons-material/Surfing";
 import { Link } from "@mui/material";
-import { Router, Link as RouterLink } from "react-router-dom";
+import { Link as RouterLink } from "react-router-dom";
 
 const pages = ["Explore", "Blog"];
 const settings = ["Profile", "Logout"];

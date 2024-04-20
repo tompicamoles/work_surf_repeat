@@ -1,5 +1,4 @@
-import { Typography, Box } from "@mui/material";
-import { lightBlue } from "@mui/material/colors";
+import { Typography } from "@mui/material";
 import {Paper} from "@mui/material";
 
 function SideBar() {

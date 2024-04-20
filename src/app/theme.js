@@ -1,4 +1,3 @@
-import { useTheme } from "@emotion/react";
 import { createTheme } from "@mui/material";
 
 export const theme = createTheme({

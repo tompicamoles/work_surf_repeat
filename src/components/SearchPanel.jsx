@@ -1,4 +1,4 @@
-import { Typography, Stack, TextField } from "@mui/material";
+import { Typography, Stack } from "@mui/material";
 import SpotCreationPopup from "./SpotCreationPopup";
 import Search from "./Search";
 

@@ -1,13 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import SpotCard from "./SpotCard";
 import {
   loadSpots,
   selectSpots,
-  failedToLoadSpots,
-  isLoadingSpots,
 } from "./spotsSlice";
 import { useDispatch, useSelector } from "react-redux";
-import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 
 import { useNavigate, useSearchParams } from "react-router-dom";

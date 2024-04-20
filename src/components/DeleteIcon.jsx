@@ -1,6 +1,6 @@
 import React from "react";
 import { Popover, Box, Button } from "@radix-ui/themes";
-import { Cross1Icon, Cross2Icon } from "@radix-ui/react-icons";
+import { Cross1Icon } from "@radix-ui/react-icons";
 
 function DeleteIcon(props) {
   return (
