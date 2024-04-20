@@ -52,7 +52,7 @@ const Spots = () => {
         pathname: "/",
       });
     }
-  }, []);
+  }, [dispatch, navigate, spotSearch]);
 
   return (
     <Grid
