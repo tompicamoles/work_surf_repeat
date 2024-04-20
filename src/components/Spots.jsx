@@ -44,6 +44,8 @@ const Spots = () => {
     spots = filterSpotsByNameOrCountry(spots, spotSearch);
   }
 
+
+
   useEffect(() => {
     dispatch(loadSpots());
 
@@ -52,7 +54,8 @@ const Spots = () => {
         pathname: "/",
       });
     }
-  }, [dispatch, navigate, spotSearch]);
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <Grid
