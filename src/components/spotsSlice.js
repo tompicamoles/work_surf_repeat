@@ -131,19 +131,19 @@ export const spotsSlice = createSlice({
     isLoadingSpotCreation: false,
     failedToCreateSpot: false,
   },
-  reducers: {
-    updateSpot: (state, action) => {
-      console.log("spot updated");
-    },
+  // reducers: {
+  //   updateSpot: (state, action) => {
+  //     console.log("spot updated");
+  //   },
 
-    deleteSpot: (state, action) => {
-      console.log("spot deleted");
-    },
+  //   deleteSpot: (state, action) => {
+  //     console.log("spot deleted");
+  //   },
 
-    likeSpot: (state, action) => {
-      console.log("spot liked");
-    },
-  },
+  //   likeSpot: (state, action) => {
+  //     console.log("spot liked");
+  //   },
+  // },
 
   extraReducers: (builder) => {
     builder

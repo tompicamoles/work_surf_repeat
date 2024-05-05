@@ -1,7 +1,7 @@
 import "./App.css";
 import Root from "./Root";
 import HomePage from "../pages/Homepage";
-import { Destinations } from "../pages/Destination";
+import  Destinations  from "../pages/Destination";
 
 import {
   RouterProvider,
