@@ -49,6 +49,7 @@ const Spots = () => {
   useEffect(() => {
     dispatch(loadSpots());
 
+    // if the page is reloaded and still have the search query in the url, it will navigate to the main page
     if (spotSearch) {
       navigate({
         pathname: "/",
