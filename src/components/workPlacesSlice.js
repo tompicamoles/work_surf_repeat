@@ -6,7 +6,7 @@ const token = process.env.REACT_APP_AIRTABLE_API_KEY;
 export const loadWorkPlaces = createAsyncThunk(
   "workPlaces/loadWorkPlaces",
   async () => {
-    const getUrl = `${url}?maxRecords=3&view=Grid%20view`;
+    const getUrl = `${url}?maxRecords=15&view=Grid%20view`;
 
     const response = await fetch(getUrl, {
       headers: {
@@ -17,25 +17,39 @@ export const loadWorkPlaces = createAsyncThunk(
     const json = await response.json();
     console.log(json);
 
-    const workPlacesData = json.records.reduce((workPlaces, record) => {
-      workPlaces[record.id] = {
-        id: record.id,
-        type: record.fields.type,
-        destinationId: record.fields.destination_id,
-        submitedBy: record.fields.submited_by,
-        adress: record.fields.adress,
-        rating: record.fields.rating,
-        likes: record.fields.rating,
-        image: record.fields.image,
-      };
-      return workPlaces;
-    }, {});
+    const workPlacesData = json.records.reduce(
+      (workPlaces, record) => {
+
+        const type = record.fields.type
+
+        const workPlace = {
+          id: record.id,
+          name: record.fields.name,
+          type: record.fields.type,
+          destinationId: record.fields.destination_id,
+          submitedBy: record.fields.submited_by,
+          adress: record.fields.adress,
+          rating: record.fields.rating,
+          likes: record.fields.rating,
+          image: record.fields.image,
+        };
+
+        if (type === 'coworking') {
+          workPlaces.coworkings[record.id] = workPlace;
+       } else if (type === 'café') {
+          workPlaces.cafés[record.id] = workPlace;
+       } else if (type === 'coliving') {
+          workPlaces.colivings[record.id] = workPlace;
+       }
+
+        return workPlaces;
+      },
+      { coworkings: {}, cafés: {}, colivings: {} }
+    );
 
     return workPlacesData;
   }
 );
-
-
 
 export const workPlacesSlice = createSlice({
   name: "workPlaces",
@@ -44,7 +58,7 @@ export const workPlacesSlice = createSlice({
     isLoadingWorkPlaces: false,
     failedToLoadWorkPlaces: false,
   },
-//   reducers: {},
+  //   reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(loadWorkPlaces.pending, (state) => {

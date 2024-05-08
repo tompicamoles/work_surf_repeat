@@ -10,8 +10,7 @@ import Grid from "@mui/material/Grid";
 import { useNavigate, useSearchParams } from "react-router-dom";
 
 const Spots = () => {
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
+  
   let spots = useSelector(selectSpots);
 
   console.log("spots in component", spots);
@@ -46,18 +45,7 @@ const Spots = () => {
 
 
 
-  useEffect(() => {
-    dispatch(loadSpots());
-
-    // if the page is reloaded and still have the search query in the url, it will navigate to the main page
-    if (spotSearch) {
-      navigate({
-        pathname: "/",
-      });
-    }
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
+  
   return (
     <Grid
       id="spotsGrid"
