@@ -38,6 +38,16 @@ export const theme = createTheme({
         // Optionally, apply border radius to grid items
       },
     },
+
+    MuiGrid: {
+      styleOverrides: {
+        // Apply border radius to the grid container
+        root: {
+          borderRadius: "16px",
+        },
+        // Optionally, apply border radius to grid items
+      },
+    },
   
 
     MuiTooltip: {

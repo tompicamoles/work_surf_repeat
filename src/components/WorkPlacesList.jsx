@@ -1,4 +1,4 @@
-import { Typography, Grid } from "@mui/material";
+import { Typography, Grid, Button } from "@mui/material";
 import WorkPlaceCard from "./WorkPlaceCard";
 import { selectWorkPlaces } from "./workPlacesSlice";
 import { useSelector } from "react-redux";
@@ -19,13 +19,15 @@ function WorkPlacesList({ type }) {
     return <div>loading</div>;
   } else {
     return (
-      <Grid container>
+      <Grid id="placesList" container marginTop={2} spacing="1" justifyContent="space-between" >
         <Grid xs={9} item>
           <Typography variant="h6">{title}</Typography>
         </Grid>
-        <Grid item xs={3}>
-          <Typography> show more</Typography>
+        <Grid item container xs={3} justifyContent={"flex-end"} >
+        <Button variant="text">Show more</Button>
+
         </Grid>
+
         {Object.entries(workPlaces).map(([id]) => (
           <WorkPlaceCard  type={type} id={id} />
         ))}
