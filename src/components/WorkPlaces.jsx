@@ -1,10 +1,12 @@
-import { Grid } from "@mui/material";
+import { Grid, Button } from "@mui/material";
 import WorkPlacesList from "./WorkPlacesList";
+import { WorkPlaceCreationPopup } from "./WorkPlaceCreationPopup";
 
-export const WorkPlaces = () => {
+export const WorkPlaces = ({id}) => {
   return (
     <>
-      <Grid item xs={7}>
+      <Grid item xs={7} id="workPlacesLists" minHeight={500}>
+        <WorkPlaceCreationPopup  id={id}/>
         <WorkPlacesList type="cafés" />
         <WorkPlacesList type="coworkings" />
         <WorkPlacesList type="colivings" />

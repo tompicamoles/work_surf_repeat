@@ -3,10 +3,93 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 const url = "https://api.airtable.com/v0/appEifpsElq8TYpAy/work_places";
 const token = process.env.REACT_APP_AIRTABLE_API_KEY;
 
+export const createWorkPlace = createAsyncThunk(
+  "workPlaces/createWorkPlace",
+  async (workPlaceData) => {
+    const { name, type, destination_id, submited_by, adress, rating, likes } =
+      workPlaceData;
+
+    const generateImage = async (name) => {
+      // Generate image URL based on name and country
+      const query = ` ${name}`;
+      const url = `https://api.unsplash.com/photos/random?query=${query}`;
+      const token = process.env.REACT_APP_UNSPLASH_TOKEN;
+
+      try {
+        const response = await fetch(url, {
+          headers: {
+            Authorization: token,
+            Params: {
+              query: query,
+            },
+          },
+        });
+
+        if (!response.ok) {
+          throw new Error("Failed to fetch image");
+        }
+
+        const data = await response.json();
+        const imgUrl = data.urls.regular;
+        return imgUrl;
+      } catch (error) {
+        console.error("Error fetching data:", error);
+        throw error; // You can handle or propagate the error as needed
+      }
+    };
+
+    const image = await generateImage(name); //
+
+    const data = {
+      records: [
+        {
+          fields: {
+            name: name,
+            type: type,
+            destination_id: destination_id,
+            image: image,
+            submited_by: submited_by,
+            adress: adress,
+            rating: rating,
+            likes: likes,
+          },
+        },
+      ],
+    };
+
+    const response = await fetch(url, {
+      method: "POST",
+      headers: {
+        Authorization: token,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+
+    const json = await response.json();
+    const place = json.records[0];
+
+    // get spot ID and Create new spot object in the current slice
+    const newWorkPlace = {
+      id: place.id,
+      name: name,
+      type: type,
+      destination_id: destination_id,
+      image: image,
+      submited_by: submited_by,
+      adress: adress,
+      rating: rating,
+      likes: likes,
+    };
+
+    return newWorkPlace;
+  }
+);
+
 export const loadWorkPlaces = createAsyncThunk(
   "workPlaces/loadWorkPlaces",
-  async () => {
-    const getUrl = `${url}?maxRecords=15&view=Grid%20view`;
+  async (id) => {
+    const getUrl = `${url}?filterByFormula=%7Bdestination_id%7D%3D%22${id}%22&maxRecords=15`;
 
     const response = await fetch(getUrl, {
       headers: {
@@ -19,8 +102,7 @@ export const loadWorkPlaces = createAsyncThunk(
 
     const workPlacesData = json.records.reduce(
       (workPlaces, record) => {
-
-        const type = record.fields.type
+        const type = record.fields.type;
 
         const workPlace = {
           id: record.id,
@@ -30,17 +112,17 @@ export const loadWorkPlaces = createAsyncThunk(
           submitedBy: record.fields.submited_by,
           adress: record.fields.adress,
           rating: record.fields.rating,
-          likes: record.fields.rating,
+          likes: record.fields.likes.split(","),
           image: record.fields.image,
         };
 
-        if (type === 'coworking') {
+        if (type === "coworking") {
           workPlaces.coworkings[record.id] = workPlace;
-       } else if (type === 'café') {
+        } else if (type === "café") {
           workPlaces.cafés[record.id] = workPlace;
-       } else if (type === 'coliving') {
+        } else if (type === "coliving") {
           workPlaces.colivings[record.id] = workPlace;
-       }
+        }
 
         return workPlaces;
       },
@@ -57,6 +139,9 @@ export const workPlacesSlice = createSlice({
     workPlaces: {},
     isLoadingWorkPlaces: false,
     failedToLoadWorkPlaces: false,
+    isLoadingWorkPlaceCreation: false,
+    failedTocreateWorkPlace: true
+
   },
   //   reducers: {},
   extraReducers: (builder) => {
@@ -74,6 +159,20 @@ export const workPlacesSlice = createSlice({
         state.failedToLoadWorkPlaces = false;
         state.workPlaces = action.payload;
         console.log("workPlaces", action.payload);
+      })
+      .addCase(createWorkPlace.pending, (state) => {
+        state.isLoadingWorkPlaceCreation = true;
+        state.failedTocreateWorkPlace = false;
+      })
+      .addCase(createWorkPlace.rejected, (state) => {
+        state.isLoadingWorkPlaceCreation = false;
+        state.failedTocreateWorkPlace = true;
+      })
+      .addCase(createWorkPlace.fulfilled, (state, action) => {
+        state.isLoadingWorkPlaceCreation = false;
+        state.failedTocreateWorkPlace = false;
+        state.workPlaces[action.payload.type][action.payload.id] = action.payload;
+        console.log("new spot created:", action.payload);
       });
   },
 });
