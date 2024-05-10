@@ -7,6 +7,7 @@ import { useSelector } from "react-redux";
 import { selectSpots } from "../components/spotsSlice";
 import { WorkPlaces } from "../components/WorkPlaces";
 import { theme } from "../app/theme";
+import { SurfLine } from "../components/SurfLine";
 const Destinations = () => {
   let { id } = useParams();
   const [buttonState, setButtonState] = useState("work");
@@ -108,7 +109,7 @@ const Destinations = () => {
         {buttonState === "work" ? (
           <WorkPlaces id={id} />
         ) : (
-          <Typography>Yo</Typography>
+          <SurfLine url="https://www.surfline.com/surf-reports-forecasts-cams-map/@30.5249308,-9.7552747,12z"/>
         )}
       </Grid>
     );
