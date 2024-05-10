@@ -8,13 +8,14 @@ import { selectWorkPlaces } from "./workPlacesSlice";
 function WorkPlaceCard({ type, id }) {
   const place = useSelector(selectWorkPlaces)[type][id];
   const numberOfLikes = place.likes.length
-  console.log("num likes : " ,numberOfLikes)
+  
+  console.log("num likes for : ", place.name , place.likes ,numberOfLikes)
   
 
 
   return (
     <Grid id="place" container item p={2} spacing={1} xs={12} width="100%">
-      <Grid item xs={3}>
+      <Grid item sm={3} sx={{display: { xs: 'none', sm: 'block' }}}>
         <Paper
           item
           container
@@ -27,10 +28,11 @@ function WorkPlaceCard({ type, id }) {
             display: "flex",
             minHeight: 100,
             width: 150,
+            
           }}
         />
       </Grid>
-      <Grid item container xs={6} id="nameAndAdress">
+      <Grid item container xs={8} sm={6} id="nameAndAdress">
         <Typography variant="h6">{place.name}</Typography>
         <Grid item container xs={12} alignItems="center">
           <Grid item xs={1}>
@@ -42,7 +44,7 @@ function WorkPlaceCard({ type, id }) {
           </Grid>
         </Grid>
       </Grid>
-      <Grid item container xs={3}>
+      <Grid item container xs={4} sm={3}>
         <Grid item xs={6}>
           <Typography variant="h6">{place.rating} / 5</Typography>
         </Grid>

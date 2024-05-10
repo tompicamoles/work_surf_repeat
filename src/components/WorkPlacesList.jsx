@@ -7,9 +7,9 @@ function WorkPlacesList({ type }) {
   const workPlaces = useSelector(selectWorkPlaces)[type];
 
   const titles = {
-    cafés: "Laptop-friendly cafés",
-    coworkings: "Coworking Spaces",
-    colivings: "Colivings",
+    café: "Laptop-friendly cafés",
+    coworking: "Coworking Spaces",
+    coliving: "Colivings",
   };
 
   let title = titles[type];

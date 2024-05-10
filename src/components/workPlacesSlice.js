@@ -39,7 +39,6 @@ export const createWorkPlace = createAsyncThunk(
     };
 
     const image = await generateImage(name); //
-
     const data = {
       records: [
         {
@@ -79,7 +78,7 @@ export const createWorkPlace = createAsyncThunk(
       submited_by: submited_by,
       adress: adress,
       rating: parseInt(rating),
-      likes: likes,
+      likes: ["tom"],
     };
 
     return newWorkPlace;
@@ -117,16 +116,16 @@ export const loadWorkPlaces = createAsyncThunk(
         };
 
         if (type === "coworking") {
-          workPlaces.coworkings[record.id] = workPlace;
+          workPlaces.coworking[record.id] = workPlace;
         } else if (type === "café") {
-          workPlaces.cafés[record.id] = workPlace;
+          workPlaces.café[record.id] = workPlace;
         } else if (type === "coliving") {
-          workPlaces.colivings[record.id] = workPlace;
+          workPlaces.coliving[record.id] = workPlace;
         }
 
         return workPlaces;
       },
-      { coworkings: {}, cafés: {}, colivings: {} }
+      { coworking: {}, café: {}, coliving: {} }
     );
 
     return workPlacesData;

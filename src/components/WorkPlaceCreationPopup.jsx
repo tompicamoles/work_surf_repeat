@@ -45,7 +45,7 @@ export const WorkPlaceCreationPopup = ({ id }) => {
     submited_by: "tom",
     image: "",
     adress: "",
-    rating: null,
+    rating: 4,
     likes: "tom",
   });
 
@@ -57,7 +57,7 @@ export const WorkPlaceCreationPopup = ({ id }) => {
       submited_by: "tom",
       image: "",
       adress: "",
-      rating: null,
+      rating: 4,
       likes: "tom",
     });
     setOpen(false);
@@ -114,12 +114,11 @@ export const WorkPlaceCreationPopup = ({ id }) => {
               required
             />
             <FormControl  sx={{ m: 1, width: 300 }}>
-              <InputLabel id="type">Type</InputLabel>
+              <InputLabel required id="type">Type</InputLabel>
               <Select
                 id="type"
                 label="type"
                 name="type"
-                
                 value={formData.type}
                 onChange={handleInputChange}
               >
@@ -136,6 +135,7 @@ export const WorkPlaceCreationPopup = ({ id }) => {
               rows={2}
               value={formData.adress}
               onChange={handleInputChange}
+              required
             />
             <Typography component="legend">Rating</Typography>
             <Rating
@@ -144,6 +144,7 @@ export const WorkPlaceCreationPopup = ({ id }) => {
               value={formData.rating}
               onChange={handleInputChange}
               precision={0.5}
+              min={1}
             />
             <Button type="submit" variant="contained">
               Submit work place

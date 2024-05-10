@@ -54,7 +54,15 @@ const Destinations = () => {
           </Typography>
         </Grid>
         <Grid item xs={12}>
-          <Typography variant="h2">
+          <Typography
+            sx={{
+              fontSize: {
+                sm: 50, // Small screens
+                xs: 30,
+                
+              },
+            }}
+          >
             {" "}
             {spot.name}, {spot.country}{" "}
           </Typography>
@@ -97,7 +105,11 @@ const Destinations = () => {
           </Button>
         </Grid>
 
-        {buttonState === "work" ? <WorkPlaces id={id} /> : <Typography>Yo</Typography>}
+        {buttonState === "work" ? (
+          <WorkPlaces id={id} />
+        ) : (
+          <Typography>Yo</Typography>
+        )}
       </Grid>
     );
   }
