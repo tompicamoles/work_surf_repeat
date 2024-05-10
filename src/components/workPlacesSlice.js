@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 const url = "https://api.airtable.com/v0/appEifpsElq8TYpAy/work_places";
-const token = process.env.REACT_APP_AIRTABLE_API_KEY;
+const token =process.env.REACT_APP_AIRTABLE_API_KEY;
 
 export const createWorkPlace = createAsyncThunk(
   "workPlaces/createWorkPlace",
@@ -20,7 +20,7 @@ export const createWorkPlace = createAsyncThunk(
           headers: {
             Authorization: token,
             Params: {
-              query: query,
+              query: "café",
             },
           },
         });
@@ -50,7 +50,7 @@ export const createWorkPlace = createAsyncThunk(
             image: image,
             submited_by: submited_by,
             adress: adress,
-            rating: rating,
+            rating: parseInt(rating),
             likes: likes,
           },
         },
@@ -78,7 +78,7 @@ export const createWorkPlace = createAsyncThunk(
       image: image,
       submited_by: submited_by,
       adress: adress,
-      rating: rating,
+      rating: parseInt(rating),
       likes: likes,
     };
 

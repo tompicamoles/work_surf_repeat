@@ -1,4 +1,17 @@
-import { Button } from "@mui/material";
+import {
+  Box,
+  Button,
+  Modal,
+  Stack,
+  TextField,
+  Typography,
+  MenuItem,
+  FormControl,
+  Select,
+  InputLabel,
+  Rating,
+  OutlinedInput,
+} from "@mui/material";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { createWorkPlace } from "./workPlacesSlice";
@@ -18,11 +31,24 @@ const style = {
 };
 
 export const WorkPlaceCreationPopup = ({ id }) => {
+  console.log("id in modal", id);
   const dispatch = useDispatch();
 
   const [open, setOpen] = useState(false);
 
   const handleOpen = () => setOpen(true);
+
+  const [formData, setFormData] = useState({
+    name: "",
+    type: "",
+    destination_id: id,
+    submited_by: "tom",
+    image: "",
+    adress: "",
+    rating: null,
+    likes: "tom",
+  });
+
   const handleClose = () => {
     setFormData({
       name: "",
@@ -37,43 +63,94 @@ export const WorkPlaceCreationPopup = ({ id }) => {
     setOpen(false);
   };
 
-  const [formData, setFormData] = useState({
-    name: "",
-    type: "",
-    destination_id: id,
-    submited_by: "tom",
-    image: "",
-    adress: "",
-    rating: null,
-    likes: "tom",
-  });
-
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    // Check if the input is a checkbox
-    
-      setFormData((prevData) => ({
-        ...prevData,
-        [name]: value,
-      }));
-    
-  };
+    console.log(name, value)
 
-  const handleOtherInputChange = (key, value) => {
     setFormData((prevData) => ({
       ...prevData,
-      [key]: value,
+      [name]: value,
     }));
   };
+
+  //   const handleOtherInputChange = (key, value) => {
+  //     setFormData((prevData) => ({
+  //       ...prevData,
+  //       [key]: value,
+  //     }));
+  //   };
 
   const createPlace = (event) => {
     event.preventDefault();
 
-    
     dispatch(createWorkPlace(formData));
 
     handleClose();
   };
 
-  return <Button variant="contained">Recommand a place to work form</Button>;
+  return (
+    <Box>
+      <Button onClick={handleOpen} variant="contained">
+        Recommand a place to work form
+      </Button>
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="WorkPlace-creation-modal"
+        aria-describedby="modal-to-create-workPlace"
+      >
+        <Box component="form" sx={style} onSubmit={createPlace}>
+          <Stack spacing={2} alignItems={"stretch"}>
+            <Typography variant="h4">Submit work place</Typography>
+
+            <TextField
+              label="name"
+              placeholder="name"
+              type="text"
+              id="name"
+              name="name"
+              value={formData.name}
+              onChange={handleInputChange}
+              required
+            />
+            <FormControl  sx={{ m: 1, width: 300 }}>
+              <InputLabel id="type">Type</InputLabel>
+              <Select
+                id="type"
+                label="type"
+                name="type"
+                
+                value={formData.type}
+                onChange={handleInputChange}
+              >
+                {["café", "coworking", "coliving"].map((option) => (
+                  <MenuItem key={option} value={option}>{option}</MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+            <TextField
+              id="adress"
+              label="adress"
+              name="adress"
+              multiline
+              rows={2}
+              value={formData.adress}
+              onChange={handleInputChange}
+            />
+            <Typography component="legend">Rating</Typography>
+            <Rating
+              name="rating"
+              id="rating"
+              value={formData.rating}
+              onChange={handleInputChange}
+              precision={0.5}
+            />
+            <Button type="submit" variant="contained">
+              Submit work place
+            </Button>
+          </Stack>
+        </Box>
+      </Modal>
+    </Box>
+  );
 };

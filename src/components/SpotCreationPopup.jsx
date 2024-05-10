@@ -31,8 +31,8 @@ const style = {
   width: 400,
   bgcolor: "background.paper",
   border: "2px solid",
-  borderColor:"primary.main",
-  borderRadius:3,
+  borderColor: "primary.main",
+  borderRadius: 3,
   boxShadow: 24,
   p: 4,
 };
@@ -41,7 +41,6 @@ function SpotCreationPopup() {
   const dispatch = useDispatch();
 
   const [open, setOpen] = useState(false);
-
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => {
