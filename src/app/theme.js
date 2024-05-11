@@ -59,5 +59,14 @@ export const theme = createTheme({
         },
       },
     },
+    MuiFormControlLabel: {
+      styleOverrides: {
+        root: {
+          // Remove marginRight
+          marginRight: "5px",
+          marginLeft: "5px"
+        },
+      },
+    },
   },
 });

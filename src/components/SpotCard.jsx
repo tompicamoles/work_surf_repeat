@@ -35,12 +35,14 @@ function SpotCard({ id }) {
       container
       xs={12}
       sm={6}
-      md={4}
-      lg={3}
+      
+      lg={4}
+      xl={3}
       p={0.5}
       sx={{
         width: "100%",
         minHeight: 250,
+        maxHeight: 300
       }}
     >
       <Paper
@@ -161,7 +163,7 @@ function SpotCard({ id }) {
                 <GiSprout
                   size={20}
                   color={
-                    spot.surfSeason.some(month => ["March", "April", "February"].includes(month))
+                    spot.surfSeason.some(month => ["March", "April", "May"].includes(month))
                       ? "#05668D"
                       : "rgba(74,74,74,0.38)"
                   }
@@ -226,7 +228,7 @@ function SpotCard({ id }) {
               <Wifi
                 key={index}
                 sx={{ fontSize: 17 }}
-                color={index <= spot.wifiQuality ? "primary" : "disabled"}
+                color={index < spot.wifiQuality ? "primary" : "disabled"}
               ></Wifi>
             );
           })}
@@ -238,12 +240,12 @@ function SpotCard({ id }) {
               <AttachMoney
                 key={index}
                 sx={{ fontSize: 17 }}
-                color={index <= spot.lifeCost ? "primary" : "disabled"}
+                color={index < spot.lifeCost ? "primary" : "disabled"}
               ></AttachMoney>
             );
           })}
         </Grid></Tooltip>
-        <Grid item marginTop={-0.5}>
+        <Grid item marginTop={-0.5} >
           <Link
             component={RouterLink}
             underline="none"

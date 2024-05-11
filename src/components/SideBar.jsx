@@ -19,7 +19,7 @@ import FilterAltIcon from "@mui/icons-material/FilterAlt";
 import { useDispatch } from "react-redux";
 import { loadSpots } from "./spotsSlice";
 
-function SideBar() {
+function SideBar({setFilterButton}) {
   const dispatch = useDispatch();
 
   const [filters, setFilters] = useState({
@@ -57,11 +57,23 @@ function SideBar() {
 
   const filterResults = (event) => {
     event.preventDefault();
+    setFilterButton(false)
     dispatch(loadSpots(filters))
   };
 
   const resetFilters = () => {
+    setFilters({
+      country: null,
+      level: [],
+      surfSeason: [],
+      wifiQuality: null,
+      hasCoworking: false,
+      hasColiving: false,
+      lifeCost: null,
+    })
+
     dispatch(loadSpots());
+    setFilterButton(false)
   };
 
   return (
@@ -71,29 +83,33 @@ function SideBar() {
           <Typography variant="h6"> filter destinations</Typography>
           <CountrySelect
             value={filters.country}
+            context="filter"
             handleOtherInputChange={handleOtherInputChange}
           />
 
           <LevelSelector
             id="level"
             level={filters.level}
+            context="filter"
             handleOtherInputChange={handleOtherInputChange}
           ></LevelSelector>
 
-          <Typography component="legend">Wifi Quality:</Typography>
+          <Typography component="legend">Wifi quality:</Typography>
 
           <WifiRating
             value={filters.wifiQuality}
             handleInputChange={handleInputChange}
           />
-          <Typography component="legend">LifeCost:</Typography>
+          <Typography component="legend">Life cost:</Typography>
           <LifeCost
+            context="filter"
             handleInputChange={handleInputChange}
             value={filters.lifeCost}
           ></LifeCost>
 
           <MonthSelector
             handleInputChange={handleInputChange}
+            context="select"
             surfSeason={filters.surfSeason}
           />
           <FormGroup>
@@ -129,7 +145,7 @@ function SideBar() {
               type="submit"
               variant="contained"
             >
-              filter
+              apply filters
             </Button>
             <Button variant="outlined" onClick={resetFilters}>
               {" "}

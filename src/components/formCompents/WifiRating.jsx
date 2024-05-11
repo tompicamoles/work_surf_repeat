@@ -12,7 +12,7 @@ const wifiLabels = {
 };
 
 
-const WifiRating = ({ value, handleInputChange }) => {
+const WifiRating = ({ value, handleInputChange, context }) => {
   const [hover, setHover] = useState(-1);
 
   
@@ -39,7 +39,8 @@ const WifiRating = ({ value, handleInputChange }) => {
         value={value}
         onChange={handleInputChange}
       />
-      <Typography variant="body2" sx={{ ml: 2 }}>{wifiLabels[hover !== -1 ? hover : value]}</Typography>
+      {context === "popup" && (
+      <Typography variant="body2" sx={{ ml: 2 }}>{wifiLabels[hover !== -1 ? hover : value]}</Typography>)}
     </Box>
   );
 };

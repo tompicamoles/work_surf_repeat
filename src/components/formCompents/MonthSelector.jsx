@@ -16,7 +16,7 @@ const MenuProps = {
   },
 };
 
-const months = ['January', 'Febuary', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
 
 function getStyles(name, personName, theme) {
@@ -28,13 +28,14 @@ function getStyles(name, personName, theme) {
   };
 }
 
-export default function MonthSelector({surfSeason, handleInputChange}) {
+export default function MonthSelector({surfSeason, handleInputChange, context}) {
   const theme = useTheme();
+  
 
   return (
     <div>
-      <FormControl required sx={{ m: 1, width: "100%"}}>
-        <InputLabel id="demo-multiple-name-label">Surf Season</InputLabel>
+      <FormControl required={context === "popup" && true} sx={{ m: 1, width: "100%"}}>
+        <InputLabel id="demo-multiple-name-label">{context === "popup" ? "Surf Season" : "Months"}</InputLabel>
         <Select
           labelId="surfSeason"
           id="surfSeason"

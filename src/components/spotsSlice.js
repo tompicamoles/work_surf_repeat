@@ -106,8 +106,7 @@ export const loadSpots = createAsyncThunk(
       } else {
         let isFirstFilter = true;
 
-        let levelFormula = "";
-        let seasonFormula = "";
+        
 
         let globalFormula = `filterByFormula=AND(`;
 
@@ -160,6 +159,52 @@ export const loadSpots = createAsyncThunk(
           }
 
           globalFormula += colivingFormula;
+        }
+
+        if (filters.level.length !== 0) {
+          let levelFormula = "";
+          if (filters.level.length === 1) {
+            levelFormula = `FIND(%22${filters.level[0]}%22%2C+%7Blevel%7D)`;
+          } else {
+            filters.level.map((level) => {
+
+              levelFormula += `FIND(%22${level}%22%2C+%7Blevel%7D)%2C`;
+              return levelFormula;
+
+            });
+            levelFormula = levelFormula.slice(0, -3) // removes the last comma, encoded as %2C
+            levelFormula = `OR(${levelFormula})` // wraps the whole thing in the OR()
+          }
+          if (!isFirstFilter) {
+            levelFormula = `%2C${levelFormula}`;
+          } else {
+            isFirstFilter = false;
+          }
+
+          globalFormula += levelFormula;
+        }
+
+        if (filters.surfSeason.length !== 0) {
+          let surfSeasonFormula = "";
+          if (filters.surfSeason.length === 1) {
+            surfSeasonFormula = `FIND(%22${filters.surfSeason[0]}%22%2C+%7Bsurf_season%7D)`;
+          } else {
+            filters.surfSeason.map((surfSeason) => {
+
+              surfSeasonFormula += `FIND(%22${surfSeason}%22%2C+%7Bsurf_season%7D)%2C`;
+              return surfSeasonFormula;
+
+            });
+            surfSeasonFormula = surfSeasonFormula.slice(0, -3) // removes the last comma, encoded as %2C
+            surfSeasonFormula = `OR(${surfSeasonFormula})` // wraps the whole thing in the OR()
+          }
+          if (!isFirstFilter) {
+            surfSeasonFormula = `%2C${surfSeasonFormula}`;
+          } else {
+            isFirstFilter = false;
+          }
+
+          globalFormula += surfSeasonFormula;
         }
 
         globalFormula += ")&";

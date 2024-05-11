@@ -2,11 +2,11 @@ import * as React from "react";
 import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
 
-export function CountrySelect({ value, handleOtherInputChange }) {
+export function CountrySelect({ value, handleOtherInputChange, context }) {
   return (
     <Autocomplete
       
-      required
+      
       value={value}
       onChange={(event, newValue) =>
         handleOtherInputChange("country", newValue)
@@ -14,7 +14,7 @@ export function CountrySelect({ value, handleOtherInputChange }) {
       id="country"
       options={countries}
       autoHighlight
-      renderInput={(params) => <TextField  required {...params} label="country" />}
+      renderInput={(params) => <TextField  required={context === "popup" && true} {...params} label="country" />}
     /> 
   );
 }

@@ -7,30 +7,28 @@ const lifeCostLabels = {
   2: "Budget Busters",
   3: "Cost of Living: A Fun Adventure",
   4: "Living on a Shoestring",
-  5: "Luxury Living on a Budget"
+  5: "Luxury Living on a Budget",
 };
 
-const LifeCost = ({ value, handleInputChange }) => {
+const LifeCost = ({ value, handleInputChange, context }) => {
   const [hover, setHover] = useState(-1);
-
-  
 
   function getLabelText(value) {
     return ` ${lifeCostLabels[value]}`;
   }
 
   return (
-    <Box sx={{
-      
-      display: 'flex',
-      alignItems: 'center',
-    }}>
+    <Box
+      sx={{
+        display: "flex",
+        alignItems: "center",
+      }}
+    >
       <Rating
         id="lifeCost"
         name="lifeCost"
-        
         icon={<AttachMoney color="primary" fontSize="inherit" />}
-        emptyIcon={<AttachMoney  color="disabled" fontSize="inherit" />}
+        emptyIcon={<AttachMoney color="disabled" fontSize="inherit" />}
         getLabelText={getLabelText}
         onChangeActive={(event, newHover) => {
           setHover(newHover);
@@ -38,12 +36,14 @@ const LifeCost = ({ value, handleInputChange }) => {
         value={value}
         onChange={handleInputChange}
       />
-      <Typography variant="body2" sx={{ ml: 2 }}>{lifeCostLabels[hover !== -1 ? hover : value]}</Typography>
+      {context === "popup" && (
+        <Typography variant="body2" sx={{ ml: 2 }}>
+          {lifeCostLabels[hover !== -1 ? hover : value]}
+        </Typography>
+      )}
     </Box>
   );
 };
 
 export default LifeCost;
-export {lifeCostLabels}
-
-
+export { lifeCostLabels };

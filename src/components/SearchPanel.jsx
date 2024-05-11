@@ -31,8 +31,7 @@ const SearchPanel = () => {
         color="white"
         sx={{ textShadow: "2px 2px 2px rgba(0, 0, 0, 0.1)" }}
       >
-        Find Your Remote Work Oasis And Surf Heaven - Powered by Community
-      </Typography>
+Find & recommand the perfect destination to work remotely and surf!      </Typography>
       <Stack
         id="searchBar"
         sx={{ width: "80%", maxWidth: 700 }}

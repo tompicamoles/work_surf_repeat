@@ -7,7 +7,7 @@ import {
 } from "@mui/material";
 import { GiWaveSurfer } from "react-icons/gi";
 
-const LevelSelector = ({ level, handleOtherInputChange }) => {
+const LevelSelector = ({ level, handleOtherInputChange, context }) => {
   const handleChange = (e) => {
     const { name } = e.target;
     let updatedLevel = [...level];
@@ -21,12 +21,13 @@ const LevelSelector = ({ level, handleOtherInputChange }) => {
   };
 
   return (
-    <FormControl required component="fieldset">
+    <FormControl required={context === "popup" && true} component="fieldset">
       <FormLabel component="legend">Surfing Level</FormLabel>
       <FormGroup aria-label="position" row sx={{ display:"flex", alignItems:"end"}}>
         <FormControlLabel
           control={
             <Checkbox
+              checked={level.includes("Beginner")}
               icon={<GiWaveSurfer color="secondary" size={25} />}
               checkedIcon={<GiWaveSurfer color="primary" size={25} />}
               name="Beginner"
@@ -35,10 +36,16 @@ const LevelSelector = ({ level, handleOtherInputChange }) => {
           }
           label="Beginner"
           labelPlacement="bottom"
+          sx={{
+            '.MuiFormControlLabel-label': {
+              fontSize: '12px',
+            },
+          }}
         />
         <FormControlLabel
           control={
             <Checkbox
+            checked={level.includes("Intermediate")}
               icon={<GiWaveSurfer color="secondary" size={30} />}
               checkedIcon={<GiWaveSurfer color="primary" size={30} />}
               name="Intermediate"
@@ -47,11 +54,17 @@ const LevelSelector = ({ level, handleOtherInputChange }) => {
           }
           label="Intermediate"
           labelPlacement="bottom"
+          sx={{
+            '.MuiFormControlLabel-label': {
+              fontSize: '12px',
+            },
+          }}
         />
 
         <FormControlLabel
           control={
             <Checkbox
+            checked={level.includes("Advanced")}
               icon={<GiWaveSurfer color="secondary" size={35} />}
               checkedIcon={<GiWaveSurfer color="primary" size={35} />}
               name="Advanced"
@@ -60,6 +73,11 @@ const LevelSelector = ({ level, handleOtherInputChange }) => {
           }
           label="Advanced"
           labelPlacement="bottom"
+          sx={{
+            '.MuiFormControlLabel-label': {
+              fontSize: '12px',
+            },
+          }}
         />
       </FormGroup>
     </FormControl>

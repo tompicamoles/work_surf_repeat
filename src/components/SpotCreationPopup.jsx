@@ -95,6 +95,13 @@ function SpotCreationPopup() {
 
   const createDestination = (event) => {
     event.preventDefault();
+    
+    if(!formData.lifeCost || !formData.wifiQuality ){
+      alert('Please fill Wifi Qualify and Life Cost field')
+      return
+    }
+
+    
 
     console.log("country to send", formData.country);
     const spotData = {
@@ -143,29 +150,35 @@ function SpotCreationPopup() {
             />
 
             <CountrySelect
+            
               value={formData.country}
+              context="popup"
               handleOtherInputChange={handleOtherInputChange}
             />
 
             <LevelSelector
               id="level"
               level={formData.level}
+              context="popup"
               handleOtherInputChange={handleOtherInputChange}
             ></LevelSelector>
 
-            <Typography component="legend">Wifi Quality:</Typography>
+            <Typography component="legend">Wifi quality:</Typography>
 
             <WifiRating
+              context="popup"
               value={formData.wifiQuality}
               handleInputChange={handleInputChange}
             />
-            <Typography component="legend">LifeCost:</Typography>
+            <Typography component="legend">Life cost:</Typography>
             <LifeCost
+              context="popup"
               handleInputChange={handleInputChange}
               value={formData.lifeCost}
             ></LifeCost>
 
             <MonthSelector
+              context="popup"
               handleInputChange={handleInputChange}
               surfSeason={formData.surfSeason}
             />
