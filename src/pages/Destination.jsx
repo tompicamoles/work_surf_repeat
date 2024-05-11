@@ -18,7 +18,7 @@ const Destinations = () => {
 
   useEffect(() => {
     dispatch(loadWorkPlaces(id));
-  }, [dispatch]);
+  }, [dispatch, id]);
 
   const handleButtonClick = (state) => {
     state === "work" ? setButtonState("work") : setButtonState("surf");

@@ -1,13 +1,12 @@
-import React, { useEffect } from "react";
+import React  from "react";
 import SpotCard from "./SpotCard";
 import {
-  loadSpots,
   selectSpots,
 } from "./spotsSlice";
-import { useDispatch, useSelector } from "react-redux";
+import {  useSelector } from "react-redux";
 import Grid from "@mui/material/Grid";
 
-import { useNavigate, useSearchParams } from "react-router-dom";
+import {  useSearchParams } from "react-router-dom";
 
 const Spots = () => {
   

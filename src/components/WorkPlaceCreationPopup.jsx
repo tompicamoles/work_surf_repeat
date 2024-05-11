@@ -10,7 +10,6 @@ import {
   Select,
   InputLabel,
   Rating,
-  OutlinedInput,
 } from "@mui/material";
 import { useState } from "react";
 import { useDispatch } from "react-redux";

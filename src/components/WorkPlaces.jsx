@@ -1,4 +1,4 @@
-import { Grid, Button } from "@mui/material";
+import { Grid} from "@mui/material";
 import WorkPlacesList from "./WorkPlacesList";
 import { WorkPlaceCreationPopup } from "./WorkPlaceCreationPopup";
 
