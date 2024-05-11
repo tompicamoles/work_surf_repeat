@@ -1,14 +1,23 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 const url = "https://api.airtable.com/v0/appEifpsElq8TYpAy/spots";
-const token =process.env.REACT_APP_AIRTABLE_API_KEY
-   // Replace with your actual API key
+const token = process.env.REACT_APP_AIRTABLE_API_KEY;
+// Replace with your actual API key
 
 export const createSpot = createAsyncThunk(
   "spots/createSpot",
   async (spotData) => {
-    const { name, country, level, surfSeason, wifiQuality, hasCoworking, hasColiving, lifeCost } = spotData;
-    
+    const {
+      name,
+      country,
+      level,
+      surfSeason,
+      wifiQuality,
+      hasCoworking,
+      hasColiving,
+      lifeCost,
+    } = spotData;
+
     const generateImage = async (name) => {
       // Generate image URL based on name and country
       const query = ` ${name}  surfing `;
@@ -49,7 +58,7 @@ export const createSpot = createAsyncThunk(
             level: level,
             image: image,
             surf_season: surfSeason,
-            wifi_quality:parseInt(wifiQuality),
+            wifi_quality: parseInt(wifiQuality),
             has_coworking: hasCoworking,
             has_coliving: hasColiving,
             life_cost: parseInt(lifeCost),
@@ -81,46 +90,116 @@ export const createSpot = createAsyncThunk(
       wifiQuality: spot.fields.wifi_quality,
       hasCoworking: spot.fields.has_coworking,
       hasColiving: spot.fields.has_coliving,
-      lifeCost: spot.fields.life_cost
+      lifeCost: spot.fields.life_cost,
     };
 
-    return newSpot
+    return newSpot;
   }
-
 );
 
-export const loadSpots = createAsyncThunk("spots/loadSpots", async () => {
-  const getUrl = `${url}?maxRecords=12&view=Grid%20view`;
+export const loadSpots = createAsyncThunk(
+  "spots/loadSpots",
+  async (filters = null) => {
+    const generatFilterFormula = (filters) => {
+      if (!filters) {
+        return "";
+      } else {
+        let isFirstFilter = true;
 
-  const response = await fetch(getUrl, {
-    headers: {
-      Authorization: token,
-    },
-  });
-  const json = await response.json();
-  console.log(json);
+        let levelFormula = "";
+        let seasonFormula = "";
 
-  const cardsData = json.records.reduce((spots, record) => {
-    console.log("spot before:", spots);
-    spots[record.id] = {
-      id: record.id,
-      name: record.fields.name,
-      country: record.fields.country,
-      level: record.fields.level,
-      image: record.fields.image,
-      surfSeason: record.fields.surf_season,
-      wifiQuality: record.fields.wifi_quality,
-      hasCoworking: record.fields.has_coworking,
-      hasColiving: record.fields.has_coliving,
-      lifeCost: record.fields.life_cost
+        let globalFormula = `filterByFormula=AND(`;
 
+        if (filters.country) {
+          const countryFormula = `%7Bcountry%7D%3D%22${filters.country}%22`;
+          globalFormula += countryFormula;
+          isFirstFilter = false;
+        }
+
+        if (filters.wifiQuality) {
+          let wifiFormula = `%7Bwifi_quality%7D%3E%3D${filters.wifiQuality}`;
+
+          if (!isFirstFilter) {
+            wifiFormula = `%2C${wifiFormula}`;
+          } else {
+            isFirstFilter = false;
+          }
+
+          globalFormula += wifiFormula;
+        }
+
+        if (filters.lifeCost) {
+          let lifeCostFormula = `%7Blife_cost%7D%3C%3D${filters.lifeCost}`;
+          if (!isFirstFilter) {
+            lifeCostFormula = `%2C${lifeCostFormula}`;
+          } else {
+            isFirstFilter = false;
+          }
+
+          globalFormula += lifeCostFormula;
+        }
+
+        if (filters.hasCoworking) {
+          let coworkingFormula = `%7Bhas_coworking%7D%3DTRUE()`;
+          if (!isFirstFilter) {
+            coworkingFormula = `%2C${coworkingFormula}`;
+          } else {
+            isFirstFilter = false;
+          }
+
+          globalFormula += coworkingFormula;
+        }
+
+        if (filters.hasColiving) {
+          let colivingFormula = `%7Bhas_coliving%7D%3DTRUE()`;
+          if (!isFirstFilter) {
+            colivingFormula = `%2C${colivingFormula}`;
+          } else {
+            isFirstFilter = false;
+          }
+
+          globalFormula += colivingFormula;
+        }
+
+        globalFormula += ")&";
+
+        return globalFormula;
+      }
     };
-    console.log("spots after", spots);
-    return spots;
-  }, {});
 
-  return cardsData;
-});
+    const filterFormula = generatFilterFormula(filters);
+
+    const getUrl = `${url}?${filterFormula}maxRecords=12`;
+    const response = await fetch(getUrl, {
+      headers: {
+        Authorization: token,
+      },
+    });
+    const json = await response.json();
+    console.log(json);
+
+    const cardsData = json.records.reduce((spots, record) => {
+      console.log("spot before:", spots);
+      spots[record.id] = {
+        id: record.id,
+        name: record.fields.name,
+        country: record.fields.country,
+        level: record.fields.level,
+        image: record.fields.image,
+        surfSeason: record.fields.surf_season,
+        wifiQuality: record.fields.wifi_quality,
+        hasCoworking: record.fields.has_coworking,
+        hasColiving: record.fields.has_coliving,
+        lifeCost: record.fields.life_cost,
+      };
+      console.log("spots after", spots);
+      return spots;
+    }, {});
+
+    return cardsData;
+  }
+);
 
 export const spotsSlice = createSlice({
   name: "spots",

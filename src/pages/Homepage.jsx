@@ -3,6 +3,7 @@ import React, { useEffect } from "react";
 import { Grid} from "@mui/material";
 import SearchPanel from "../components/SearchPanel.jsx";
 import { useNavigate, useSearchParams } from "react-router-dom";
+import SideBar from "../components/SideBar.jsx"
 
 
 
@@ -34,11 +35,11 @@ function HomePage() {
         <SearchPanel />
       </Grid>
 
-      {/* <Grid xs={2} item container p={2}>
+      <Grid xs={3} item container p={2}>
         <SideBar />
-      </Grid> */}
+      </Grid>
 
-      <Grid xs={12} item p={2} container>
+      <Grid xs={9} item p={2} container>
         <Spots />
       </Grid>
     </Grid>

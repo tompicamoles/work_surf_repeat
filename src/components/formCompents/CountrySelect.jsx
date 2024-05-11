@@ -5,14 +5,13 @@ import Autocomplete from "@mui/material/Autocomplete";
 export function CountrySelect({ value, handleOtherInputChange }) {
   return (
     <Autocomplete
-      fullWidth
+      
       required
       value={value}
       onChange={(event, newValue) =>
         handleOtherInputChange("country", newValue)
       }
       id="country"
-      sx={{ width: 300 }}
       options={countries}
       autoHighlight
       renderInput={(params) => <TextField  required {...params} label="country" />}
