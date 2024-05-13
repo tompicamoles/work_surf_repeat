@@ -15,9 +15,10 @@ import SurfingIcon from "@mui/icons-material/Surfing";
 import { Link } from "@mui/material";
 import { Link as RouterLink } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
+import { LogInButton } from "./LogInButton";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 
 const pages = ["Explore", "Blog"];
-
 
 function NavBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -43,8 +44,8 @@ function NavBar() {
 
   return (
     <AppBar position="static">
-      <Container maxWidth="xl">
-        <Toolbar disableGutters>
+      <Container maxWidth="xl" >
+        <Toolbar disableGutters >
           <SurfingIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
           <Link component={RouterLink} to="/" color="inherit" underline="none">
             <Typography
@@ -66,10 +67,7 @@ function NavBar() {
             </Typography>
           </Link>
 
-        
-          
-
-          <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
+          {/* <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
             <IconButton
               size="large"
               aria-label="account of current user"
@@ -104,29 +102,15 @@ function NavBar() {
                 </MenuItem>
               ))}
             </Menu>
-          </Box>
+          </Box> */}
           <SurfingIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
-          <Link component={RouterLink} to="/" color="inherit" underline="none">
-            <Typography
-              variant="h5"
-              noWrap
-              component="a"
-              href="#app-bar-with-responsive-menu"
-              sx={{
-                mr: 2,
-                display: { xs: "flex", md: "none" },
-                flexGrow: 1,
-                fontFamily: "monospace",
-                fontWeight: 700,
-                letterSpacing: ".3rem",
-                color: "inherit",
-                textDecoration: "none",
-              }}
-            >
-              Work Surf Repeat
-            </Typography>
-          </Link>
-          <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
+          <Link
+            component={RouterLink}
+            to="/"
+            color="inherit"
+            underline="none"
+          ></Link>
+          {/* <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {pages.map((page) => (
               <Button
                 key={page}
@@ -136,31 +120,37 @@ function NavBar() {
                 {page}
               </Button>
             ))}
-          </Box>
+          </Box> */}
 
-          <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
-              </IconButton>
-            </Tooltip>
-            <Menu
-              sx={{ mt: "45px" }}
-              id="menu-appbar"
-              anchorEl={anchorElUser}
-              anchorOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
-            >
-              {isAuthenticated && (
+          {!isAuthenticated ? (
+            <Box sx={{ flexGrow: 0 }}>
+              {" "}
+              <LogInButton context="navBar" />{" "}
+            </Box>
+          ) : (
+            <Box sx={{ flexGrow: 0 }}>
+              {" "}
+              <Tooltip title="Open settings">
+                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                  <AccountCircleIcon color="secondary" />
+                </IconButton>
+              </Tooltip>
+              <Menu
+                sx={{ mt: "45px" }}
+                id="menu-appbar"
+                anchorEl={anchorElUser}
+                anchorOrigin={{
+                  vertical: "top",
+                  horizontal: "right",
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: "top",
+                  horizontal: "right",
+                }}
+                open={Boolean(anchorElUser)}
+                onClose={handleCloseUserMenu}
+              >
                 <MenuItem key={"profile"} onClick={handleCloseUserMenu}>
                   <Link
                     component={RouterLink}
@@ -171,31 +161,22 @@ function NavBar() {
                     <Typography textAlign="center">Profile</Typography>{" "}
                   </Link>
                 </MenuItem>
-              )}
 
-              {!isAuthenticated && (<MenuItem key={"logIn"} onClick={handleCloseUserMenu}>
-                <Typography
-                  textAlign="center"
-                  onClick={() => loginWithRedirect()}
-                >
-                  Log In
-                </Typography>{" "}
-              </MenuItem>)}
-
-              {isAuthenticated && (<MenuItem key={"logOut"} onClick={handleCloseUserMenu}>
-                <Typography
-                  textAlign="center"
-                  onClick={() =>
-                    logout({
-                      logoutParams: { returnTo: window.location.origin },
-                    })
-                  }
-                >
-                  Log Out
-                </Typography>{" "}
-              </MenuItem>)}
-            </Menu>
-          </Box>
+                <MenuItem key={"logOut"} onClick={handleCloseUserMenu}>
+                  <Typography
+                    textAlign="center"
+                    onClick={() =>
+                      logout({
+                        logoutParams: { returnTo: window.location.origin },
+                      })
+                    }
+                  >
+                    Log Out
+                  </Typography>{" "}
+                </MenuItem>
+              </Menu>{" "}
+            </Box>
+          )}
         </Toolbar>
       </Container>
     </AppBar>
