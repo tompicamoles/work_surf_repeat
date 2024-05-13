@@ -17,7 +17,7 @@ import { Link as RouterLink } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 
 const pages = ["Explore", "Blog"];
-const settings = ["Profile", "Logout"];
+
 
 function NavBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);

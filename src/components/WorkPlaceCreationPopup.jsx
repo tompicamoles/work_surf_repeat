@@ -10,10 +10,14 @@ import {
   Select,
   InputLabel,
   Rating,
+  Grid
 } from "@mui/material";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { createWorkPlace } from "./workPlacesSlice";
+import { useAuth0 } from "@auth0/auth0-react";
+import { LogInButton } from "./LogInButton";
+
 
 const style = {
   position: "absolute",
@@ -30,6 +34,9 @@ const style = {
 };
 
 export const WorkPlaceCreationPopup = ({ id }) => {
+
+  const {user, isAuthenticated, loginWithRedirect} = useAuth0();
+
   console.log("id in modal", id);
   const dispatch = useDispatch();
 
@@ -41,7 +48,6 @@ export const WorkPlaceCreationPopup = ({ id }) => {
     name: "",
     type: "",
     destination_id: id,
-    submited_by: "tom",
     image: "",
     adress: "",
     rating: 4,
@@ -53,7 +59,6 @@ export const WorkPlaceCreationPopup = ({ id }) => {
       name: "",
       type: "",
       destination_id: id,
-      submited_by: "tom",
       image: "",
       adress: "",
       rating: 4,
@@ -82,7 +87,9 @@ export const WorkPlaceCreationPopup = ({ id }) => {
   const createPlace = (event) => {
     event.preventDefault();
 
-    dispatch(createWorkPlace(formData));
+    dispatch(createWorkPlace({...formData,
+      submited_by: user.nickname
+    }));
 
     handleClose();
   };
@@ -99,7 +106,7 @@ export const WorkPlaceCreationPopup = ({ id }) => {
         aria-describedby="modal-to-create-workPlace"
       >
         <Box component="form" sx={style} onSubmit={createPlace}>
-          <Stack spacing={2} alignItems={"stretch"}>
+        {isAuthenticated?( <Stack spacing={2} alignItems={"stretch"}>
             <Typography variant="h4">Submit work place</Typography>
 
             <TextField
@@ -148,7 +155,12 @@ export const WorkPlaceCreationPopup = ({ id }) => {
             <Button type="submit" variant="contained">
               Submit work place
             </Button>
-          </Stack>
+          </Stack>): 
+          (
+          <Grid container direction="column" alignItems="center"  >
+            <Typography variant= "h6" gutterBottom >You must logged in to submit a new spot</Typography>
+            <LogInButton />
+            </Grid> )}
         </Box>
       </Modal>
     </Box>

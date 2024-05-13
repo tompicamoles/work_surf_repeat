@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { useAuth0 } from "@auth0/auth0-react";
+
 
 import {
   TextField,
@@ -11,6 +13,7 @@ import {
   Switch,
   Stack,
   Fab,
+  Grid
 } from "@mui/material";
 
 import { CountrySelect } from "./formCompents/CountrySelect";
@@ -22,6 +25,7 @@ import LevelSelector from "./formCompents/LevelSelector";
 import LifeCost from "./formCompents/LifeCost";
 import MonthSelector from "./formCompents/MonthSelector";
 import AddIcon from "@mui/icons-material/Add";
+import { LogInButton } from "./LogInButton";
 
 const style = {
   position: "absolute",
@@ -38,6 +42,8 @@ const style = {
 };
 
 function SpotCreationPopup() {
+
+  const {user, isAuthenticated, loginWithRedirect} = useAuth0();
   const dispatch = useDispatch();
 
   const [open, setOpen] = useState(false);
@@ -49,7 +55,6 @@ function SpotCreationPopup() {
       country: null,
       level: [],
       surfSeason: [],
-      image: "",
       wifiQuality: null,
       hasCoworking: false,
       hasColiving: false,
@@ -63,7 +68,6 @@ function SpotCreationPopup() {
     country: null,
     level: [],
     surfSeason: [],
-    image: "",
     wifiQuality: null,
     hasCoworking: false,
     hasColiving: false,
@@ -113,12 +117,14 @@ function SpotCreationPopup() {
       hasCoworking: formData.hasCoworking,
       hasColiving: formData.hasColiving,
       lifeCost: formData.lifeCost,
+      submitedBy: user.nickname
     };
     dispatch(createSpot(spotData));
 
     handleClose();
   };
 
+  
   return (
     <Box>
       <Fab color="primary" aria-label="add" onClick={handleOpen}>
@@ -132,7 +138,7 @@ function SpotCreationPopup() {
         aria-describedby="modal-to-create-spot"
       >
         <Box component="form" sx={style} onSubmit={createDestination}>
-          <Stack spacing={2} alignItems={"stretch"}>
+        {isAuthenticated?( <Stack spacing={2} alignItems={"stretch"}>
             <Typography variant="h4" color="primary" gutterBottom>
               {" "}
               Submit a spot
@@ -211,7 +217,12 @@ function SpotCreationPopup() {
             <Button type="submit" variant="contained">
               Save destination
             </Button>
-          </Stack>
+          </Stack>) : 
+          (
+          <Grid container direction="column" alignItems="center"  >
+            <Typography variant= "h6" gutterBottom >You must logged in to submit a new spot</Typography>
+            <LogInButton />
+            </Grid>)}
         </Box>
       </Modal>
     </Box>

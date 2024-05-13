@@ -63,7 +63,7 @@ function WorkPlaceCard({ type, id }) {
             </Typography>
           </Fab>
         </Grid>
-        <Typography variant="subtitle"> by tom</Typography>
+        <Typography variant="subtitle"> by {place.submitedBy}</Typography>
       </Grid>
       <Grid item xs={12}>
         <Divider />

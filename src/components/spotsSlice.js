@@ -15,6 +15,7 @@ export const createSpot = createAsyncThunk(
       hasCoworking,
       hasColiving,
       lifeCost,
+      submitedBy
     } = spotData;
 
     const generateImage = async (name) => {
@@ -61,6 +62,7 @@ export const createSpot = createAsyncThunk(
             has_coworking: hasCoworking,
             has_coliving: hasColiving,
             life_cost: parseInt(lifeCost),
+            submited_by: submitedBy
           },
         },
       ],
@@ -90,6 +92,8 @@ export const createSpot = createAsyncThunk(
       hasCoworking: spot.fields.has_coworking,
       hasColiving: spot.fields.has_coliving,
       lifeCost: spot.fields.life_cost,
+      submitedBy: spot.fields.submited_by,
+
     };
 
     return newSpot;
@@ -236,6 +240,7 @@ export const loadSpots = createAsyncThunk(
         hasCoworking: record.fields.has_coworking,
         hasColiving: record.fields.has_coliving,
         lifeCost: record.fields.life_cost,
+        submitedBy: record.fields.submited_by,
       };
       console.log("spots after", spots);
       return spots;

@@ -11,7 +11,7 @@ export const createWorkPlace = createAsyncThunk(
 
     const generateImage = async (name) => {
       // Generate image URL based on name and country
-      const query = ` ${name}`;
+      const query = ` café`;
       const url = `https://api.unsplash.com/photos/random?query=${query}`;
       const token = process.env.REACT_APP_UNSPLASH_TOKEN;
 
@@ -20,7 +20,8 @@ export const createWorkPlace = createAsyncThunk(
           headers: {
             Authorization: token,
             Params: {
-              query: "café",
+              
+              
             },
           },
         });
@@ -75,7 +76,7 @@ export const createWorkPlace = createAsyncThunk(
       type: type,
       destination_id: destination_id,
       image: image,
-      submited_by: submited_by,
+      submitedBy: submited_by,
       adress: adress,
       rating: parseInt(rating),
       likes: ["tom"],

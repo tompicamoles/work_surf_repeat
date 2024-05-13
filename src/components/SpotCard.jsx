@@ -35,14 +35,13 @@ function SpotCard({ id }) {
       container
       xs={12}
       sm={6}
-      
       lg={4}
       xl={3}
       p={0.5}
       sx={{
         width: "100%",
         minHeight: 250,
-        maxHeight: 300
+        maxHeight: 300,
       }}
     >
       <Paper
@@ -124,7 +123,9 @@ function SpotCard({ id }) {
             alignContent={"flex-end"}
             justifyContent="flex-start"
           >
-            <Tooltip title={`Best surf season : ${commaSeparator(spot.surfSeason)}.`}>
+            <Tooltip
+              title={`Best surf season : ${commaSeparator(spot.surfSeason)}.`}
+            >
               <Box
                 sx={{
                   display: "flex",
@@ -139,7 +140,9 @@ function SpotCard({ id }) {
                 <FaSun
                   size={20}
                   color={
-                    spot.surfSeason.some(month => ["June", "July", "August"].includes(month))
+                    spot.surfSeason.some((month) =>
+                      ["June", "July", "August"].includes(month)
+                    )
                       ? "#05668D"
                       : "rgba(74,74,74,0.38)"
                   }
@@ -147,7 +150,9 @@ function SpotCard({ id }) {
                 <GiMapleLeaf
                   size={20}
                   color={
-                    spot.surfSeason.some(month => ["September", "October", "November"].includes(month))
+                    spot.surfSeason.some((month) =>
+                      ["September", "October", "November"].includes(month)
+                    )
                       ? "#05668D"
                       : "rgba(74,74,74,0.38)"
                   }
@@ -155,7 +160,9 @@ function SpotCard({ id }) {
                 <FaSnowman
                   size={20}
                   color={
-                    spot.surfSeason.some(month => ["December", "January", "February"].includes(month))
+                    spot.surfSeason.some((month) =>
+                      ["December", "January", "February"].includes(month)
+                    )
                       ? "#05668D"
                       : "rgba(74,74,74,0.38)"
                   }
@@ -163,7 +170,9 @@ function SpotCard({ id }) {
                 <GiSprout
                   size={20}
                   color={
-                    spot.surfSeason.some(month => ["March", "April", "May"].includes(month))
+                    spot.surfSeason.some((month) =>
+                      ["March", "April", "May"].includes(month)
+                    )
                       ? "#05668D"
                       : "rgba(74,74,74,0.38)"
                   }
@@ -179,7 +188,11 @@ function SpotCard({ id }) {
             alignContent={"flex-end"}
             justifyContent="flex-end"
           >
-            <Tooltip title={`Waves suitable for ${commaSeparator(spot.level)} surfers.`}>
+            <Tooltip
+              title={`Waves suitable for ${commaSeparator(
+                spot.level
+              )} surfers.`}
+            >
               <Box
                 sx={{
                   display: "flex",
@@ -221,44 +234,54 @@ function SpotCard({ id }) {
         </Grid>
       </Paper>
       <Grid item container p={0.5} marginBottom={1} alignContent={"flex-start"}>
-        <Tooltip title={`Wifi quality: ${wifiLabels[spot.wifiQuality]}`} >
-        <Grid item xs={6}>
-          {[...Array(5)].map((_, index) => {
-            return (
-              <Wifi
-                key={index}
-                sx={{ fontSize: 17 }}
-                color={index < spot.wifiQuality ? "primary" : "disabled"}
-              ></Wifi>
-            );
-          })}
-        </Grid></Tooltip>
+        <Tooltip title={`Wifi quality: ${wifiLabels[spot.wifiQuality]}`}>
+          <Grid item xs={6}>
+            {[...Array(5)].map((_, index) => {
+              return (
+                <Wifi
+                  key={index}
+                  sx={{ fontSize: 17 }}
+                  color={index < spot.wifiQuality ? "primary" : "disabled"}
+                ></Wifi>
+              );
+            })}
+          </Grid>
+        </Tooltip>
         <Tooltip title={`Life cost: ${lifeCostLabels[spot.lifeCost]}`}>
-        <Grid item container xs={6} justifyContent="flex-end">
-          {[...Array(5)].map((_, index) => {
-            return (
-              <AttachMoney
-                key={index}
-                sx={{ fontSize: 17 }}
-                color={index < spot.lifeCost ? "primary" : "disabled"}
-              ></AttachMoney>
-            );
-          })}
-        </Grid></Tooltip>
-        <Grid item marginTop={-0.5} >
+          <Grid item container xs={6} justifyContent="flex-end">
+            {[...Array(5)].map((_, index) => {
+              return (
+                <AttachMoney
+                  key={index}
+                  sx={{ fontSize: 17 }}
+                  color={index < spot.lifeCost ? "primary" : "disabled"}
+                ></AttachMoney>
+              );
+            })}
+          </Grid>
+        </Tooltip>
+        <Grid item marginTop={-0.5} xs={12}>
           <Link
             component={RouterLink}
             underline="none"
             to={`/destination/${spot.id}`}
             name={spot.name}
           >
-            <Typography variant="h5" align="left">
-              {spot.name}
-            </Typography>
-            
-            <Typography variant="h7" align="left" gutterBottom>
-              {spot.country}
-            </Typography>
+            <Grid item container xs={12}>
+              <Typography variant="h5" align="left">
+                {spot.name}
+              </Typography>
+            </Grid>
+
+            <Grid item container justifyContent="space-between" xs={12}>
+              <Typography variant="h7" gutterBottom>
+                {spot.country}
+              </Typography>
+              <Typography variant="h8" gutterBottom color={"grey"} >
+                {" "}
+                by {spot.submitedBy}
+              </Typography>
+            </Grid>
           </Link>
         </Grid>
       </Grid>
