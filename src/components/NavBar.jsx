@@ -14,6 +14,7 @@ import MenuItem from "@mui/material/MenuItem";
 import SurfingIcon from "@mui/icons-material/Surfing";
 import { Link } from "@mui/material";
 import { Link as RouterLink } from "react-router-dom";
+import { useAuth0 } from "@auth0/auth0-react";
 
 const pages = ["Explore", "Blog"];
 const settings = ["Profile", "Logout"];
@@ -21,6 +22,9 @@ const settings = ["Profile", "Logout"];
 function NavBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const { loginWithRedirect, logout, isAuthenticated } = useAuth0();
+
+  console.log("isAuthenticated", isAuthenticated);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -62,6 +66,9 @@ function NavBar() {
             </Typography>
           </Link>
 
+        
+          
+
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
             <IconButton
               size="large"
@@ -100,24 +107,24 @@ function NavBar() {
           </Box>
           <SurfingIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
           <Link component={RouterLink} to="/" color="inherit" underline="none">
-         <Typography
-             variant="h5"
-            noWrap
-            component="a"
-            href="#app-bar-with-responsive-menu"
-            sx={{
-              mr: 2,
-              display: { xs: "flex", md: "none" },
-              flexGrow: 1,
-              fontFamily: "monospace",
-              fontWeight: 700,
-              letterSpacing: ".3rem",
-              color: "inherit",
-              textDecoration: "none",
-            }}
-          >
-            Work Surf Repeat
-          </Typography>
+            <Typography
+              variant="h5"
+              noWrap
+              component="a"
+              href="#app-bar-with-responsive-menu"
+              sx={{
+                mr: 2,
+                display: { xs: "flex", md: "none" },
+                flexGrow: 1,
+                fontFamily: "monospace",
+                fontWeight: 700,
+                letterSpacing: ".3rem",
+                color: "inherit",
+                textDecoration: "none",
+              }}
+            >
+              Work Surf Repeat
+            </Typography>
           </Link>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {pages.map((page) => (
@@ -153,11 +160,40 @@ function NavBar() {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
+              {isAuthenticated && (
+                <MenuItem key={"profile"} onClick={handleCloseUserMenu}>
+                  <Link
+                    component={RouterLink}
+                    underline="none"
+                    to={`/profile`}
+                    name={"profile"}
+                  >
+                    <Typography textAlign="center">Profile</Typography>{" "}
+                  </Link>
                 </MenuItem>
-              ))}
+              )}
+
+              {!isAuthenticated && (<MenuItem key={"logIn"} onClick={handleCloseUserMenu}>
+                <Typography
+                  textAlign="center"
+                  onClick={() => loginWithRedirect()}
+                >
+                  Log In
+                </Typography>{" "}
+              </MenuItem>)}
+
+              {isAuthenticated && (<MenuItem key={"logOut"} onClick={handleCloseUserMenu}>
+                <Typography
+                  textAlign="center"
+                  onClick={() =>
+                    logout({
+                      logoutParams: { returnTo: window.location.origin },
+                    })
+                  }
+                >
+                  Log Out
+                </Typography>{" "}
+              </MenuItem>)}
             </Menu>
           </Box>
         </Toolbar>

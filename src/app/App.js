@@ -12,6 +12,7 @@ import {
   Route,
 } from "react-router-dom";
 import { useEffect } from "react";
+import { Profile } from "../pages/Profile";
 
 const appRouter = createBrowserRouter(
   createRoutesFromElements(
@@ -19,6 +20,8 @@ const appRouter = createBrowserRouter(
        <Route path="/" element={<HomePage />} />
        <Route path="/destination/:id" element={<Destinations />} />
        <Route path=":search" element={<HomePage />} />
+       <Route path="/profile" element={<Profile/>} />
+
 
 
     {/*<Route path="/search" element={<SearchPage/>}/>
