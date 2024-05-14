@@ -1,6 +1,5 @@
-import { Typography, Grid, Paper, Fab, Divider } from "@mui/material";
+import { Typography, Grid, Paper, Divider } from "@mui/material";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
-import ThumbUpAltIcon from "@mui/icons-material/ThumbUpAlt";
 
 import { useSelector } from "react-redux";
 import { selectWorkPlaces } from "./workPlacesSlice";

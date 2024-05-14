@@ -269,7 +269,7 @@ export const likeSpot = createAsyncThunk("spots/likeSpot", async (likeData) => {
 
   const json = await response.json();
 
-  console.log(response);
+  console.log(json);
 
   return { id: id, likes: likes };
 });
