@@ -1,6 +1,8 @@
 import { Link as RouterLink } from "react-router-dom";
-import { useSelector } from "react-redux";
-import { selectSpots } from "./spotsSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { selectSpots, likeSpot } from "./spotsSlice";
+import { useAuth0 } from "@auth0/auth0-react";
+
 import {
   Box,
   Grid,
@@ -16,6 +18,7 @@ import {
   LaptopMac,
   House,
   Favorite,
+  ThumbUpAlt,
 } from "@mui/icons-material";
 import { commaSeparator } from "../modules/commaSeparator";
 import { wifiLabels } from "./formCompents/WifiRating";
@@ -27,7 +30,41 @@ import { FaSun, FaSnowman } from "react-icons/fa";
 import { GiWaveSurfer } from "react-icons/gi";
 
 function SpotCard({ id }) {
+  const dispatch = useDispatch();
+  const { user, isAuthenticated } = useAuth0();
+
   const spot = useSelector(selectSpots)[id];
+  const numberOfLikes = spot.likes.length;
+
+  const handleLikeButton = () => {
+    let newListOfLikes = [...spot.likes];
+    !spot.likes.includes(user.nickname)
+      ? newListOfLikes.push(user.nickname)
+      : (newListOfLikes = newListOfLikes.filter(
+          (like) => like !== user.nickname
+        ));
+        newListOfLikes.length === 0 && newListOfLikes.push("tom")
+
+    const likeData = {
+      id: id,
+      likes: newListOfLikes,
+    };
+
+    if (isAuthenticated) {
+      dispatch(likeSpot(likeData));
+    } else {
+      alert(
+        "you must log in to like a spot and add it to your liked spots list"
+      );
+    }
+  };
+
+  let userLikedDestination = false
+  if(isAuthenticated) {
+    if(spot.likes.includes(user.nickname)) { // We wait to make sure the user is logged in before getting the nickname to prevent errors linked to aysinc
+      userLikedDestination = true
+    }
+  }
 
   return (
     <Grid
@@ -112,8 +149,16 @@ function SpotCard({ id }) {
             alignContent={"flex-start"}
             justifyContent="flex-end"
           >
-            <Fab size="small" color="secondary">
-              <Favorite />
+            <Fab
+              size="small"
+              color="secondary"
+              aria-label="add"
+              onClick={handleLikeButton}
+            >
+              <ThumbUpAlt color={userLikedDestination ? "primary" : 'disabled'}  />
+              <Typography marginLeft={-1} marginTop={2.5} color="black">
+                {numberOfLikes}
+              </Typography>
             </Fab>
           </Grid>
           <Grid
@@ -277,7 +322,7 @@ function SpotCard({ id }) {
               <Typography variant="h7" gutterBottom>
                 {spot.country}
               </Typography>
-              <Typography variant="h8" gutterBottom color={"grey"} >
+              <Typography variant="h8" gutterBottom color={"grey"}>
                 {" "}
                 by {spot.submitedBy}
               </Typography>

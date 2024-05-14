@@ -15,7 +15,8 @@ export const createSpot = createAsyncThunk(
       hasCoworking,
       hasColiving,
       lifeCost,
-      submitedBy
+      submitedBy,
+      likes,
     } = spotData;
 
     const generateImage = async (name) => {
@@ -62,7 +63,8 @@ export const createSpot = createAsyncThunk(
             has_coworking: hasCoworking,
             has_coliving: hasColiving,
             life_cost: parseInt(lifeCost),
-            submited_by: submitedBy
+            submited_by: submitedBy,
+            likes: likes.toString(),
           },
         },
       ],
@@ -83,17 +85,17 @@ export const createSpot = createAsyncThunk(
     // get spot ID and Create new spot object in the current slice
     const newSpot = {
       id: spot.id,
-      name: spot.fields.name,
-      country: spot.fields.country,
-      level: spot.fields.level,
-      image: spot.fields.image,
-      surfSeason: spot.fields.surf_season,
-      wifiQuality: spot.fields.wifi_quality,
-      hasCoworking: spot.fields.has_coworking,
-      hasColiving: spot.fields.has_coliving,
-      lifeCost: spot.fields.life_cost,
-      submitedBy: spot.fields.submited_by,
-
+      name: name,
+      country: country,
+      level: level,
+      image: image,
+      surfSeason: surfSeason,
+      wifiQuality: wifiQuality,
+      hasCoworking: hasCoworking,
+      hasColiving: hasColiving,
+      lifeCost: lifeCost,
+      submitedBy: submitedBy,
+      likes: likes,
     };
 
     return newSpot;
@@ -108,8 +110,6 @@ export const loadSpots = createAsyncThunk(
         return "";
       } else {
         let isFirstFilter = true;
-
-        
 
         let globalFormula = `filterByFormula=AND(`;
 
@@ -170,13 +170,11 @@ export const loadSpots = createAsyncThunk(
             levelFormula = `FIND(%22${filters.level[0]}%22%2C+%7Blevel%7D)`;
           } else {
             filters.level.map((level) => {
-
               levelFormula += `FIND(%22${level}%22%2C+%7Blevel%7D)%2C`;
               return levelFormula;
-
             });
-            levelFormula = levelFormula.slice(0, -3) // removes the last comma, encoded as %2C
-            levelFormula = `OR(${levelFormula})` // wraps the whole thing in the OR()
+            levelFormula = levelFormula.slice(0, -3); // removes the last comma, encoded as %2C
+            levelFormula = `OR(${levelFormula})`; // wraps the whole thing in the OR()
           }
           if (!isFirstFilter) {
             levelFormula = `%2C${levelFormula}`;
@@ -193,13 +191,11 @@ export const loadSpots = createAsyncThunk(
             surfSeasonFormula = `FIND(%22${filters.surfSeason[0]}%22%2C+%7Bsurf_season%7D)`;
           } else {
             filters.surfSeason.map((surfSeason) => {
-
               surfSeasonFormula += `FIND(%22${surfSeason}%22%2C+%7Bsurf_season%7D)%2C`;
               return surfSeasonFormula;
-
             });
-            surfSeasonFormula = surfSeasonFormula.slice(0, -3) // removes the last comma, encoded as %2C
-            surfSeasonFormula = `OR(${surfSeasonFormula})` // wraps the whole thing in the OR()
+            surfSeasonFormula = surfSeasonFormula.slice(0, -3); // removes the last comma, encoded as %2C
+            surfSeasonFormula = `OR(${surfSeasonFormula})`; // wraps the whole thing in the OR()
           }
           if (!isFirstFilter) {
             surfSeasonFormula = `%2C${surfSeasonFormula}`;
@@ -241,6 +237,7 @@ export const loadSpots = createAsyncThunk(
         hasColiving: record.fields.has_coliving,
         lifeCost: record.fields.life_cost,
         submitedBy: record.fields.submited_by,
+        likes: record.fields.likes.split(","),
       };
       console.log("spots after", spots);
       return spots;
@@ -250,6 +247,33 @@ export const loadSpots = createAsyncThunk(
   }
 );
 
+export const likeSpot = createAsyncThunk("spots/likeSpot", async (likeData) => {
+  const { id, likes } = likeData;
+
+  const urlWithSpotId = `${url}/${id}`;
+
+  const data = {
+    fields: {
+      likes: likes.toString(),
+    },
+  };
+
+  const response = await fetch(urlWithSpotId, {
+    method: "PATCH",
+    headers: {
+      Authorization: token,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  });
+
+  const json = await response.json();
+
+  console.log(response);
+
+  return { id: id, likes: likes };
+});
+
 export const spotsSlice = createSlice({
   name: "spots",
   initialState: {
@@ -258,6 +282,8 @@ export const spotsSlice = createSlice({
     failedToLoadSpots: false,
     isLoadingSpotCreation: false,
     failedToCreateSpot: false,
+    isLoadingLikeSpot: false,
+    failedToLikeSpot: false,
   },
   // reducers: {
   //   updateSpot: (state, action) => {
@@ -302,6 +328,20 @@ export const spotsSlice = createSlice({
         state.failedToCreateSpot = false;
         state.spots[action.payload.id] = action.payload;
         console.log("new spot created:", action.payload);
+      })
+      .addCase(likeSpot.pending, (state) => {
+        state.isLoadingLikeSpot = true;
+        state.failedToLikeSpot = false;
+      })
+      .addCase(likeSpot.rejected, (state) => {
+        state.isLoadingLikeSpot = false;
+        state.failedToLikeSpot = true;
+      })
+      .addCase(likeSpot.fulfilled, (state, action) => {
+        state.isLoadingLikeSpot = false;
+        state.failedToLikeSpot = false;
+        state.spots[action.payload.id].likes = action.payload.likes;
+        console.log("like added:", action.payload);
       });
   },
 });

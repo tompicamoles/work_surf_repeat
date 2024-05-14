@@ -132,7 +132,7 @@ function NavBar() {
               {" "}
               <Tooltip title="Open settings">
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                  <AccountCircleIcon color="secondary" />
+                  <AccountCircleIcon color="secondary" fontSize="large" />
                 </IconButton>
               </Tooltip>
               <Menu

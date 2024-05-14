@@ -51,7 +51,7 @@ export const createWorkPlace = createAsyncThunk(
             submited_by: submited_by,
             adress: adress,
             rating: parseInt(rating),
-            likes: likes,
+            likes: likes.toString(),
           },
         },
       ],
@@ -79,7 +79,7 @@ export const createWorkPlace = createAsyncThunk(
       submitedBy: submited_by,
       adress: adress,
       rating: parseInt(rating),
-      likes: ["tom"],
+      likes: likes,
     };
 
     return newWorkPlace;
@@ -132,6 +132,7 @@ export const loadWorkPlaces = createAsyncThunk(
     return workPlacesData;
   }
 );
+
 
 export const workPlacesSlice = createSlice({
   name: "workPlaces",
