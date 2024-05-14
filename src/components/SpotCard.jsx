@@ -17,7 +17,6 @@ import {
   AttachMoney,
   LaptopMac,
   House,
-  Favorite,
   ThumbUpAlt,
 } from "@mui/icons-material";
 import { commaSeparator } from "../modules/commaSeparator";
@@ -29,6 +28,8 @@ import { FaSun, FaSnowman } from "react-icons/fa";
 
 import { GiWaveSurfer } from "react-icons/gi";
 
+
+
 function SpotCard({ id }) {
   const dispatch = useDispatch();
   const { user, isAuthenticated } = useAuth0();
@@ -37,6 +38,7 @@ function SpotCard({ id }) {
   const numberOfLikes = spot.likes.length;
 
   const handleLikeButton = () => {
+    if (isAuthenticated) {
     let newListOfLikes = [...spot.likes];
     !spot.likes.includes(user.nickname)
       ? newListOfLikes.push(user.nickname)
@@ -50,7 +52,7 @@ function SpotCard({ id }) {
       likes: newListOfLikes,
     };
 
-    if (isAuthenticated) {
+    
       dispatch(likeSpot(likeData));
     } else {
       alert(
@@ -148,18 +150,24 @@ function SpotCard({ id }) {
             xs={6}
             alignContent={"flex-start"}
             justifyContent="flex-end"
+          ><Tooltip title={isAuthenticated ? "Like and add to wishlist" :  `Log in to like`}
           >
+
+         
             <Fab
               size="small"
               color="secondary"
               aria-label="add"
-              onClick={handleLikeButton}
+              onClick={() => isAuthenticated && handleLikeButton()}
+              
+              
             >
               <ThumbUpAlt color={userLikedDestination ? "primary" : 'disabled'}  />
               <Typography marginLeft={-1} marginTop={2.5} color="black">
                 {numberOfLikes}
               </Typography>
             </Fab>
+            </Tooltip>
           </Grid>
           <Grid
             container

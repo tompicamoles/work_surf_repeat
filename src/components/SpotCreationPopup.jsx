@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
-
+import { useSelector } from "react-redux";
+import { selectSpots } from "./spotsSlice";
 
 import {
   TextField,
@@ -13,7 +14,7 @@ import {
   Switch,
   Stack,
   Fab,
-  Grid
+  Grid,
 } from "@mui/material";
 
 import { CountrySelect } from "./formCompents/CountrySelect";
@@ -42,8 +43,9 @@ const style = {
 };
 
 function SpotCreationPopup() {
+  let spots = useSelector(selectSpots);
 
-  const {user, isAuthenticated, loginWithRedirect} = useAuth0();
+  const { user, isAuthenticated } = useAuth0();
   const dispatch = useDispatch();
 
   const [open, setOpen] = useState(false);
@@ -74,6 +76,32 @@ function SpotCreationPopup() {
     lifeCost: null,
   });
 
+  const checkAlreadyExisting = () => {
+    console.log("running checkAlreadyExistingSpot")
+    
+    let destinationExists = false
+    // Iterate over the keys of the spots object
+    for (let key in spots) {
+      console.log(key);
+      // Check if the search parameter is included in the name or country
+      if (
+        (spots[key].name.toLowerCase().includes(formData.name.toLowerCase())) &&(
+        spots[key].country
+          .toLowerCase()
+          .includes(formData.country.toLowerCase())
+      )) {
+        // If it matches, add the spot to the filteredSpots array
+        console.log(key, "was already created");
+        return true
+        
+      
+      }
+    }
+    console.log(destinationExists)
+
+    return destinationExists
+  };
+
   const handleInputChange = (e) => {
     const { name, value, checked } = e.target;
     // Check if the input is a checkbox
@@ -99,13 +127,16 @@ function SpotCreationPopup() {
 
   const createDestination = (event) => {
     event.preventDefault();
-    
-    if(!formData.lifeCost || !formData.wifiQuality ){
-      alert('Please fill Wifi Qualify and Life Cost field')
+
+    if(checkAlreadyExisting() === true){
+      alert( `${formData.name}, ${formData.country} has been created already`)
       return
     }
 
-    
+    if (!formData.lifeCost || !formData.wifiQuality) {
+      alert("Please fill Wifi Qualify and Life Cost field");
+      return;
+    }
 
     console.log("country to send", formData.country);
     const spotData = {
@@ -118,16 +149,15 @@ function SpotCreationPopup() {
       hasColiving: formData.hasColiving,
       lifeCost: formData.lifeCost,
       submitedBy: user.nickname,
-      likes: [(user.nickname)]
+      likes: [user.nickname],
     };
     dispatch(createSpot(spotData));
-    console.log("likes:", spotData.likes)
-    console.log("likes string: ", spotData.likes.toString())
+    console.log("likes:", spotData.likes);
+    console.log("likes string: ", spotData.likes.toString());
 
     handleClose();
   };
 
-  
   return (
     <Box>
       <Fab color="primary" aria-label="add" onClick={handleOpen}>
@@ -141,91 +171,94 @@ function SpotCreationPopup() {
         aria-describedby="modal-to-create-spot"
       >
         <Box component="form" sx={style} onSubmit={createDestination}>
-        {isAuthenticated?( <Stack spacing={2} alignItems={"stretch"}>
-            <Typography variant="h4" color="primary" gutterBottom>
-              {" "}
-              Submit a spot
-            </Typography>
+          {isAuthenticated ? (
+            <Stack spacing={2} alignItems={"stretch"}>
+              <Typography variant="h4" color="primary" gutterBottom>
+                {" "}
+                Submit a spot
+              </Typography>
 
-            <TextField
-              label="Spot Name"
-              placeholder="Name"
-              type="text"
-              id="name"
-              name="name"
-              value={formData.name}
-              onChange={handleInputChange}
-              required
-            />
-
-            <CountrySelect
-            
-              value={formData.country}
-              context="popup"
-              handleOtherInputChange={handleOtherInputChange}
-            />
-
-            <LevelSelector
-              id="level"
-              level={formData.level}
-              context="popup"
-              handleOtherInputChange={handleOtherInputChange}
-            ></LevelSelector>
-
-            <Typography component="legend">Wifi quality:</Typography>
-
-            <WifiRating
-              context="popup"
-              value={formData.wifiQuality}
-              handleInputChange={handleInputChange}
-            />
-            <Typography component="legend">Life cost:</Typography>
-            <LifeCost
-              context="popup"
-              handleInputChange={handleInputChange}
-              value={formData.lifeCost}
-            ></LifeCost>
-
-            <MonthSelector
-              context="popup"
-              handleInputChange={handleInputChange}
-              surfSeason={formData.surfSeason}
-            />
-            <FormGroup>
-              <FormControlLabel
-                control={
-                  <Switch
-                    checked={formData.hasCoworking}
-                    id="hasCoworking"
-                    name="hasCoworking"
-                    onChange={handleInputChange}
-                  />
-                }
-                label="Has Coworking"
+              <TextField
+                label="Spot Name"
+                placeholder="Name"
+                type="text"
+                id="name"
+                name="name"
+                value={formData.name}
+                onChange={handleInputChange}
+                required
               />
 
-              <FormControlLabel
-                control={
-                  <Switch
-                    checked={formData.hasColiving}
-                    name="hasColiving"
-                    id="hasColiving"
-                    onChange={handleInputChange}
-                  />
-                }
-                label="Has Coliving"
+              <CountrySelect
+                value={formData.country}
+                context="popup"
+                handleOtherInputChange={handleOtherInputChange}
               />
-            </FormGroup>
 
-            <Button type="submit" variant="contained">
-              Save destination
-            </Button>
-          </Stack>) : 
-          (
-          <Grid container direction="column" alignItems="center"  >
-            <Typography variant= "h6" gutterBottom >You must logged in to submit a new spot</Typography>
-            <LogInButton />
-            </Grid>)}
+              <LevelSelector
+                id="level"
+                level={formData.level}
+                context="popup"
+                handleOtherInputChange={handleOtherInputChange}
+              ></LevelSelector>
+
+              <Typography component="legend">Wifi quality:</Typography>
+
+              <WifiRating
+                context="popup"
+                value={formData.wifiQuality}
+                handleInputChange={handleInputChange}
+              />
+              <Typography component="legend">Life cost:</Typography>
+              <LifeCost
+                context="popup"
+                handleInputChange={handleInputChange}
+                value={formData.lifeCost}
+              ></LifeCost>
+
+              <MonthSelector
+                context="popup"
+                handleInputChange={handleInputChange}
+                surfSeason={formData.surfSeason}
+              />
+              <FormGroup>
+                <FormControlLabel
+                  control={
+                    <Switch
+                      checked={formData.hasCoworking}
+                      id="hasCoworking"
+                      name="hasCoworking"
+                      onChange={handleInputChange}
+                    />
+                  }
+                  label="Has Coworking"
+                />
+
+                <FormControlLabel
+                  control={
+                    <Switch
+                      checked={formData.hasColiving}
+                      name="hasColiving"
+                      id="hasColiving"
+                      onChange={handleInputChange}
+                    />
+                  }
+                  label="Has Coliving"
+                />
+              </FormGroup>
+
+              <Button type="submit" variant="contained">
+                Save destination
+              </Button>
+            </Stack>
+          ) : (
+            <Grid container direction="column" alignItems="center">
+              <Typography variant="h6" gutterBottom>
+                You must logged in to submit a new spot
+              </Typography>
+              <LogInButton />
+            </Grid>
+          )}
         </Box>
       </Modal>
     </Box>

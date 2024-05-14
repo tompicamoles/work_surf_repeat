@@ -7,9 +7,14 @@ import {  useSelector } from "react-redux";
 import Grid from "@mui/material/Grid";
 
 import {  useSearchParams } from "react-router-dom";
+import { useAuth0 } from "@auth0/auth0-react";
+import { Typography } from "@mui/material";
 
-const Spots = () => {
-  
+
+
+const Spots = ({context}) => {
+  const { user } = useAuth0();
+
   let spots = useSelector(selectSpots);
 
   console.log("spots in component", spots);
@@ -18,7 +23,7 @@ const Spots = () => {
 
   const spotSearch = searchParams.get("spot");
 
-  function filterSpotsByNameOrCountry(spots, searchParam) {
+  function filterSpotsByNameOrCountry() {
     let filteredSpots = {};
 
     // Iterate over the keys of the spots object
@@ -26,8 +31,8 @@ const Spots = () => {
       console.log(key);
       // Check if the search parameter is included in the name or country
       if (
-        spots[key].name.toLowerCase().includes(searchParam.toLowerCase()) ||
-        spots[key].country.toLowerCase().includes(searchParam.toLowerCase())
+        spots[key].name.toLowerCase().includes(spotSearch.toLowerCase()) ||
+        spots[key].country.toLowerCase().includes(spotSearch.toLowerCase())
       ) {
         // If it matches, add the spot to the filteredSpots array
         console.log(key, "is matching search");
@@ -39,7 +44,30 @@ const Spots = () => {
   }
 
   if (spotSearch) {
-    spots = filterSpotsByNameOrCountry(spots, spotSearch);
+    spots = filterSpotsByNameOrCountry( );
+  }
+
+  function filterLikedSpots() {
+    let filteredSpots = {};
+
+    // Iterate over the keys of the spots object
+    for (let key in spots) {
+      console.log(key);
+      // Check if the search parameter is included in the name or country
+      if (
+        spots[key].likes.includes(user.nickname)
+      ) {
+        // If it matches, add the spot to the filteredSpots array
+        console.log(key, "is liked by user");
+        filteredSpots[key] = spots[key];
+      }
+    }
+    console.log(filteredSpots);
+    return filteredSpots;
+  }
+
+  if (context === "likedSpots") {
+    spots = filterLikedSpots();
   }
 
 
@@ -52,9 +80,12 @@ const Spots = () => {
       direction="row"
       
     >
-      {Object.entries(spots).map(([id]) => (
+
+      {Object.entries(spots).length === 0 ? (<Typography variant="body">0 spots</Typography>) : Object.entries(spots).map(([id]) => (
         <SpotCard id={id} key={id} />
-      ))}
+      )
+    )}
+      
     </Grid>
   );
 };

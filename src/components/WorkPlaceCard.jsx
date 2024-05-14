@@ -48,7 +48,7 @@ function WorkPlaceCard({ type, id }) {
         <Grid item xs={6}>
           <Typography variant="h6">{place.rating} / 5</Typography>
         </Grid>
-        <Grid
+        {/* <Grid
           item
           container
           xs={6}
@@ -62,7 +62,7 @@ function WorkPlaceCard({ type, id }) {
               {numberOfLikes}
             </Typography>
           </Fab>
-        </Grid>
+        </Grid> */}
         <Typography variant="subtitle"> by {place.submitedBy}</Typography>
       </Grid>
       <Grid item xs={12}>

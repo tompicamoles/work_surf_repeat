@@ -19,6 +19,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { LogInButton } from "./LogInButton";
 
 
+
 const style = {
   position: "absolute",
   top: "50%",
@@ -34,8 +35,9 @@ const style = {
 };
 
 export const WorkPlaceCreationPopup = ({ id }) => {
+  
 
-  const {user, isAuthenticated, loginWithRedirect} = useAuth0();
+  const {user, isAuthenticated} = useAuth0();
 
   console.log("id in modal", id);
   const dispatch = useDispatch();
@@ -53,6 +55,8 @@ export const WorkPlaceCreationPopup = ({ id }) => {
     rating: 4,
     likes: "tom",
   });
+
+  
 
   const handleClose = () => {
     setFormData({
@@ -86,6 +90,7 @@ export const WorkPlaceCreationPopup = ({ id }) => {
 
   const createPlace = (event) => {
     event.preventDefault();
+    
 
     dispatch(createWorkPlace({...formData,
       submited_by: user.nickname
