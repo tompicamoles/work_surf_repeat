@@ -1,8 +1,9 @@
-import { Grid, Link, Typography } from "@mui/material";
+import {  Grid, Link, Typography } from "@mui/material";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Link as RouterLink } from "react-router-dom";
+import UpdateNickname from "../components/UpdateNickname";
 
 import Spots from "../components/Spots";
 import { useSelector } from "react-redux";
@@ -13,6 +14,8 @@ export const Profile = () => {
   console.log(user, user_metadata, user, isAuthenticated, isLoading);
   const navigate = useNavigate();
   let spots = useSelector(selectSpots);
+
+  
 
   function filterCreatedSpots() {
     let filteredSpots = {};
@@ -50,6 +53,7 @@ export const Profile = () => {
             {" "}
             Welcome {user.nickname}!
           </Typography>
+          <UpdateNickname />
         </Grid>
 
         <Grid item container direction={"column"} xs={12} md={7} pr={2}>

@@ -20,6 +20,8 @@ root.render(
       clientId={clientId}
       authorizationParams={{
         redirect_uri: window.location.origin,
+        audience: `https://${domain}/api/v2/`,
+        scope: "update:users"
       }}
     >
       <Provider store={store}>
