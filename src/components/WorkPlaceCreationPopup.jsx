@@ -17,9 +17,7 @@ import { useDispatch } from "react-redux";
 import { createWorkPlace } from "./workPlacesSlice";
 import { useAuth0 } from "@auth0/auth0-react";
 import { LogInButton } from "./LogInButton";
-
-
-
+import { GoogleMapsIdFinder } from "./formCompents/GoogleMapsIdFinder";
 const style = {
   position: "absolute",
   top: "50%",
@@ -35,6 +33,12 @@ const style = {
 };
 
 export const WorkPlaceCreationPopup = ({ id }) => {
+
+  
+  const handlePlaceSelection = (placeId) => {
+    console.log('Selected Place ID:', placeId);
+    // Here you can handle the selected place ID, e.g., save it to state or send it to a server
+  };
   
 
   const {user, isAuthenticated} = useAuth0();
@@ -67,6 +71,7 @@ export const WorkPlaceCreationPopup = ({ id }) => {
       adress: "",
       rating: 4,
       likes: "tom",
+      googleId: ""
     });
     setOpen(false);
   };
@@ -113,7 +118,7 @@ export const WorkPlaceCreationPopup = ({ id }) => {
         <Box component="form" sx={style} onSubmit={createPlace}>
         {isAuthenticated?( <Stack spacing={2} alignItems={"stretch"}>
             <Typography variant="h4">Submit work place</Typography>
-
+          <GoogleMapsIdFinder  />
             <TextField
               label="name"
               placeholder="name"

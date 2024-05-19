@@ -1,4 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { generateImage } from "../api/unsplash";
+import { getGeolocation } from "../api/googleGeocoding";
 
 const url = "https://api.airtable.com/v0/appEifpsElq8TYpAy/spots";
 const token = process.env.REACT_APP_AIRTABLE_API_KEY;
@@ -19,36 +21,11 @@ export const createSpot = createAsyncThunk(
       likes,
     } = spotData;
 
-    const generateImage = async (name) => {
-      // Generate image URL based on name and country
-      const query = ` ${name}  surfing `;
-      const url = `https://api.unsplash.com/photos/random?query=${query}`;
-      const token = process.env.REACT_APP_UNSPLASH_TOKEN;
+    const image = await generateImage(name, "surf"); //
 
-      try {
-        const response = await fetch(url, {
-          headers: {
-            Authorization: token,
-            Params: {
-              query: "surf",
-            },
-          },
-        });
-
-        if (!response.ok) {
-          throw new Error("Failed to fetch image");
-        }
-
-        const data = await response.json();
-        const imgUrl = data.urls.regular;
-        return imgUrl;
-      } catch (error) {
-        console.error("Error fetching data:", error);
-        throw error; // You can handle or propagate the error as needed
-      }
-    };
-
-    const image = await generateImage(name); //
+    const geolocation = await getGeolocation(name, country);
+    const latitude = geolocation.latitude;
+    const longitude = geolocation.longitude;
 
     const data = {
       records: [
@@ -65,6 +42,8 @@ export const createSpot = createAsyncThunk(
             life_cost: parseInt(lifeCost),
             submited_by: submitedBy,
             likes: likes.toString(),
+            latitude: latitude,
+            longitude: longitude,
           },
         },
       ],
@@ -96,6 +75,8 @@ export const createSpot = createAsyncThunk(
       lifeCost: lifeCost,
       submitedBy: submitedBy,
       likes: likes,
+      latitude: latitude,
+      longitude: longitude,
     };
 
     return newSpot;
@@ -238,6 +219,9 @@ export const loadSpots = createAsyncThunk(
         lifeCost: record.fields.life_cost,
         submitedBy: record.fields.submited_by,
         likes: record.fields.likes.split(","),
+        latitude: record.fields.latitude,
+        longitude: record.fields.longitude,
+        
       };
       console.log("spots after", spots);
       return spots;

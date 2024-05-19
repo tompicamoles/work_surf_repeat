@@ -109,7 +109,7 @@ const Destinations = () => {
         {buttonState === "work" ? (
           <WorkPlaces id={id} />
         ) : (
-          <SurfLine url="https://www.surfline.com/surf-reports-forecasts-cams-map/@30.5249308,-9.7552747,12z"/>
+          <SurfLine url={`https://www.surfline.com/surf-reports-forecasts-cams-map/@${spot.latitude},${spot.longitude},12z`}/>
         )}
       </Grid>
     );
