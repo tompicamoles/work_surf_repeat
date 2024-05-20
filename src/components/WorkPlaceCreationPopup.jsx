@@ -95,11 +95,23 @@ export const WorkPlaceCreationPopup = ({ id }) => {
     setFormData((prevData) => ({
       ...prevData,
       "googleId": value.place_id,
-      "name": value.structured_formatting.main_text,
-      "adress": value.structured_formatting.secondary_text,
+      
     }));
 
+
+
   };
+
+  const savePlaceDetails = place => {
+
+    setFormData((prevData) => ({
+      ...prevData,
+      
+      "name": place.name,
+      "adress": place.formatted_address,
+    }));
+
+  }
 
   const createPlace = (event) => {
     event.preventDefault();
@@ -125,7 +137,7 @@ export const WorkPlaceCreationPopup = ({ id }) => {
             <Stack spacing={2} alignItems={"stretch"}>
               <Typography variant="h4">Submit work place</Typography>
               <GoogleMapsIdFinder onChange={saveGoogleId} />
-              <WorkPlaceGoogleInfo />
+              {formData.googleId !== "" && <WorkPlaceGoogleInfo id={formData.googleId} savePlaceDetails={savePlaceDetails} formData={formData} />}
               {/* <TextField
                 label="name"
                 placeholder="name"
@@ -154,7 +166,7 @@ export const WorkPlaceCreationPopup = ({ id }) => {
                   ))}
                 </Select>
               </FormControl>
-              <TextField
+              {/* <TextField
                 id="adress"
                 label="adress"
                 name="adress"
@@ -172,7 +184,7 @@ export const WorkPlaceCreationPopup = ({ id }) => {
                 onChange={handleInputChange}
                 precision={0.5}
                 min={1}
-              />
+              /> */}
               <Button type="submit" variant="contained">
                 Submit work place
               </Button>
