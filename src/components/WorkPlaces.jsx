@@ -20,6 +20,7 @@ export const WorkPlaces = ({ id }) => {
           <WorkPlacesList type="coliving" />
         </Grid>
         <Grid item container xs={12} lg={5}>
+          <WorkPlacesMap id={id}/>
         </Grid>
         </APIProvider>
 

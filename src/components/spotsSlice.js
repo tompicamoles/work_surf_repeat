@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { generateImage } from "../api/unsplash";
-import { getGeolocation } from "../api/googleGeocoding";
+import { getGeolocation } from "../api/googleMapsApi";
 
 const url = "https://api.airtable.com/v0/appEifpsElq8TYpAy/spots";
 const token = process.env.REACT_APP_AIRTABLE_API_KEY;

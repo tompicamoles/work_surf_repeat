@@ -1,12 +1,11 @@
-import React, { useRef, useEffect, useState } from 'react';
-import { useMapsLibrary } from '@vis.gl/react-google-maps';
+import React, { useRef, useEffect, useState } from "react";
+import { useMapsLibrary } from "@vis.gl/react-google-maps";
+import { Autocomplete, Box, TextField, Typography } from "@mui/material";
 
-export const GoogleMapsIdFinder = () => {
+export const GoogleMapsIdFinder = ({onChange}) => {
   const [predictions, setPredictions] = useState([]);
   const inputRef = useRef(null);
-  const [selectedResult, setSelectedResult] = useState('');
-
-  const places = useMapsLibrary('places');
+  const places = useMapsLibrary("places");
 
   useEffect(() => {
     if (!places || !inputRef.current) return;
@@ -22,13 +21,13 @@ export const GoogleMapsIdFinder = () => {
 
       const request = {
         input: query,
-        types: ['establishment'],
-        componentRestrictions: {country: ["FR"]},
+        types: ["establishment"],
+        componentRestrictions: { country: ["FR"] },
         fields: ["geometry", "name", "formatted_address"],
       };
 
       autocomplete.getPlacePredictions(request, (results, status) => {
-        if (status === 'OK' && results) {
+        if (status === "OK" && results) {
           setPredictions(results);
         } else {
           setPredictions([]);
@@ -37,36 +36,35 @@ export const GoogleMapsIdFinder = () => {
     };
 
     const inputElement = inputRef.current;
-    inputElement.addEventListener('input', handleInput);
+    inputElement.addEventListener("input", handleInput);
 
     return () => {
-      inputElement.removeEventListener('input', handleInput);
+      inputElement.removeEventListener("input", handleInput);
     };
   }, [places]);
 
-  const handleSelectChange = (event) => {
-    const placeId = event.target.value;
-    setSelectedResult(placeId);}
+  
 
   return (
-    <div className="autocomplete-container">
-    <input ref={inputRef} />
-    {predictions.length > 0 && (
-      <select onChange={handleSelectChange} value={selectedResult}>
-        <option value="" disabled>Select a place</option>
-        {predictions.map((prediction) => (
-          <option key={prediction.place_id} value={prediction.place_id}>
-            {prediction.description} (Place ID: {prediction.place_id})
-          </option>
-        ))}
-      </select>
-    )}
-    {selectedResult && (
-      <div>
-        <h2>Selected Place ID</h2>
-        <p>{selectedResult}</p>
-      </div>
-    )}
-  </div>
+    <Box
+      className="autocomplete-container"
+      sx={{ maxWidth: 300, margin: "auto", mt: 4 }}
+    >
+      <Autocomplete
+        options={predictions}
+        getOptionLabel={(option) => `${option.description}`}
+        onChange={onChange}
+        name="googleId"
+        noOptionsText="type name to see suggestions"
+        renderInput={(params) => (
+          <TextField {...params} inputRef={inputRef} label="Place name" name="googleId"  />
+        )}
+        isOptionEqualToValue={(option, value) =>
+          option.place_id === value.place_id
+        }
+      />
+     
+      
+    </Box>
   );
 };

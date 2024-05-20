@@ -10,7 +10,7 @@ import {
   Select,
   InputLabel,
   Rating,
-  Grid
+  Grid,
 } from "@mui/material";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
@@ -18,6 +18,8 @@ import { createWorkPlace } from "./workPlacesSlice";
 import { useAuth0 } from "@auth0/auth0-react";
 import { LogInButton } from "./LogInButton";
 import { GoogleMapsIdFinder } from "./formCompents/GoogleMapsIdFinder";
+import { getCompanyInformations } from "../api/googleMapsApi";
+import MapComponent, { WorkPlaceGoogleInfo } from "./formCompents/WorkPlaceGoogleInfo";
 const style = {
   position: "absolute",
   top: "50%",
@@ -33,15 +35,9 @@ const style = {
 };
 
 export const WorkPlaceCreationPopup = ({ id }) => {
-
-  
-  const handlePlaceSelection = (placeId) => {
-    console.log('Selected Place ID:', placeId);
-    // Here you can handle the selected place ID, e.g., save it to state or send it to a server
-  };
   
 
-  const {user, isAuthenticated} = useAuth0();
+  const { user, isAuthenticated } = useAuth0();
 
   console.log("id in modal", id);
   const dispatch = useDispatch();
@@ -58,9 +54,8 @@ export const WorkPlaceCreationPopup = ({ id }) => {
     adress: "",
     rating: 4,
     likes: "tom",
+    googleId: "",
   });
-
-  
 
   const handleClose = () => {
     setFormData({
@@ -71,19 +66,19 @@ export const WorkPlaceCreationPopup = ({ id }) => {
       adress: "",
       rating: 4,
       likes: "tom",
-      googleId: ""
+      googleId: "",
     });
     setOpen(false);
   };
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    console.log(name, value)
-
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
+    
+      setFormData((prevData) => ({
+        ...prevData,
+        [name]: value,
+      }));
+    
   };
 
   //   const handleOtherInputChange = (key, value) => {
@@ -93,13 +88,23 @@ export const WorkPlaceCreationPopup = ({ id }) => {
   //     }));
   //   };
 
+
+  const saveGoogleId = (event, value) => {
+
+    console.log("event and value are:" ,event, value)
+    setFormData((prevData) => ({
+      ...prevData,
+      "googleId": value.place_id,
+      "name": value.structured_formatting.main_text,
+      "adress": value.structured_formatting.secondary_text,
+    }));
+
+  };
+
   const createPlace = (event) => {
     event.preventDefault();
-    
 
-    dispatch(createWorkPlace({...formData,
-      submited_by: user.nickname
-    }));
+    dispatch(createWorkPlace({ ...formData, submited_by: user.nickname }));
 
     handleClose();
   };
@@ -116,61 +121,70 @@ export const WorkPlaceCreationPopup = ({ id }) => {
         aria-describedby="modal-to-create-workPlace"
       >
         <Box component="form" sx={style} onSubmit={createPlace}>
-        {isAuthenticated?( <Stack spacing={2} alignItems={"stretch"}>
-            <Typography variant="h4">Submit work place</Typography>
-          <GoogleMapsIdFinder  />
-            <TextField
-              label="name"
-              placeholder="name"
-              type="text"
-              id="name"
-              name="name"
-              value={formData.name}
-              onChange={handleInputChange}
-              required
-            />
-            <FormControl  sx={{ m: 1, width: 300 }}>
-              <InputLabel required id="type">Type</InputLabel>
-              <Select
-                id="type"
-                label="type"
-                name="type"
-                value={formData.type}
+          {isAuthenticated ? (
+            <Stack spacing={2} alignItems={"stretch"}>
+              <Typography variant="h4">Submit work place</Typography>
+              <GoogleMapsIdFinder onChange={saveGoogleId} />
+              <WorkPlaceGoogleInfo />
+              {/* <TextField
+                label="name"
+                placeholder="name"
+                type="text"
+                id="name"
+                name="name"
+                value={formData.name}
                 onChange={handleInputChange}
-              >
-                {["café", "coworking", "coliving"].map((option) => (
-                  <MenuItem key={option} value={option}>{option}</MenuItem>
-                ))}
-              </Select>
-            </FormControl>
-            <TextField
-              id="adress"
-              label="adress"
-              name="adress"
-              multiline
-              rows={2}
-              value={formData.adress}
-              onChange={handleInputChange}
-              required
-            />
-            <Typography component="legend">Rating</Typography>
-            <Rating
-              name="rating"
-              id="rating"
-              value={formData.rating}
-              onChange={handleInputChange}
-              precision={0.5}
-              min={1}
-            />
-            <Button type="submit" variant="contained">
-              Submit work place
-            </Button>
-          </Stack>): 
-          (
-          <Grid container direction="column" alignItems="center"  >
-            <Typography variant= "h6" gutterBottom >You must logged in to submit a new spot</Typography>
-            <LogInButton />
-            </Grid> )}
+                required
+              /> */}
+              <FormControl sx={{ m: 1, width: 300 }}>
+                <InputLabel required id="type">
+                  Type
+                </InputLabel>
+                <Select
+                  id="type"
+                  label="type"
+                  name="type"
+                  value={formData.type}
+                  onChange={handleInputChange}
+                >
+                  {["café", "coworking", "coliving"].map((option) => (
+                    <MenuItem key={option} value={option}>
+                      {option}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+              <TextField
+                id="adress"
+                label="adress"
+                name="adress"
+                multiline
+                rows={2}
+                value={formData.adress}
+                onChange={handleInputChange}
+                required
+              />
+              <Typography component="legend">Rating</Typography>
+              <Rating
+                name="rating"
+                id="rating"
+                value={formData.rating}
+                onChange={handleInputChange}
+                precision={0.5}
+                min={1}
+              />
+              <Button type="submit" variant="contained">
+                Submit work place
+              </Button>
+            </Stack>
+          ) : (
+            <Grid container direction="column" alignItems="center">
+              <Typography variant="h6" gutterBottom>
+                You must logged in to submit a new spot
+              </Typography>
+              <LogInButton />
+            </Grid>
+          )}
         </Box>
       </Modal>
     </Box>
