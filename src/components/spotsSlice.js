@@ -42,8 +42,8 @@ export const createSpot = createAsyncThunk(
             life_cost: parseInt(lifeCost),
             submited_by: submitedBy,
             likes: likes.toString(),
-            latitude: latitude,
-            longitude: longitude,
+            latitude: latitude.toString(),
+            longitude: longitude.toString(),
           },
         },
       ],
@@ -219,8 +219,8 @@ export const loadSpots = createAsyncThunk(
         lifeCost: record.fields.life_cost,
         submitedBy: record.fields.submited_by,
         likes: record.fields.likes.split(","),
-        latitude: record.fields.latitude,
-        longitude: record.fields.longitude,
+        latitude: parseFloat(record.fields.latitude),
+        longitude: parseFloat(record.fields.longitude),
         
       };
       console.log("spots after", spots);

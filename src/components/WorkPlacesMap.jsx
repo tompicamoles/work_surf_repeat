@@ -11,32 +11,28 @@ import {
 
 import { useSelector } from "react-redux";
 import { selectSpots } from "./spotsSlice";
+import { selectWorkPlaces } from "./workPlacesSlice";
+import { WorkPlaceMarker } from "./WorkPlaceMarker";
 
-
-export default function WorkPlacesMap({id}) {
+export default function WorkPlacesMap({ id }) {
+  const workPlaces = useSelector(selectWorkPlaces);
   const spot = useSelector(selectSpots)[id];
-  const position = { lat: spot.latitude, lng: spot.longitude };
-  const [open, setOpen] = useState(false);
+  const spotPosition = { lat: spot.latitude, lng: spot.longitude };
 
   return (
-   
-      <div style={{ height: "100vh", width: "100%" }}>
-        <Map defaultZoom={15} defaultCenter={position} mapId={process.env.REACT_APP_MAP_API}>
-          <AdvancedMarker position={position} onClick={() => setOpen(true)}>
-            <Pin
-              background={"grey"}
-              borderColor={"green"}
-              glyphColor={"purple"}
-            />
-          </AdvancedMarker>
-
-          {open && (
-            <InfoWindow position={position} onCloseClick={() => setOpen(false)}>
-              <p>I'm in Hamburg</p>
-            </InfoWindow>
-          )}
-        </Map>
-      </div>
-    
+    <div style={{ height: "100vh", width: "100%" }}>
+      <Map
+        defaultZoom={14}
+        defaultCenter={spotPosition}
+        mapId={process.env.REACT_APP_MAP_API}
+        disableDefaultUI
+      >
+       {Object.keys(workPlaces).map(category => (
+        Object.keys(workPlaces[category]).map(id => (
+          <WorkPlaceMarker key={id} {...workPlaces[category][id]} />
+        ))
+      ))}
+      </Map>
+    </div>
   );
 }

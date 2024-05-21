@@ -1,11 +1,16 @@
 import React, { useRef, useEffect, useState } from "react";
 import { useMapsLibrary } from "@vis.gl/react-google-maps";
 import { Autocomplete, Box, TextField, Typography } from "@mui/material";
+import { getCountryCode } from "../../modules/getCountryCode";
+import { loadSpots, selectSpots } from "../spotsSlice";
+import { useSelector } from "react-redux";
 
-export const GoogleMapsIdFinder = ({onChange}) => {
+export const GoogleMapsIdFinder = ({onChange, id}) => {
   const [predictions, setPredictions] = useState([]);
   const inputRef = useRef(null);
   const places = useMapsLibrary("places");
+  const spot = useSelector(selectSpots)[id]
+  const countryCode = getCountryCode(spot.country)
 
   useEffect(() => {
     if (!places || !inputRef.current) return;
@@ -22,7 +27,7 @@ export const GoogleMapsIdFinder = ({onChange}) => {
       const request = {
         input: query,
         types: ["establishment"],
-        componentRestrictions: { country: ["FR"] },
+        componentRestrictions: { country: [countryCode] },
         fields: ["geometry", "name", "formatted_address"],
       };
 

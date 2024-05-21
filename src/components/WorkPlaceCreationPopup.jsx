@@ -19,7 +19,9 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { LogInButton } from "./LogInButton";
 import { GoogleMapsIdFinder } from "./formCompents/GoogleMapsIdFinder";
 import { getCompanyInformations } from "../api/googleMapsApi";
-import MapComponent, { WorkPlaceGoogleInfo } from "./formCompents/WorkPlaceGoogleInfo";
+import MapComponent, {
+  WorkPlaceGoogleInfo,
+} from "./formCompents/WorkPlaceGoogleInfo";
 const style = {
   position: "absolute",
   top: "50%",
@@ -35,8 +37,6 @@ const style = {
 };
 
 export const WorkPlaceCreationPopup = ({ id }) => {
-  
-
   const { user, isAuthenticated } = useAuth0();
 
   console.log("id in modal", id);
@@ -55,6 +55,8 @@ export const WorkPlaceCreationPopup = ({ id }) => {
     rating: 4,
     likes: "tom",
     googleId: "",
+    latitude: null,
+    longitude: null,
   });
 
   const handleClose = () => {
@@ -67,18 +69,19 @@ export const WorkPlaceCreationPopup = ({ id }) => {
       rating: 4,
       likes: "tom",
       googleId: "",
+      latitude: null,
+      longitude: null,
     });
     setOpen(false);
   };
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    
-      setFormData((prevData) => ({
-        ...prevData,
-        [name]: value,
-      }));
-    
+
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
   };
 
   //   const handleOtherInputChange = (key, value) => {
@@ -88,30 +91,28 @@ export const WorkPlaceCreationPopup = ({ id }) => {
   //     }));
   //   };
 
-
   const saveGoogleId = (event, value) => {
-
-    console.log("event and value are:" ,event, value)
+    console.log("event and value are:", event, value);
     setFormData((prevData) => ({
       ...prevData,
-      "googleId": value.place_id,
-      
+      googleId: value.place_id,
     }));
-
-
-
   };
 
-  const savePlaceDetails = place => {
+  const savePlaceDetails = (place) => {
 
+    console.log("latitude",place.geometry.location.lat)
     setFormData((prevData) => ({
       ...prevData,
-      
-      "name": place.name,
-      "adress": place.formatted_address,
-    }));
 
-  }
+      name: place.name,
+      adress: place.formatted_address,
+      rating: place.rating,
+      longitude: place.geometry.location.lng(),
+      latitude: place.geometry.location.lat(),
+
+    }));
+  };
 
   const createPlace = (event) => {
     event.preventDefault();
@@ -136,18 +137,6 @@ export const WorkPlaceCreationPopup = ({ id }) => {
           {isAuthenticated ? (
             <Stack spacing={2} alignItems={"stretch"}>
               <Typography variant="h4">Submit work place</Typography>
-              <GoogleMapsIdFinder onChange={saveGoogleId} />
-              {formData.googleId !== "" && <WorkPlaceGoogleInfo id={formData.googleId} savePlaceDetails={savePlaceDetails} formData={formData} />}
-              {/* <TextField
-                label="name"
-                placeholder="name"
-                type="text"
-                id="name"
-                name="name"
-                value={formData.name}
-                onChange={handleInputChange}
-                required
-              /> */}
               <FormControl sx={{ m: 1, width: 300 }}>
                 <InputLabel required id="type">
                   Type
@@ -166,6 +155,25 @@ export const WorkPlaceCreationPopup = ({ id }) => {
                   ))}
                 </Select>
               </FormControl>
+              {formData.type && <GoogleMapsIdFinder onChange={saveGoogleId} id={id} />}
+              {formData.googleId !== "" && (
+                <WorkPlaceGoogleInfo
+                  id={formData.googleId}
+                  savePlaceDetails={savePlaceDetails}
+                  formData={formData}
+                />
+              )}
+              {/* <TextField
+                label="name"
+                placeholder="name"
+                type="text"
+                id="name"
+                name="name"
+                value={formData.name}
+                onChange={handleInputChange}
+                required
+              /> */}
+              
               {/* <TextField
                 id="adress"
                 label="adress"

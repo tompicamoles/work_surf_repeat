@@ -1,13 +1,23 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 const url = "https://api.airtable.com/v0/appEifpsElq8TYpAy/work_places";
-const token =process.env.REACT_APP_AIRTABLE_API_KEY;
+const token = process.env.REACT_APP_AIRTABLE_API_KEY;
 
 export const createWorkPlace = createAsyncThunk(
   "workPlaces/createWorkPlace",
   async (workPlaceData) => {
-    const { name, type, destination_id, submited_by, adress, rating, likes } =
-      workPlaceData;
+    const {
+      name,
+      type,
+      destination_id,
+      submited_by,
+      adress,
+      rating,
+      likes,
+      googleId,
+      longitude,
+      latitude,
+    } = workPlaceData;
 
     const generateImage = async (name) => {
       // Generate image URL based on name and country
@@ -19,10 +29,7 @@ export const createWorkPlace = createAsyncThunk(
         const response = await fetch(url, {
           headers: {
             Authorization: token,
-            Params: {
-              
-              
-            },
+            Params: {},
           },
         });
 
@@ -50,8 +57,11 @@ export const createWorkPlace = createAsyncThunk(
             image: image,
             submited_by: submited_by,
             adress: adress,
-            rating: parseInt(rating),
+            rating: rating,
             likes: likes.toString(),
+            google_id: googleId,
+            longitude: longitude.toString(),
+            latitude: latitude.toString(),
           },
         },
       ],
@@ -78,8 +88,11 @@ export const createWorkPlace = createAsyncThunk(
       image: image,
       submitedBy: submited_by,
       adress: adress,
-      rating: parseInt(rating),
+      rating: rating,
       likes: likes,
+      googleid: googleId,
+      longitude: longitude,
+      latitude: latitude,
     };
 
     return newWorkPlace;
@@ -114,6 +127,9 @@ export const loadWorkPlaces = createAsyncThunk(
           rating: record.fields.rating,
           likes: record.fields.likes.split(","),
           image: record.fields.image,
+          googleId: record.fields.google_id,
+          longitude: parseFloat(record.fields.longitude),
+          latitude: parseFloat(record.fields.latitude)
         };
 
         if (type === "coworking") {
@@ -133,7 +149,6 @@ export const loadWorkPlaces = createAsyncThunk(
   }
 );
 
-
 export const workPlacesSlice = createSlice({
   name: "workPlaces",
   initialState: {
@@ -141,8 +156,7 @@ export const workPlacesSlice = createSlice({
     isLoadingWorkPlaces: false,
     failedToLoadWorkPlaces: false,
     isLoadingWorkPlaceCreation: false,
-    failedTocreateWorkPlace: true
-
+    failedTocreateWorkPlace: true,
   },
   //   reducers: {},
   extraReducers: (builder) => {
@@ -172,7 +186,8 @@ export const workPlacesSlice = createSlice({
       .addCase(createWorkPlace.fulfilled, (state, action) => {
         state.isLoadingWorkPlaceCreation = false;
         state.failedTocreateWorkPlace = false;
-        state.workPlaces[action.payload.type][action.payload.id] = action.payload;
+        state.workPlaces[action.payload.type][action.payload.id] =
+          action.payload;
         console.log("new spot created:", action.payload);
       });
   },
