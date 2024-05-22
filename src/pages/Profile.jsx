@@ -46,9 +46,13 @@ export const Profile = () => {
     isAuthenticated && (
       <Grid container p={3}>
         <Grid item xs={12}>
-          <Typography variant="h3" gutterBottom>
+          <Typography variant="h3" gutterBottom sx={{ display: { xs: "none", sm: "block" } }}>
             {" "}
             Welcome {user.nickname}!
+          </Typography>
+          <Typography variant="h4" gutterBottom sx={{ display: { xs: "block", sm: "none" } }}>
+            {" "}
+            Hi {user.nickname}!
           </Typography>
         </Grid>
 
