@@ -11,7 +11,7 @@ import Container from "@mui/material/Container";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import SurfingIcon from "@mui/icons-material/Surfing";
-import { Link } from "@mui/material";
+import { Grid, Link } from "@mui/material";
 import { Link as RouterLink } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import { LogInButton } from "./LogInButton";
@@ -43,18 +43,18 @@ function NavBar() {
 
   return (
     <AppBar position="static">
-      <Container maxWidth="xl" >
-        <Toolbar disableGutters >
-          <SurfingIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
-          <Link component={RouterLink} to="/" color="inherit" underline="none">
+      <Container maxWidth="xl">
+        <Toolbar sx={{ justifyContent: "space-between" }}>
+          {" "}
+          
+          <Link item component={RouterLink} to="/" color="inherit" underline="none" sx={{ display: "flex", alignItems: "center" }}>
+            <SurfingIcon  sx={{ mr: 1,}}    />
             <Typography
               variant="h6"
               noWrap
-              component="Link"
-              to="/"
               sx={{
                 mr: 2,
-                display: { xs: "none", md: "flex" },
+                display: { xs: "none", sm: "flex" },
                 fontFamily: "monospace",
                 fontWeight: 700,
                 letterSpacing: ".3rem",
@@ -64,8 +64,8 @@ function NavBar() {
             >
               Work Surf Repeat
             </Typography>
-          </Link>
-
+            </Link>
+       
           {/* <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
             <IconButton
               size="large"
@@ -102,13 +102,12 @@ function NavBar() {
               ))}
             </Menu>
           </Box> */}
-          <SurfingIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
-          <Link
+          {/* <Link
             component={RouterLink}
             to="/"
             color="inherit"
             underline="none"
-          ></Link>
+          ></Link> */}
           {/* <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {pages.map((page) => (
               <Button
@@ -120,7 +119,6 @@ function NavBar() {
               </Button>
             ))}
           </Box> */}
-
           {!isAuthenticated ? (
             <Box sx={{ flexGrow: 0 }}>
               {" "}

@@ -36,19 +36,20 @@ const Destinations = () => {
           xs={12}
           direction="column"
           justifyContent="flex-end"
-          minHeight={300}
+          
           sx={{
             backgroundSize: "cover", // Adjust the size of the background image
             backgroundPosition: "center", // Center the background image
             backgroundRepeat: "no-repeat",
             backgroundImage: `url(${spot.image})`,
+            minHeight:{ xs: 150, sm: 300 }
           }}
         >
           <Typography
             variant="subtitle2"
             color={"secondary"}
-            p={3}
-            sx={{ textShadow: "2px 2px 2px rgba(0, 0, 0, 0.5) " }}
+            
+            sx={{ textShadow: "2px 2px 2px rgba(0, 0, 0, 0.5) ", padding: { xs: 1, sm: 3 } }}
           >
             {" "}
             Destination submited by tom

@@ -6,15 +6,13 @@ import { selectWorkPlaces } from "./workPlacesSlice";
 
 function WorkPlaceCard({ type, id }) {
   const place = useSelector(selectWorkPlaces)[type][id];
-  const numberOfLikes = place.likes.length
-  
-  console.log("num likes for : ", place.name , place.likes ,numberOfLikes)
-  
+  const numberOfLikes = place.likes.length;
 
+  console.log("num likes for : ", place.name, place.likes, numberOfLikes);
 
   return (
     <Grid id="place" container item p={2} spacing={1} xs={12} width="100%">
-      <Grid item sm={3} sx={{display: { xs: 'none', sm: 'block' }}}>
+      <Grid item sm={3} sx={{ display: { xs: "none", sm: "block" } }}>
         <Paper
           item
           container
@@ -27,25 +25,54 @@ function WorkPlaceCard({ type, id }) {
             display: "flex",
             minHeight: 100,
             width: 150,
-            
           }}
         />
       </Grid>
       <Grid item container xs={8} sm={6} id="nameAndAdress">
-        <Typography variant="h6">{place.name}</Typography>
+        <Typography
+          variant={"h6"}
+          sx={{ display: { xs: "none", sm: "block" } }}
+        >
+          {place.name}
+        </Typography>
+        <Typography sx={{ display: { xs: "block", sm: "none" } }}>
+          {place.name}
+        </Typography>
         <Grid item container xs={12} alignItems="center">
           <Grid item xs={1}>
             {" "}
-            <LocationOnIcon />
+            <LocationOnIcon id="icon" sx={{ display: { xs: "none", sm: "block" } }} />
           </Grid>
-          <Grid item xs={11}>
-            <Typography multiline={true}> {place.adress}</Typography>
+          <Grid item container justifyContent="flex-start" sm={11}>
+            <Typography
+              multiline={true}
+              sx={{ display: { xs: "none", sm: "block" } }}
+            >
+              {" "}
+              {place.adress}
+            </Typography>
+
+            <Typography
+              variant="caption"
+              sx={{ display: { xs: "block", sm: "none" } }}
+            >
+              {" "}
+              {place.adress}
+            </Typography>
           </Grid>
         </Grid>
       </Grid>
-      <Grid item container xs={4} sm={3}>
+      <Grid item container direction={"column"} justifyContent="space-between" alignItems={"flex-end"} xs={4} sm={3}>
         <Grid item xs={6}>
-          <Typography variant="h6">{place.rating} / 5</Typography>
+          <Typography
+            variant="h6"
+            sx={{ display: { xs: "none", sm: "block" } }}
+          >
+            {place.rating} / 5
+          </Typography>
+          <Typography sx={{ display: { xs: "block", sm: "none" } }}>
+            {place.rating} / 5
+          </Typography>
         </Grid>
         {/* <Grid
           item
@@ -62,7 +89,7 @@ function WorkPlaceCard({ type, id }) {
             </Typography>
           </Fab>
         </Grid> */}
-        <Typography variant="subtitle"> by {place.submitedBy}</Typography>
+        <Typography variant="caption"> by {place.submitedBy}</Typography>
       </Grid>
       <Grid item xs={12}>
         <Divider />

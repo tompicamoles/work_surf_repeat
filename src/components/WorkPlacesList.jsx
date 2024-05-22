@@ -42,10 +42,10 @@ function WorkPlacesList({ type }) {
         spacing="1"
         justifyContent="space-between"
       >
-        <Grid xs={9} item>
+        <Grid xs={8} sm={9} item>
           <Typography variant="h6">{title}</Typography>
         </Grid>
-        <Grid item container xs={3} justifyContent={"flex-end"}>
+        <Grid item container xs={4} sm={3} justifyContent={"flex-end"}>
           <Button variant="text">Show more</Button>
         </Grid>
 
