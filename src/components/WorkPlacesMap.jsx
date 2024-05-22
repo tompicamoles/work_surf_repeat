@@ -22,7 +22,7 @@ export default function WorkPlacesMap({ id }) {
   return (
     <div style={{ height: "100vh", width: "100%" }}>
       <Map
-        defaultZoom={14}
+        defaultZoom={15}
         defaultCenter={spotPosition}
         mapId={process.env.REACT_APP_MAP_API}
         disableDefaultUI

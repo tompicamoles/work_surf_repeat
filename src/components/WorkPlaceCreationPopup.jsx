@@ -40,6 +40,7 @@ export const WorkPlaceCreationPopup = ({ id }) => {
   const { user, isAuthenticated } = useAuth0();
 
   console.log("id in modal", id);
+  console.log("user data is:", user)
   const dispatch = useDispatch();
 
   const [open, setOpen] = useState(false);
@@ -49,11 +50,9 @@ export const WorkPlaceCreationPopup = ({ id }) => {
   const [formData, setFormData] = useState({
     name: "",
     type: "",
-    destination_id: id,
     image: "",
     adress: "",
     rating: 4,
-    likes: "tom",
     googleId: "",
     latitude: null,
     longitude: null,
@@ -63,11 +62,9 @@ export const WorkPlaceCreationPopup = ({ id }) => {
     setFormData({
       name: "",
       type: "",
-      destination_id: id,
       image: "",
       adress: "",
       rating: 4,
-      likes: "tom",
       googleId: "",
       latitude: null,
       longitude: null,
@@ -117,7 +114,7 @@ export const WorkPlaceCreationPopup = ({ id }) => {
   const createPlace = (event) => {
     event.preventDefault();
 
-    dispatch(createWorkPlace({ ...formData, submited_by: user.nickname }));
+    dispatch(createWorkPlace({ ...formData, submited_by: user.nickname, destination_id: id, likes: user.nickname }));
 
     handleClose();
   };
