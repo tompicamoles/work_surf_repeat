@@ -1,13 +1,6 @@
 "use client";
 
-import { useState } from "react";
-import {
-  APIProvider,
-  Map,
-  AdvancedMarker,
-  Pin,
-  InfoWindow,
-} from "@vis.gl/react-google-maps";
+import { Map } from "@vis.gl/react-google-maps";
 
 import { useSelector } from "react-redux";
 import { selectSpots } from "./spotsSlice";
@@ -27,11 +20,11 @@ export default function WorkPlacesMap({ id }) {
         mapId={process.env.REACT_APP_MAP_API}
         disableDefaultUI
       >
-       {Object.keys(workPlaces).map(category => (
-        Object.keys(workPlaces[category]).map(id => (
-          <WorkPlaceMarker key={id} {...workPlaces[category][id]} />
-        ))
-      ))}
+        {Object.keys(workPlaces).map((category) =>
+          Object.keys(workPlaces[category]).map((id) => (
+            <WorkPlaceMarker key={id} {...workPlaces[category][id]} />
+          ))
+        )}
       </Map>
     </div>
   );

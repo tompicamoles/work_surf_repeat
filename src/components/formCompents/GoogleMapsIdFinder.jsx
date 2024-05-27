@@ -1,8 +1,8 @@
 import React, { useRef, useEffect, useState } from "react";
 import { useMapsLibrary } from "@vis.gl/react-google-maps";
-import { Autocomplete, Box, TextField, Typography } from "@mui/material";
+import { Autocomplete, Box, TextField } from "@mui/material";
 import { getCountryCode } from "../../modules/getCountryCode";
-import { loadSpots, selectSpots } from "../spotsSlice";
+import {  selectSpots } from "../spotsSlice";
 import { useSelector } from "react-redux";
 
 export const GoogleMapsIdFinder = ({onChange, id}) => {
@@ -46,7 +46,7 @@ export const GoogleMapsIdFinder = ({onChange, id}) => {
     return () => {
       inputElement.removeEventListener("input", handleInput);
     };
-  }, [places]);
+  }, [places, countryCode]);
 
   
 

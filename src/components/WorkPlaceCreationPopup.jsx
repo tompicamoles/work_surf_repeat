@@ -3,13 +3,11 @@ import {
   Button,
   Modal,
   Stack,
-  TextField,
   Typography,
   MenuItem,
   FormControl,
   Select,
   InputLabel,
-  Rating,
   Grid,
 } from "@mui/material";
 import { useState } from "react";
@@ -18,10 +16,7 @@ import { createWorkPlace } from "./workPlacesSlice";
 import { useAuth0 } from "@auth0/auth0-react";
 import { LogInButton } from "./LogInButton";
 import { GoogleMapsIdFinder } from "./formCompents/GoogleMapsIdFinder";
-import { getCompanyInformations } from "../api/googleMapsApi";
-import MapComponent, {
-  WorkPlaceGoogleInfo,
-} from "./formCompents/WorkPlaceGoogleInfo";
+import { WorkPlaceGoogleInfo } from "./formCompents/WorkPlaceGoogleInfo";
 const style = {
   position: "absolute",
   top: "50%",
@@ -40,7 +35,7 @@ export const WorkPlaceCreationPopup = ({ id }) => {
   const { user, isAuthenticated } = useAuth0();
 
   console.log("id in modal", id);
-  console.log("user data is:", user)
+  console.log("user data is:", user);
   const dispatch = useDispatch();
 
   const [open, setOpen] = useState(false);
@@ -97,8 +92,7 @@ export const WorkPlaceCreationPopup = ({ id }) => {
   };
 
   const savePlaceDetails = (place) => {
-
-    console.log("latitude",place.geometry.location.lat)
+    console.log("latitude", place.geometry.location.lat);
     setFormData((prevData) => ({
       ...prevData,
 
@@ -107,14 +101,20 @@ export const WorkPlaceCreationPopup = ({ id }) => {
       rating: place.rating,
       longitude: place.geometry.location.lng(),
       latitude: place.geometry.location.lat(),
-
     }));
   };
 
   const createPlace = (event) => {
     event.preventDefault();
 
-    dispatch(createWorkPlace({ ...formData, submited_by: user.nickname, destination_id: id, likes: user.nickname }));
+    dispatch(
+      createWorkPlace({
+        ...formData,
+        submited_by: user.nickname,
+        destination_id: id,
+        likes: user.nickname,
+      })
+    );
 
     handleClose();
   };
@@ -152,7 +152,9 @@ export const WorkPlaceCreationPopup = ({ id }) => {
                   ))}
                 </Select>
               </FormControl>
-              {formData.type && <GoogleMapsIdFinder onChange={saveGoogleId} id={id} />}
+              {formData.type && (
+                <GoogleMapsIdFinder onChange={saveGoogleId} id={id} />
+              )}
               {formData.googleId !== "" && (
                 <WorkPlaceGoogleInfo
                   id={formData.googleId}
@@ -170,7 +172,7 @@ export const WorkPlaceCreationPopup = ({ id }) => {
                 onChange={handleInputChange}
                 required
               /> */}
-              
+
               {/* <TextField
                 id="adress"
                 label="adress"

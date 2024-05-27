@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect} from "react";
 import { useMapsLibrary } from "@vis.gl/react-google-maps";
 import { Rating, Typography } from "@mui/material";
 
 export const WorkPlaceGoogleInfo = ({ id, savePlaceDetails, formData }) => {
   const places = useMapsLibrary("places");
 
-  const [placeDetails, setPlaceDetails] = useState(null);
+
 
   const getDetails = (placeId) => {
     console.log("getting details for;", id);
@@ -20,6 +20,7 @@ export const WorkPlaceGoogleInfo = ({ id, savePlaceDetails, formData }) => {
 
   useEffect(() => {
     getDetails(id);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
   return (
