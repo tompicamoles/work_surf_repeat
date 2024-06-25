@@ -18,6 +18,7 @@ export const createSpot = createAsyncThunk(
       hasColiving,
       lifeCost,
       submitedBy,
+      creatorNickname,
       likes,
     } = spotData;
 
@@ -41,6 +42,7 @@ export const createSpot = createAsyncThunk(
             has_coliving: hasColiving,
             life_cost: parseInt(lifeCost),
             submited_by: submitedBy,
+            creator_nickname: creatorNickname,
             likes: likes.toString(),
             latitude: latitude.toString(),
             longitude: longitude.toString(),
@@ -74,6 +76,7 @@ export const createSpot = createAsyncThunk(
       hasColiving: hasColiving,
       lifeCost: lifeCost,
       submitedBy: submitedBy,
+      creatorNickname: creatorNickname,
       likes: likes,
       latitude: latitude,
       longitude: longitude,
@@ -218,6 +221,7 @@ export const loadSpots = createAsyncThunk(
         hasColiving: record.fields.has_coliving,
         lifeCost: record.fields.life_cost,
         submitedBy: record.fields.submited_by,
+        creatorNickname: record.fields.creator_nickname,
         likes: record.fields.likes.split(","),
         latitude: parseFloat(record.fields.latitude),
         longitude: parseFloat(record.fields.longitude),

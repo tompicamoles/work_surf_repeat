@@ -40,10 +40,10 @@ function SpotCard({ id }) {
   const handleLikeButton = () => {
     if (isAuthenticated) {
     let newListOfLikes = [...spot.likes];
-    !spot.likes.includes(user.nickname)
-      ? newListOfLikes.push(user.nickname)
+    !spot.likes.includes(user.sub)
+      ? newListOfLikes.push(user.sub)
       : (newListOfLikes = newListOfLikes.filter(
-          (like) => like !== user.nickname
+          (like) => like !== user.sub
         ));
         newListOfLikes.length === 0 && newListOfLikes.push("tom")
 
@@ -63,7 +63,7 @@ function SpotCard({ id }) {
 
   let userLikedDestination = false
   if(isAuthenticated) {
-    if(spot.likes.includes(user.nickname)) { // We wait to make sure the user is logged in before getting the nickname to prevent errors linked to aysinc
+    if(spot.likes.includes(user.sub)) { // We wait to make sure the user is logged in before getting the nickname to prevent errors linked to aysinc
       userLikedDestination = true
     }
   }
@@ -233,7 +233,7 @@ function SpotCard({ id }) {
               </Box>
             </Tooltip>
           </Grid>
-          <Grid
+          {/* <Grid
             item
             container
             xs={6}
@@ -283,7 +283,7 @@ function SpotCard({ id }) {
                 />
               </Box>
             </Tooltip>
-          </Grid>
+          </Grid> */}
         </Grid>
       </Paper>
       <Grid item container p={0.5} marginBottom={1} alignContent={"flex-start"}>
@@ -332,7 +332,7 @@ function SpotCard({ id }) {
               </Typography>
               <Typography variant="h8" gutterBottom color={"grey"}>
                 {" "}
-                by {spot.submitedBy}
+                by {spot.creatorNickname}
               </Typography>
             </Grid>
           </Link>

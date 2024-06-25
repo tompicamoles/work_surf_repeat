@@ -27,6 +27,7 @@ const Search = () => {
   return (
     <TextField
     variant="filled"
+    placeholder="Type village, city or country"
 
       sx={{
         bgcolor: 'white',

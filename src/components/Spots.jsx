@@ -55,7 +55,7 @@ const Spots = ({context}) => {
       console.log(key);
       // Check if the search parameter is included in the name or country
       if (
-        spots[key].likes.includes(user.nickname)
+        spots[key].likes.includes(user.sub)
       ) {
         // If it matches, add the spot to the filteredSpots array
         console.log(key, "is liked by user");

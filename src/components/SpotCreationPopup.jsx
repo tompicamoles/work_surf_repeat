@@ -148,12 +148,13 @@ function SpotCreationPopup() {
       hasCoworking: formData.hasCoworking,
       hasColiving: formData.hasColiving,
       lifeCost: formData.lifeCost,
-      submitedBy: user.nickname,
+      submitedBy: user.sub,
+      creatorNickname: user.nickname,
       likes: [user.nickname],
     };
     dispatch(createSpot(spotData));
-    console.log("likes:", spotData.likes);
-    console.log("likes string: ", spotData.likes.toString());
+    console.log("creator:", spotData.creatorNickname);
+    console.log("submitedBy: ", spotData.submitedBy);
 
     handleClose();
   };
