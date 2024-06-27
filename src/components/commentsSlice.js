@@ -7,22 +7,24 @@ export const createComment = createAsyncThunk(
   "comments/createComment",
   async (commentData) => {
     const {
-      comment,
+      content,
       destination_id,
       submited_by,
       rating,
+      date,
+      creatorNickname,
     } = commentData;
 
-    
     const data = {
       records: [
         {
           fields: {
-            comment: comment,
+            content: content,
             destination_id: destination_id,
             submited_by: submited_by,
-            rating: rating,
-            
+            creator_nickname: creatorNickname,
+            rating: parseInt(rating),
+            date: date,
           },
         },
       ],
@@ -43,10 +45,12 @@ export const createComment = createAsyncThunk(
     // get spot ID and Create new spot object in the current slice
     const newComment = {
       id: comment.id,
-      comment: comment,
+      content: content,
       destination_id: destination_id,
+      creatorNickname: creatorNickname,
       submitedBy: submited_by,
       rating: rating,
+      date: date,
     };
 
     return newComment;
@@ -67,22 +71,19 @@ export const loadComments = createAsyncThunk(
     const json = await response.json();
     console.log(json);
 
-    const commentsData = json.records.reduce(
-      (comments, record) => {
+    const commentsData = json.records.reduce((comments, record) => {
+      comments[record.id] = {
+        id: record.id,
+        content: record.fields.content,
+        destinationId: record.fields.destination_id,
+        submitedBy: record.fields.submited_by,
+        creatorNickname: record.fields.creator_nickname,
+        rating: record.fields.rating,
+        date: record.fields.date,
+      };
 
-        const comments[record.id] = {
-          id: record.id,
-          comment: record.fields.comment,
-          destinationId: record.fields.destination_id,
-          submitedBy: record.fields.submited_by,
-          rating: record.fields.rating,
-        };
-
-       
-        return comments;
-      },
-      {}
-    );
+      return comments;
+    }, {});
 
     return commentsData;
   }
@@ -125,9 +126,7 @@ export const commentsSlice = createSlice({
       .addCase(createComment.fulfilled, (state, action) => {
         state.isLoadingCommentCreation = false;
         state.failedTocreateComment = false;
-        state.comments[action.payload.id] =
-          action.payload;
-        
+        state.comments[action.payload.id] = action.payload;
       });
   },
 });
@@ -135,7 +134,6 @@ export const commentsSlice = createSlice({
 export const selectComments = (state) => state.comments.comments;
 export const failedToLoadComments = (state) =>
   state.comments.failedToLoadComments;
-export const isLoadingComments = (state) =>
-  state.comments.isLoadingComments;
+export const isLoadingComments = (state) => state.comments.isLoadingComments;
 
 export default commentsSlice.reducer;

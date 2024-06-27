@@ -6,7 +6,7 @@ import commentsReducer from "../components/commentsSlice"
 export default configureStore({
     reducer: {
     spots: spotsReducer,
-    workPlaces : workPlacesReducer
+    workPlaces : workPlacesReducer,
     comments: commentsReducer
     },
   });

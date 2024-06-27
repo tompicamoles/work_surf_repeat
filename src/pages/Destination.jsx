@@ -2,12 +2,17 @@ import { Grid, Typography, Button, Divider } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { loadWorkPlaces } from "../components/workPlacesSlice";
+import { loadComments } from "../components/commentsSlice";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { selectSpots } from "../components/spotsSlice";
 import { WorkPlaces } from "../components/WorkPlaces";
 import { theme } from "../app/theme";
 import { SurfLine } from "../components/SurfLine";
+import {Comments} from "../components/Comments"
+
+
+
 const Destinations = () => {
   let { id } = useParams();
   const [buttonState, setButtonState] = useState("work");
@@ -18,10 +23,13 @@ const Destinations = () => {
 
   useEffect(() => {
     dispatch(loadWorkPlaces(id));
+    dispatch(loadComments(id))
   }, [dispatch, id]);
 
+  
+
   const handleButtonClick = (state) => {
-    state === "work" ? setButtonState("work") : setButtonState("surf");
+    state === "work" ? setButtonState("work") : setButtonState("comments");
     console.log(buttonState);
   };
 
@@ -69,7 +77,7 @@ const Destinations = () => {
             {spot.name}, {spot.country}{" "}
           </Typography>
         </Grid>
-        {/* <Grid item container xs={12}>
+        <Grid item container xs={12}>
           <Button
             variant="text"
             sx={{
@@ -78,7 +86,7 @@ const Destinations = () => {
                   ? theme.palette.primary.main
                   : theme.palette.primary.light,
               "&:hover": {
-                color: buttonState === "surf" && theme.palette.primary.dark,
+                color: buttonState === "comments" && theme.palette.primary.dark,
               },
             }}
             onClick={() => {
@@ -92,25 +100,25 @@ const Destinations = () => {
             variant="text"
             sx={{
               color:
-                buttonState === "surf"
+                buttonState === "comments"
                   ? theme.palette.primary.main
                   : theme.palette.primary.light,
               "&:hover": {
-                color: buttonState === "work" && theme.palette.primary.dark,
+                color: buttonState === "comments" && theme.palette.primary.dark,
               },
             }}
             onClick={() => {
-              handleButtonClick("surf");
+              handleButtonClick("comments");
             }}
           >
-            Where to surf
+            Comments
           </Button>
-        </Grid> */}
+        </Grid>
 
         {buttonState === "work" ? (
           <WorkPlaces id={id} />
         ) : (
-          <SurfLine url={`https://www.surfline.com/surf-reports-forecasts-cams-map/@${spot.latitude},${spot.longitude},12z`}/>
+          <Comments id={id}/>
         )}
       </Grid>
     );

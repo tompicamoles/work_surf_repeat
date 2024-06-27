@@ -339,5 +339,3 @@ export const failedToLoadSpots = (state) => state.spots.failedToLoadSpots;
 export const isLoadingSpots = (state) => state.spots.isLoadingSpots;
 
 export default spotsSlice.reducer;
-
-console.log("yo")
