@@ -1,7 +1,7 @@
 import React, { useRef, useEffect, useState } from "react";
 import { useMapsLibrary } from "@vis.gl/react-google-maps";
 import { Autocomplete, Box, TextField } from "@mui/material";
-import { getCountryCode } from "../../modules/getCountryCode";
+import { getCountryCode } from "../../modules/countriesData";
 import {  selectSpots } from "../spotsSlice";
 import { useSelector } from "react-redux";
 
