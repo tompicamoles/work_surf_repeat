@@ -26,4 +26,3 @@ const countries = require("./countries.json")
     
   }
 
-  
