@@ -25,4 +25,3 @@ const countries = require("./countries.json")
     return countriesList || "good weather season not found"
     
   }
-
