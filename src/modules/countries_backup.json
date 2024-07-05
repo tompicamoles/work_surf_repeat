@@ -17,12 +17,10 @@
       "August",
       "September"
     ],
-    "timeZone": "UTC+1",
-    "lifeCost": 2
+    "timeZone": "UTC+1"
   },
   "Algeria": {
     "code": "DZ",
-    "continent": "AF",
     "surfSeason": [
       "November",
       "December",
@@ -37,12 +35,10 @@
       "October",
       "November"
     ],
-    "timeZone": "UTC+1",
-    "lifeCost": 2
+    "timeZone": "UTC+1"
   },
   "Angola": {
     "code": "AO",
-    "continent": "AF",
     "surfSeason": [
       "June",
       "July",
@@ -53,12 +49,10 @@
       "July",
       "August"
     ],
-    "timeZone": "UTC+1",
-    "lifeCost": 2
+    "timeZone": "UTC+1"
   },
   "Antigua & Deps": {
     "code": "AG",
-    "continent": "NA",
     "surfSeason": [
       "November",
       "December",
@@ -74,12 +68,10 @@
       "March",
       "April"
     ],
-    "timeZone": "UTC−4",
-    "lifeCost": 3
+    "timeZone": "UTC−4"
   },
   "Argentina": {
     "code": "AR",
-    "continent": "SA",
     "surfSeason": [
       "December",
       "January",
@@ -94,12 +86,10 @@
       "January",
       "February"
     ],
-    "timeZone": "UTC-3",
-    "lifeCost": 3
+    "timeZone": "UTC���3"
   },
   "Australia": {
     "code": "AU",
-    "continent": "OC",
     "surfSeason": [
       "All year round"
     ],
@@ -111,12 +101,10 @@
       "January",
       "February"
     ],
-    "timeZone": "UTC+10",
-    "lifeCost": 5
+    "timeZone": "UTC+10"
   },
   "Bahamas": {
     "code": "BS",
-    "continent": "NA",
     "surfSeason": [
       "November",
       "December",
@@ -126,12 +114,10 @@
       "April"
     ],
     "goodWeatherSeason": [],
-    "timeZone": "UTC−5",
-    "lifeCost": 3
+    "timeZone": "UTC−5"
   },
   "Bangladesh": {
     "code": "BD",
-    "continent": "AS",
     "surfSeason": [
       "November",
       "December",
@@ -139,12 +125,10 @@
       "February"
     ],
     "goodWeatherSeason": [],
-    "timeZone": "UTC+6",
-    "lifeCost": 1
+    "timeZone": "UTC+6"
   },
   "Barbados": {
     "code": "BB",
-    "continent": "NA",
     "surfSeason": [
       "November",
       "December",
@@ -154,12 +138,10 @@
       "April"
     ],
     "goodWeatherSeason": [],
-    "timeZone": "UTC−4",
-    "lifeCost": 3
+    "timeZone": "UTC−4"
   },
   "Belgium": {
     "code": "BE",
-    "continent": "EU",
     "surfSeason": [
       "September",
       "October",
@@ -175,12 +157,10 @@
       "July",
       "August"
     ],
-    "timeZone": "UTC+1",
-    "lifeCost": 4
+    "timeZone": "UTC+1"
   },
   "Belize": {
     "code": "BZ",
-    "continent": "NA",
     "surfSeason": [
       "November",
       "December",
@@ -197,12 +177,10 @@
       "April",
       "May"
     ],
-    "timeZone": "UTC−6",
-    "lifeCost": 2
+    "timeZone": "UTC−6"
   },
   "Brazil": {
     "code": "BR",
-    "continent": "SA",
     "surfSeason": [
       "April",
       "May",
@@ -221,12 +199,10 @@
       "August",
       "September"
     ],
-    "timeZone": "UTC−3",
-    "lifeCost": 3
+    "timeZone": "UTC−3"
   },
   "Brunei": {
     "code": "BN",
-    "continent": "AS",
     "surfSeason": [
       "November",
       "December",
@@ -241,12 +217,10 @@
       "May",
       "June"
     ],
-    "timeZone": "UTC+8",
-    "lifeCost": 3
+    "timeZone": "UTC+8"
   },
   "Bulgaria": {
     "code": "BG",
-    "continent": "EU",
     "surfSeason": [
       "September",
       "October",
@@ -262,12 +236,10 @@
       "July",
       "August"
     ],
-    "timeZone": "UTC+2",
-    "lifeCost": 2
+    "timeZone": "UTC+2"
   },
   "Cambodia": {
     "code": "KH",
-    "continent": "AS",
     "surfSeason": [
       "October",
       "November",
@@ -282,12 +254,10 @@
       "February",
       "March"
     ],
-    "timeZone": "UTC+7",
-    "lifeCost": 1
+    "timeZone": "UTC+7"
   },
   "Cameroon": {
     "code": "CM",
-    "continent": "AF",
     "surfSeason": [
       "June",
       "July",
@@ -301,12 +271,10 @@
       "February",
       "March"
     ],
-    "timeZone": "UTC+1",
-    "lifeCost": 2
+    "timeZone": "UTC+1"
   },
   "Canada": {
     "code": "CA",
-    "continent": "NA",
     "surfSeason": [
       "September",
       "October",
@@ -322,12 +290,10 @@
       "July",
       "August"
     ],
-    "timeZone": "UTC−5 to UTC−8",
-    "lifeCost": 5
+    "timeZone": "UTC−5 to UTC−8"
   },
   "Chile": {
     "code": "CL",
-    "continent": "SA",
     "surfSeason": [
       "March",
       "April",
@@ -347,12 +313,10 @@
       "March",
       "April"
     ],
-    "timeZone": "UTC−4",
-    "lifeCost": 3
+    "timeZone": "UTC−4"
   },
   "China": {
     "code": "CN",
-    "continent": "AS",
     "surfSeason": [
       "November",
       "December",
@@ -368,12 +332,10 @@
       "August",
       "September"
     ],
-    "timeZone": "UTC+8",
-    "lifeCost": 3
+    "timeZone": "UTC+8"
   },
   "Colombia": {
     "code": "CO",
-    "continent": "SA",
     "surfSeason": [
       "April",
       "May",
@@ -393,12 +355,10 @@
       "April",
       "May"
     ],
-    "timeZone": "UTC−5",
-    "lifeCost": 2
+    "timeZone": "UTC−5"
   },
   "Costa Rica": {
     "code": "CR",
-    "continent": "NA",
     "surfSeason": [
       "December",
       "January",
@@ -415,12 +375,10 @@
       "April",
       "May"
     ],
-    "timeZone": "UTC−6",
-    "lifeCost": 3
+    "timeZone": "UTC−6"
   },
   "Croatia": {
     "code": "HR",
-    "continent": "EU",
     "surfSeason": [
       "September",
       "October",
@@ -436,12 +394,10 @@
       "July",
       "August"
     ],
-    "timeZone": "UTC+1",
-    "lifeCost": 3
+    "timeZone": "UTC+1"
   },
   "Cuba": {
     "code": "CU",
-    "continent": "NA",
     "surfSeason": [
       "November",
       "December",
@@ -460,12 +416,10 @@
       "April",
       "May"
     ],
-    "timeZone": "UTC−5",
-    "lifeCost": 2
+    "timeZone": "UTC−5"
   },
   "Cyprus": {
     "code": "CY",
-    "continent": "EU",
     "surfSeason": [
       "September",
       "October",
@@ -485,12 +439,10 @@
       "September",
       "October"
     ],
-    "timeZone": "UTC+2",
-    "lifeCost": 3
+    "timeZone": "UTC+2"
   },
   "Denmark": {
     "code": "DK",
-    "continent": "EU",
     "surfSeason": [
       "September",
       "October",
@@ -506,12 +458,10 @@
       "July",
       "August"
     ],
-    "timeZone": "UTC+1",
-    "lifeCost": 4
+    "timeZone": "UTC+1"
   },
   "Dominica": {
     "code": "DM",
-    "continent": "NA",
     "surfSeason": [
       "October",
       "November",
@@ -528,12 +478,10 @@
       "March",
       "April"
     ],
-    "timeZone": "UTC−4",
-    "lifeCost": 2
+    "timeZone": "UTC−4"
   },
   "Dominican Republic": {
     "code": "DO",
-    "continent": "NA",
     "surfSeason": [
       "December",
       "January",
@@ -550,12 +498,10 @@
       "April",
       "May"
     ],
-    "timeZone": "UTC−4",
-    "lifeCost": 2
+    "timeZone": "UTC−4"
   },
   "East Timor": {
     "code": "TL",
-    "continent": "AS",
     "surfSeason": [
       "May",
       "June",
@@ -570,12 +516,10 @@
       "July",
       "August"
     ],
-    "timeZone": "UTC+9",
-    "lifeCost": 2
+    "timeZone": "UTC+9"
   },
   "Ecuador": {
     "code": "EC",
-    "continent": "SA",
     "surfSeason": [
       "June",
       "July",
@@ -593,12 +537,10 @@
       "April",
       "May"
     ],
-    "timeZone": "UTC−5",
-    "lifeCost": 2
+    "timeZone": "UTC−5"
   },
   "Egypt": {
     "code": "EG",
-    "continent": "AF",
     "surfSeason": [
       "September",
       "October",
@@ -618,12 +560,10 @@
       "March",
       "April"
     ],
-    "timeZone": "UTC+2",
-    "lifeCost": 2
+    "timeZone": "UTC+2"
   },
   "El Salvador": {
     "code": "SV",
-    "continent": "NA",
     "surfSeason": [
       "April",
       "May",
@@ -643,12 +583,10 @@
       "April",
       "May"
     ],
-    "timeZone": "UTC−6",
-    "lifeCost": 2
+    "timeZone": "UTC−6"
   },
   "Equatorial Guinea": {
     "code": "GQ",
-    "continent": "AF",
     "surfSeason": [
       "June",
       "July",
@@ -661,12 +599,10 @@
       "August",
       "September"
     ],
-    "timeZone": "UTC+1",
-    "lifeCost": 2
+    "timeZone": "UTC+1"
   },
   "Estonia": {
     "code": "EE",
-    "continent": "EU",
     "surfSeason": [
       "September",
       "October",
@@ -682,12 +618,10 @@
       "July",
       "August"
     ],
-    "timeZone": "UTC+2",
-    "lifeCost": 3
+    "timeZone": "UTC+2"
   },
   "Fiji": {
     "code": "FJ",
-    "continent": "OC",
     "surfSeason": [
       "April",
       "May",
@@ -704,12 +638,10 @@
       "August",
       "September"
     ],
-    "timeZone": "UTC+12",
-    "lifeCost": 2
+    "timeZone": "UTC+12"
   },
   "Finland": {
     "code": "FI",
-    "continent": "EU",
     "surfSeason": [
       "September",
       "October",
@@ -725,12 +657,10 @@
       "July",
       "August"
     ],
-    "timeZone": "UTC+2",
-    "lifeCost": 4
+    "timeZone": "UTC+2"
   },
   "France": {
     "code": "FR",
-    "continent": "EU",
     "surfSeason": [
       "September",
       "October",
@@ -746,12 +676,10 @@
       "July",
       "August"
     ],
-    "timeZone": "UTC+1",
-    "lifeCost": 4
+    "timeZone": "UTC+1"
   },
   "Gabon": {
     "code": "GA",
-    "continent": "AF",
     "surfSeason": [
       "June",
       "July",
@@ -764,12 +692,10 @@
       "August",
       "September"
     ],
-    "timeZone": "UTC+1",
-    "lifeCost": 2
+    "timeZone": "UTC+1"
   },
   "Gambia": {
     "code": "GM",
-    "continent": "AF",
     "surfSeason": [
       "October",
       "November",
@@ -786,12 +712,10 @@
       "March",
       "April"
     ],
-    "timeZone": "UTC+0",
-    "lifeCost": 2
+    "timeZone": "UTC+0"
   },
   "Germany": {
     "code": "DE",
-    "continent": "EU",
     "surfSeason": [
       "September",
       "October",
@@ -807,12 +731,10 @@
       "July",
       "August"
     ],
-    "timeZone": "UTC+1",
-    "lifeCost": 4
+    "timeZone": "UTC+1"
   },
   "Ghana": {
     "code": "GH",
-    "continent": "AF",
     "surfSeason": [
       "November",
       "December",
@@ -827,12 +749,10 @@
       "January",
       "February"
     ],
-    "timeZone": "UTC+0",
-    "lifeCost": 2
+    "timeZone": "UTC+0"
   },
   "Greece": {
     "code": "GR",
-    "continent": "EU",
     "surfSeason": [
       "September",
       "October",
@@ -848,12 +768,10 @@
       "July",
       "August"
     ],
-    "timeZone": "UTC+2",
-    "lifeCost": 3
+    "timeZone": "UTC+2"
   },
   "Grenada": {
     "code": "GD",
-    "continent": "NA",
     "surfSeason": [
       "November",
       "December",
@@ -870,12 +788,10 @@
       "March",
       "April"
     ],
-    "timeZone": "UTC−4",
-    "lifeCost": 2
+    "timeZone": "UTC−4"
   },
   "Guatemala": {
     "code": "GT",
-    "continent": "NA",
     "surfSeason": [
       "April",
       "May",
@@ -895,12 +811,10 @@
       "March",
       "April"
     ],
-    "timeZone": "UTC−6",
-    "lifeCost": 2
+    "timeZone": "UTC−6"
   },
   "Guyana": {
     "code": "GY",
-    "continent": "SA",
     "surfSeason": [
       "October",
       "November",
@@ -920,12 +834,10 @@
       "March",
       "April"
     ],
-    "timeZone": "UTC−4",
-    "lifeCost": 2
+    "timeZone": "UTC−4"
   },
   "Haiti": {
     "code": "HT",
-    "continent": "NA",
     "surfSeason": [
       "November",
       "December",
@@ -942,12 +854,10 @@
       "March",
       "April"
     ],
-    "timeZone": "UTC−5",
-    "lifeCost": 2
+    "timeZone": "UTC−5"
   },
   "Honduras": {
     "code": "HN",
-    "continent": "NA",
     "surfSeason": [
       "April",
       "May",
@@ -967,12 +877,10 @@
       "April",
       "May"
     ],
-    "timeZone": "UTC−6",
-    "lifeCost": 2
+    "timeZone": "UTC−6"
   },
   "Iceland": {
     "code": "IS",
-    "continent": "EU",
     "surfSeason": [
       "June",
       "July",
@@ -983,12 +891,10 @@
       "July",
       "August"
     ],
-    "timeZone": "UTC+0",
-    "lifeCost": 4
+    "timeZone": "UTC+0"
   },
   "India": {
     "code": "IN",
-    "continent": "AS",
     "surfSeason": [
       "April",
       "May",
@@ -1005,12 +911,10 @@
       "February",
       "March"
     ],
-    "timeZone": "UTC+5:30",
-    "lifeCost": 1
+    "timeZone": "UTC+5:30"
   },
   "Indonesia": {
     "code": "ID",
-    "continent": "AS",
     "surfSeason": [
       "April",
       "May",
@@ -1027,12 +931,10 @@
       "August",
       "September"
     ],
-    "timeZone": "UTC+7",
-    "lifeCost": 1
+    "timeZone": "UTC+7"
   },
   "Ireland {Republic}": {
     "code": "IE",
-    "continent": "EU",
     "surfSeason": [
       "September",
       "October",
@@ -1048,12 +950,10 @@
       "July",
       "August"
     ],
-    "timeZone": "UTC+0",
-    "lifeCost": 4
+    "timeZone": "UTC+0"
   },
   "Israel": {
     "code": "IL",
-    "continent": "AS",
     "surfSeason": [
       "September",
       "October",
@@ -1071,12 +971,10 @@
       "October",
       "November"
     ],
-    "timeZone": "UTC+2",
-    "lifeCost": 4
+    "timeZone": "UTC+2"
   },
   "Italy": {
     "code": "IT",
-    "continent": "EU",
     "surfSeason": [
       "September",
       "October",
@@ -1092,12 +990,10 @@
       "July",
       "August"
     ],
-    "timeZone": "UTC+1",
-    "lifeCost": 4
+    "timeZone": "UTC+1"
   },
   "Ivory Coast": {
     "code": "CI",
-    "continent": "AF",
     "surfSeason": [
       "November",
       "December",
@@ -1107,12 +1003,10 @@
       "April"
     ],
     "goodWeatherSeason": [],
-    "timeZone": "UTC+0",
-    "lifeCost": 2
+    "timeZone": "UTC+0"
   },
   "Jamaica": {
     "code": "JM",
-    "continent": "NA",
     "surfSeason": [
       "December",
       "January",
@@ -1129,12 +1023,10 @@
       "April",
       "May"
     ],
-    "timeZone": "UTC−5",
-    "lifeCost": 3
+    "timeZone": "UTC−5"
   },
   "Japan": {
     "code": "JP",
-    "continent": "AS",
     "surfSeason": [
       "September",
       "October",
@@ -1152,12 +1044,10 @@
       "September",
       "October"
     ],
-    "timeZone": "UTC+9",
-    "lifeCost": 5
+    "timeZone": "UTC+9"
   },
   "Kenya": {
     "code": "KE",
-    "continent": "AF",
     "surfSeason": [
       "June",
       "July",
@@ -1173,12 +1063,10 @@
       "November",
       "December"
     ],
-    "timeZone": "UTC+3",
-    "lifeCost": 2
+    "timeZone": "UTC+3"
   },
   "Kiribati": {
     "code": "KI",
-    "continent": "OC",
     "surfSeason": [
       "November",
       "December",
@@ -1196,12 +1084,10 @@
       "September",
       "October"
     ],
-    "timeZone": "UTC+12",
-    "lifeCost": 2
+    "timeZone": "UTC+12"
   },
   "Korea South": {
     "code": "KR",
-    "continent": "AS",
     "surfSeason": [
       "May",
       "June",
@@ -1216,12 +1102,10 @@
       "September",
       "October"
     ],
-    "timeZone": "UTC+9",
-    "lifeCost": 4
+    "timeZone": "UTC+9"
   },
   "Latvia": {
     "code": "LV",
-    "continent": "EU",
     "surfSeason": [
       "September",
       "October",
@@ -1237,12 +1121,10 @@
       "July",
       "August"
     ],
-    "timeZone": "UTC+2",
-    "lifeCost": 3
+    "timeZone": "UTC+2"
   },
   "Lebanon": {
     "code": "LB",
-    "continent": "AS",
     "surfSeason": [
       "September",
       "October",
@@ -1260,12 +1142,10 @@
       "October",
       "November"
     ],
-    "timeZone": "UTC+2",
-    "lifeCost": 3
+    "timeZone": "UTC+2"
   },
   "Liberia": {
     "code": "LR",
-    "continent": "AF",
     "surfSeason": [
       "November",
       "December",
@@ -1280,12 +1160,10 @@
       "February",
       "March"
     ],
-    "timeZone": "UTC+0",
-    "lifeCost": 2
+    "timeZone": "UTC+0"
   },
   "Libya": {
     "code": "LY",
-    "continent": "AF",
     "surfSeason": [
       "September",
       "October",
@@ -1305,12 +1183,10 @@
       "March",
       "April"
     ],
-    "timeZone": "UTC+2",
-    "lifeCost": 2
+    "timeZone": "UTC+2"
   },
   "Lithuania": {
     "code": "LT",
-    "continent": "EU",
     "surfSeason": [
       "September",
       "October",
@@ -1326,12 +1202,10 @@
       "July",
       "August"
     ],
-    "timeZone": "UTC+2",
-    "lifeCost": 3
+    "timeZone": "UTC+2"
   },
   "Madagascar": {
     "code": "MG",
-    "continent": "AF",
     "surfSeason": [
       "May",
       "June",
@@ -1348,12 +1222,10 @@
       "September",
       "October"
     ],
-    "timeZone": "UTC+3",
-    "lifeCost": 2
+    "timeZone": "UTC+3"
   },
   "Malaysia": {
     "code": "MY",
-    "continent": "AS",
     "surfSeason": [
       "April",
       "May",
@@ -1370,12 +1242,10 @@
       "August",
       "September"
     ],
-    "timeZone": "UTC+8",
-    "lifeCost": 2
+    "timeZone": "UTC+8"
   },
   "Maldives": {
     "code": "MV",
-    "continent": "AS",
     "surfSeason": [
       "March",
       "April",
@@ -1391,12 +1261,10 @@
       "November",
       "December"
     ],
-    "timeZone": "UTC+5",
-    "lifeCost": 3
+    "timeZone": "UTC+5"
   },
   "Malta": {
     "code": "MT",
-    "continent": "EU",
     "surfSeason": [
       "September",
       "October",
@@ -1412,12 +1280,10 @@
       "July",
       "August"
     ],
-    "timeZone": "UTC+1",
-    "lifeCost": 4
+    "timeZone": "UTC+1"
   },
   "Marshall Islands": {
     "code": "MH",
-    "continent": "OC",
     "surfSeason": [
       "April",
       "May",
@@ -1432,12 +1298,10 @@
       "February",
       "March"
     ],
-    "timeZone": "UTC+12",
-    "lifeCost": 2
+    "timeZone": "UTC+12"
   },
   "Mauritania": {
     "code": "MR",
-    "continent": "AF",
     "surfSeason": [
       "October",
       "November",
@@ -1455,12 +1319,10 @@
       "March",
       "April"
     ],
-    "timeZone": "UTC+0",
-    "lifeCost": 2
+    "timeZone": "UTC+0"
   },
   "Mauritius": {
     "code": "MU",
-    "continent": "AF",
     "surfSeason": [
       "June",
       "July",
@@ -1474,12 +1336,10 @@
       "August",
       "September"
     ],
-    "timeZone": "UTC+4",
-    "lifeCost": 3
+    "timeZone": "UTC+4"
   },
   "Mexico": {
     "code": "MX",
-    "continent": "NA",
     "surfSeason": [
       "May",
       "June",
@@ -1495,12 +1355,10 @@
       "March",
       "April"
     ],
-    "timeZone": "UTC−6",
-    "lifeCost": 2
+    "timeZone": "UTC−6"
   },
   "Micronesia": {
     "code": "FM",
-    "continent": "OC",
     "surfSeason": [
       "November",
       "December",
@@ -1516,12 +1374,10 @@
       "March",
       "April"
     ],
-    "timeZone": "UTC+10",
-    "lifeCost": 2
+    "timeZone": "UTC+10"
   },
   "Montenegro": {
     "code": "ME",
-    "continent": "EU",
     "surfSeason": [
       "September",
       "October",
@@ -1538,12 +1394,10 @@
       "August",
       "September"
     ],
-    "timeZone": "UTC+1",
-    "lifeCost": 2
+    "timeZone": "UTC+1"
   },
   "Morocco": {
     "code": "MA",
-    "continent": "AF",
     "surfSeason": [
       "October",
       "November",
@@ -1561,12 +1415,10 @@
       "October",
       "November"
     ],
-    "timeZone": "UTC+0",
-    "lifeCost": 2
+    "timeZone": "UTC+0"
   },
   "Mozambique": {
     "code": "MZ",
-    "continent": "AF",
     "surfSeason": [
       "May",
       "June",
@@ -1581,12 +1433,10 @@
       "August",
       "September"
     ],
-    "timeZone": "UTC+2",
-    "lifeCost": 2
+    "timeZone": "UTC+2"
   },
   "Myanmar {Burma}": {
     "code": "MM",
-    "continent": "AS",
     "surfSeason": [
       "November",
       "December",
@@ -1601,12 +1451,10 @@
       "February",
       "March"
     ],
-    "timeZone": "UTC+6:30",
-    "lifeCost": 1
+    "timeZone": "UTC+6:30"
   },
   "Namibia": {
     "code": "NA",
-    "continent": "AF",
     "surfSeason": [
       "May",
       "June",
@@ -1621,12 +1469,10 @@
       "August",
       "September"
     ],
-    "timeZone": "UTC+1",
-    "lifeCost": 2
+    "timeZone": "UTC+1"
   },
   "Nauru": {
     "code": "NR",
-    "continent": "OC",
     "surfSeason": [
       "November",
       "December",
@@ -1644,12 +1490,10 @@
       "September",
       "October"
     ],
-    "timeZone": "UTC+12",
-    "lifeCost": 2
+    "timeZone": "UTC+12"
   },
   "Netherlands": {
     "code": "NL",
-    "continent": "EU",
     "surfSeason": [
       "September",
       "October",
@@ -1665,12 +1509,10 @@
       "July",
       "August"
     ],
-    "timeZone": "UTC+1",
-    "lifeCost": 4
+    "timeZone": "UTC+1"
   },
   "New Zealand": {
     "code": "NZ",
-    "continent": "OC",
     "surfSeason": [
       "March",
       "April",
@@ -1688,12 +1530,10 @@
       "February",
       "March"
     ],
-    "timeZone": "UTC+12",
-    "lifeCost": 5
+    "timeZone": "UTC+12"
   },
   "Nicaragua": {
     "code": "NI",
-    "continent": "NA",
     "surfSeason": [
       "April",
       "May",
@@ -1713,12 +1553,10 @@
       "March",
       "April"
     ],
-    "timeZone": "UTC−6",
-    "lifeCost": 2
+    "timeZone": "UTC−6"
   },
   "Nigeria": {
     "code": "NG",
-    "continent": "AF",
     "surfSeason": [
       "November",
       "December",
@@ -1735,12 +1573,10 @@
       "March",
       "April"
     ],
-    "timeZone": "UTC+1",
-    "lifeCost": 2
+    "timeZone": "UTC+1"
   },
   "Norway": {
     "code": "NO",
-    "continent": "EU",
     "surfSeason": [
       "September",
       "October",
@@ -1756,12 +1592,10 @@
       "July",
       "August"
     ],
-    "timeZone": "UTC+1",
-    "lifeCost": 5
+    "timeZone": "UTC+1"
   },
   "Oman": {
     "code": "OM",
-    "continent": "AS",
     "surfSeason": [
       "October",
       "November",
@@ -1778,12 +1612,10 @@
       "February",
       "March"
     ],
-    "timeZone": "UTC+4",
-    "lifeCost": 3
+    "timeZone": "UTC+4"
   },
   "Pakistan": {
     "code": "PK",
-    "continent": "AS",
     "surfSeason": [
       "October",
       "November",
@@ -1800,12 +1632,10 @@
       "February",
       "March"
     ],
-    "timeZone": "UTC+5",
-    "lifeCost": 2
+    "timeZone": "UTC+5"
   },
   "Palau": {
     "code": "PW",
-    "continent": "OC",
     "surfSeason": [
       "November",
       "December",
@@ -1820,12 +1650,10 @@
       "February",
       "March"
     ],
-    "timeZone": "UTC+9",
-    "lifeCost": 3
+    "timeZone": "UTC+9"
   },
   "Panama": {
     "code": "PA",
-    "continent": "NA",
     "surfSeason": [
       "May",
       "June",
@@ -1842,12 +1670,10 @@
       "March",
       "April"
     ],
-    "timeZone": "UTC−5",
-    "lifeCost": 3
+    "timeZone": "UTC−5"
   },
   "Papua New Guinea": {
     "code": "PG",
-    "continent": "OC",
     "surfSeason": [
       "July",
       "August",
@@ -1860,12 +1686,10 @@
       "September",
       "October"
     ],
-    "timeZone": "UTC+10",
-    "lifeCost": 2
+    "timeZone": "UTC+10"
   },
   "Peru": {
     "code": "PE",
-    "continent": "SA",
     "surfSeason": [
       "December",
       "January",
@@ -1882,12 +1706,10 @@
       "August",
       "September"
     ],
-    "timeZone": "UTC−5",
-    "lifeCost": 2
+    "timeZone": "UTC−5"
   },
   "Philippines": {
     "code": "PH",
-    "continent": "AS",
     "surfSeason": [
       "November",
       "December",
@@ -1904,12 +1726,10 @@
       "April",
       "May"
     ],
-    "timeZone": "UTC+8",
-    "lifeCost": 1
+    "timeZone": "UTC+8"
   },
   "Poland": {
     "code": "PL",
-    "continent": "EU",
     "surfSeason": [
       "September",
       "October",
@@ -1925,12 +1745,10 @@
       "July",
       "August"
     ],
-    "timeZone": "UTC+1",
-    "lifeCost": 3
+    "timeZone": "UTC+1"
   },
   "Portugal": {
     "code": "PT",
-    "continent": "EU",
     "surfSeason": [
       "September",
       "October",
@@ -1948,12 +1766,10 @@
       "August",
       "September"
     ],
-    "timeZone": "UTC+0",
-    "lifeCost": 3
+    "timeZone": "UTC+0"
   },
   "Romania": {
     "code": "RO",
-    "continent": "EU",
     "surfSeason": [
       "September",
       "October",
@@ -1969,12 +1785,10 @@
       "July",
       "August"
     ],
-    "timeZone": "UTC+2",
-    "lifeCost": 2
+    "timeZone": "UTC+2"
   },
   "Russian Federation": {
     "code": "RU",
-    "continent": "EU",
     "surfSeason": [
       "September",
       "October",
@@ -1990,12 +1804,10 @@
       "July",
       "August"
     ],
-    "timeZone": "UTC+3 to UTC+12",
-    "lifeCost": 3
+    "timeZone": "UTC+3 to UTC+12"
   },
   "Saint Vincent & the Grenadines": {
     "code": "VC",
-    "continent": "NA",
     "surfSeason": [
       "December",
       "January",
@@ -2011,12 +1823,10 @@
       "March",
       "April"
     ],
-    "timeZone": "UTC−4",
-    "lifeCost": 3
+    "timeZone": "UTC−4"
   },
   "Samoa": {
     "code": "WS",
-    "continent": "OC",
     "surfSeason": [
       "June",
       "July",
@@ -2027,12 +1837,10 @@
       "July",
       "August"
     ],
-    "timeZone": "UTC+13",
-    "lifeCost": 2
+    "timeZone": "UTC+13"
   },
   "Sao Tome & Principe": {
     "code": "ST",
-    "continent": "AF",
     "surfSeason": [
       "May",
       "June",
@@ -2045,12 +1853,10 @@
       "July",
       "August"
     ],
-    "timeZone": "UTC+0",
-    "lifeCost": 2
+    "timeZone": "UTC+0"
   },
   "Saudi Arabia": {
     "code": "SA",
-    "continent": "AS",
     "surfSeason": [
       "October",
       "November",
@@ -2067,12 +1873,10 @@
       "February",
       "March"
     ],
-    "timeZone": "UTC+3",
-    "lifeCost": 3
+    "timeZone": "UTC+3"
   },
   "Senegal": {
     "code": "SN",
-    "continent": "AF",
     "surfSeason": [
       "November",
       "December",
@@ -2089,12 +1893,10 @@
       "March",
       "April"
     ],
-    "timeZone": "UTC+0",
-    "lifeCost": 2
+    "timeZone": "UTC+0"
   },
   "Seychelles": {
     "code": "SC",
-    "continent": "AF",
     "surfSeason": [
       "May",
       "June",
@@ -2109,12 +1911,10 @@
       "August",
       "September"
     ],
-    "timeZone": "UTC+4",
-    "lifeCost": 3
+    "timeZone": "UTC+4"
   },
   "Sierra Leone": {
     "code": "SL",
-    "continent": "AF",
     "surfSeason": [
       "November",
       "December",
@@ -2131,12 +1931,10 @@
       "March",
       "April"
     ],
-    "timeZone": "UTC+0",
-    "lifeCost": 2
+    "timeZone": "UTC+0"
   },
   "Slovenia": {
     "code": "SI",
-    "continent": "EU",
     "surfSeason": [
       "September",
       "October",
@@ -2152,12 +1950,10 @@
       "July",
       "August"
     ],
-    "timeZone": "UTC+1",
-    "lifeCost": 3
+    "timeZone": "UTC+1"
   },
   "Solomon Islands": {
     "code": "SB",
-    "continent": "OC",
     "surfSeason": [
       "November",
       "December",
@@ -2172,12 +1968,10 @@
       "August",
       "September"
     ],
-    "timeZone": "UTC+11",
-    "lifeCost": 2
+    "timeZone": "UTC+11"
   },
   "Somalia": {
     "code": "SO",
-    "continent": "AF",
     "surfSeason": [
       "December",
       "January",
@@ -2192,12 +1986,10 @@
       "March",
       "April"
     ],
-    "timeZone": "UTC+3",
-    "lifeCost": 2
+    "timeZone": "UTC+3"
   },
   "South Africa": {
     "code": "ZA",
-    "continent": "AF",
     "surfSeason": [
       "May",
       "June",
@@ -2212,12 +2004,10 @@
       "August",
       "September"
     ],
-    "timeZone": "UTC+2",
-    "lifeCost": 4
+    "timeZone": "UTC+2"
   },
   "Spain": {
     "code": "ES",
-    "continent": "EU",
     "surfSeason": [
       "September",
       "October",
@@ -2233,12 +2023,10 @@
       "July",
       "August"
     ],
-    "timeZone": "UTC+1",
-    "lifeCost": 3
+    "timeZone": "UTC+1"
   },
   "Sri Lanka": {
     "code": "LK",
-    "continent": "AS",
     "surfSeason": [
       "All year round"
     ],
@@ -2256,12 +2044,10 @@
       "November",
       "December"
     ],
-    "timeZone": "UTC+5:30",
-    "lifeCost": 1
+    "timeZone": "UTC+5:30"
   },
   "Sudan": {
     "code": "SD",
-    "continent": "AF",
     "surfSeason": [
       "October",
       "November",
@@ -2280,12 +2066,10 @@
       "March",
       "April"
     ],
-    "timeZone": "UTC+2",
-    "lifeCost": 2
+    "timeZone": "UTC+2"
   },
   "Sweden": {
     "code": "SE",
-    "continent": "EU",
     "surfSeason": [
       "September",
       "October",
@@ -2301,12 +2085,10 @@
       "July",
       "August"
     ],
-    "timeZone": "UTC+1",
-    "lifeCost": 4
+    "timeZone": "UTC+1"
   },
   "Syria": {
     "code": "SY",
-    "continent": "AS",
     "surfSeason": [
       "September",
       "October",
@@ -2324,12 +2106,10 @@
       "October",
       "November"
     ],
-    "timeZone": "UTC+2",
-    "lifeCost": 2
+    "timeZone": "UTC+2"
   },
   "Taiwan": {
     "code": "TW",
-    "continent": "AS",
     "surfSeason": [
       "September",
       "October",
@@ -2347,12 +2127,10 @@
       "September",
       "October"
     ],
-    "timeZone": "UTC+8",
-    "lifeCost": 3
+    "timeZone": "UTC+8"
   },
   "Tanzania": {
     "code": "TZ",
-    "continent": "AF",
     "surfSeason": [
       "June",
       "July",
@@ -2365,12 +2143,10 @@
       "August",
       "September"
     ],
-    "timeZone": "UTC+3",
-    "lifeCost": 2
+    "timeZone": "UTC+3"
   },
   "Thailand": {
     "code": "TH",
-    "continent": "AS",
     "surfSeason": [
       "November",
       "December",
@@ -2385,12 +2161,10 @@
       "February",
       "March"
     ],
-    "timeZone": "UTC+7",
-    "lifeCost": 1
+    "timeZone": "UTC+7"
   },
   "Togo": {
     "code": "TG",
-    "continent": "AF",
     "surfSeason": [
       "November",
       "December",
@@ -2407,12 +2181,10 @@
       "March",
       "April"
     ],
-    "timeZone": "UTC+0",
-    "lifeCost": 2
+    "timeZone": "UTC+0"
   },
   "Tonga": {
     "code": "TO",
-    "continent": "OC",
     "surfSeason": [
       "June",
       "July",
@@ -2423,12 +2195,10 @@
       "July",
       "August"
     ],
-    "timeZone": "UTC+13",
-    "lifeCost": 2
+    "timeZone": "UTC+13"
   },
   "Trinidad & Tobago": {
     "code": "TT",
-    "continent": "NA",
     "surfSeason": [
       "December",
       "January",
@@ -2445,12 +2215,10 @@
       "April",
       "May"
     ],
-    "timeZone": "UTC−4",
-    "lifeCost": 3
+    "timeZone": "UTC−4"
   },
   "Tunisia": {
     "code": "TN",
-    "continent": "AF",
     "surfSeason": [
       "September",
       "October",
@@ -2468,12 +2236,10 @@
       "September",
       "October"
     ],
-    "timeZone": "UTC+1",
-    "lifeCost": 2
+    "timeZone": "UTC+1"
   },
   "Turkey": {
     "code": "TR",
-    "continent": "AS",
     "surfSeason": [
       "May",
       "June",
@@ -2490,12 +2256,10 @@
       "September",
       "October"
     ],
-    "timeZone": "UTC+3",
-    "lifeCost": 3
+    "timeZone": "UTC+3"
   },
   "Tuvalu": {
     "code": "TV",
-    "continent": "OC",
     "surfSeason": [
       "May",
       "June",
@@ -2508,12 +2272,10 @@
       "July",
       "August"
     ],
-    "timeZone": "UTC+12",
-    "lifeCost": 2
+    "timeZone": "UTC+12"
   },
   "Ukraine": {
     "code": "UA",
-    "continent": "EU",
     "surfSeason": [
       "September",
       "October",
@@ -2529,12 +2291,10 @@
       "July",
       "August"
     ],
-    "timeZone": "UTC+2",
-    "lifeCost": 2
+    "timeZone": "UTC+2"
   },
   "United Arab Emirates": {
     "code": "AE",
-    "continent": "AS",
     "surfSeason": [
       "October",
       "November",
@@ -2551,12 +2311,10 @@
       "February",
       "March"
     ],
-    "timeZone": "UTC+4",
-    "lifeCost": 4
+    "timeZone": "UTC+4"
   },
   "United Kingdom": {
     "code": "GB",
-    "continent": "EU",
     "surfSeason": [
       "September",
       "October",
@@ -2572,12 +2330,10 @@
       "July",
       "August"
     ],
-    "timeZone": "UTC+0",
-    "lifeCost": 5
+    "timeZone": "UTC+0"
   },
   "United States": {
     "code": "US",
-    "continent": "NA",
     "surfSeason": [
       "April",
       "May",
@@ -2592,12 +2348,10 @@
       "July",
       "August"
     ],
-    "timeZone": "UTC−5 to UTC−10",
-    "lifeCost": 5
+    "timeZone": "UTC−5 to UTC−10"
   },
   "Uruguay": {
     "code": "UY",
-    "continent": "SA",
     "surfSeason": [
       "April",
       "May",
@@ -2613,12 +2367,10 @@
       "March",
       "April"
     ],
-    "timeZone": "UTC−3",
-    "lifeCost": 3
+    "timeZone": "UTC−3"
   },
   "Vanuatu": {
     "code": "VU",
-    "continent": "OC",
     "surfSeason": [
       "April",
       "May",
@@ -2635,12 +2387,10 @@
       "August",
       "September"
     ],
-    "timeZone": "UTC+11",
-    "lifeCost": 2
+    "timeZone": "UTC+11"
   },
   "Venezuela": {
     "code": "VE",
-    "continent": "SA",
     "surfSeason": [
       "November",
       "December",
@@ -2659,12 +2409,10 @@
       "April",
       "May"
     ],
-    "timeZone": "UTC−4",
-    "lifeCost": 2
+    "timeZone": "UTC−4"
   },
   "Vietnam": {
     "code": "VN",
-    "continent": "AS",
     "surfSeason": [
       "November",
       "December",
@@ -2679,12 +2427,10 @@
       "February",
       "March"
     ],
-    "timeZone": "UTC+7",
-    "lifeCost": 1
+    "timeZone": "UTC+7"
   },
   "Yemen": {
     "code": "YE",
-    "continent": "AS",
     "surfSeason": [
       "November",
       "December",
@@ -2699,12 +2445,10 @@
       "February",
       "March"
     ],
-    "timeZone": "UTC+3",
-    "lifeCost": 2
+    "timeZone": "UTC+3"
   },
   "Benin": {
     "code": "BJ",
-    "continent": "AF",
     "surfSeason": [
       "June",
       "July",
@@ -2716,11 +2460,7 @@
       "January",
       "February"
     ],
-    "timeZone": "UTC+1",
-    "lifeCost": 2
+    "timeZone": "UTC+1"
   }
 }
-
-
-
 
