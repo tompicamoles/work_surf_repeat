@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { generateImage } from "../api/unsplash";
 import { getGeolocation } from "../api/googleMapsApi";
+import { getCountryLifecost, getCountrySurfSeason } from "../modules/countriesData";
 
 const url = "https://api.airtable.com/v0/appEifpsElq8TYpAy/spots";
 const token = process.env.REACT_APP_AIRTABLE_API_KEY;
@@ -11,7 +12,7 @@ export const createSpot = createAsyncThunk(
     const {
       name,
       country,
-      level,
+      // level,
       surfSeason,
       wifiQuality,
       hasCoworking,
@@ -32,10 +33,10 @@ export const createSpot = createAsyncThunk(
       records: [
         {
           fields: {
-            name: name,
-            country: country,
-            level: level,
-            image: image,
+            name,
+            country,
+            // level,
+            image,
             surf_season: surfSeason,
             wifi_quality: parseInt(wifiQuality),
             has_coworking: hasCoworking,
@@ -66,20 +67,20 @@ export const createSpot = createAsyncThunk(
     // get spot ID and Create new spot object in the current slice
     const newSpot = {
       id: spot.id,
-      name: name,
-      country: country,
-      level: level,
-      image: image,
-      surfSeason: surfSeason,
-      wifiQuality: wifiQuality,
-      hasCoworking: hasCoworking,
-      hasColiving: hasColiving,
-      lifeCost: lifeCost,
-      submitedBy: submitedBy,
-      creatorNickname: creatorNickname,
-      likes: likes,
-      latitude: latitude,
-      longitude: longitude,
+      name,
+      country,
+      // level,
+      image,
+      surfSeason,
+      wifiQuality,
+      hasCoworking,
+      hasColiving,
+      lifeCost,
+      submitedBy,
+      creatorNickname,
+      likes,
+      latitude,
+      longitude,
     };
 
     return newSpot;
@@ -148,26 +149,26 @@ export const loadSpots = createAsyncThunk(
           globalFormula += colivingFormula;
         }
 
-        if (filters.level.length !== 0) {
-          let levelFormula = "";
-          if (filters.level.length === 1) {
-            levelFormula = `FIND(%22${filters.level[0]}%22%2C+%7Blevel%7D)`;
-          } else {
-            filters.level.map((level) => {
-              levelFormula += `FIND(%22${level}%22%2C+%7Blevel%7D)%2C`;
-              return levelFormula;
-            });
-            levelFormula = levelFormula.slice(0, -3); // removes the last comma, encoded as %2C
-            levelFormula = `OR(${levelFormula})`; // wraps the whole thing in the OR()
-          }
-          if (!isFirstFilter) {
-            levelFormula = `%2C${levelFormula}`;
-          } else {
-            isFirstFilter = false;
-          }
+        // if (filters.level.length !== 0) {
+        //   let levelFormula = "";
+        //   if (filters.level.length === 1) {
+        //     levelFormula = `FIND(%22${filters.level[0]}%22%2C+%7Blevel%7D)`;
+        //   } else {
+        //     filters.level.map((level) => {
+        //       levelFormula += `FIND(%22${level}%22%2C+%7Blevel%7D)%2C`;
+        //       return levelFormula;
+        //     });
+        //     levelFormula = levelFormula.slice(0, -3); // removes the last comma, encoded as %2C
+        //     levelFormula = `OR(${levelFormula})`; // wraps the whole thing in the OR()
+        //   }
+        //   if (!isFirstFilter) {
+        //     levelFormula = `%2C${levelFormula}`;
+        //   } else {
+        //     isFirstFilter = false;
+        //   }
 
-          globalFormula += levelFormula;
-        }
+        //   globalFormula += levelFormula;
+        // }
 
         if (filters.surfSeason.length !== 0) {
           let surfSeasonFormula = "";
@@ -213,7 +214,7 @@ export const loadSpots = createAsyncThunk(
         id: record.id,
         name: record.fields.name,
         country: record.fields.country,
-        level: record.fields.level,
+        // level: record.fields.level,
         image: record.fields.image,
         surfSeason: record.fields.surf_season,
         wifiQuality: record.fields.wifi_quality,

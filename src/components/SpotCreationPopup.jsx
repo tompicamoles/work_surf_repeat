@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useSelector } from "react-redux";
 import { selectSpots } from "./spotsSlice";
+import { getCountryLifecost, getCountrySurfSeason } from "../modules/countriesData";
 
 import {
   TextField,
@@ -47,6 +48,7 @@ function SpotCreationPopup() {
 
   const { user, isAuthenticated } = useAuth0();
   const dispatch = useDispatch();
+  
 
   const [open, setOpen] = useState(false);
 
@@ -55,12 +57,12 @@ function SpotCreationPopup() {
     setFormData({
       name: "",
       country: null,
-      level: [],
+      // level: [],
       surfSeason: [],
       wifiQuality: null,
       hasCoworking: false,
       hasColiving: false,
-      lifeCost: null,
+      // lifeCost: null,
     });
     setOpen(false);
   };
@@ -68,12 +70,12 @@ function SpotCreationPopup() {
   const [formData, setFormData] = useState({
     name: "",
     country: null,
-    level: [],
+    // level: [],
     surfSeason: [],
     wifiQuality: null,
     hasCoworking: false,
     hasColiving: false,
-    lifeCost: null,
+    // lifeCost: null,
   });
 
   const checkAlreadyExisting = () => {
@@ -133,8 +135,8 @@ function SpotCreationPopup() {
       return
     }
 
-    if (!formData.lifeCost || !formData.wifiQuality) {
-      alert("Please fill Wifi Qualify and Life Cost field");
+    if (!formData.wifiQuality) {
+      alert("Please fill Wifi Qualify");
       return;
     }
 
@@ -142,12 +144,12 @@ function SpotCreationPopup() {
     const spotData = {
       name: formData.name,
       country: formData.country,
-      level: formData.level,
-      surfSeason: formData.surfSeason,
+      // level: formData.level,
+      surfSeason: getCountrySurfSeason(formData.country),
       wifiQuality: formData.wifiQuality,
       hasCoworking: formData.hasCoworking,
       hasColiving: formData.hasColiving,
-      lifeCost: formData.lifeCost,
+      lifeCost: getCountryLifecost(formData.country),
       submitedBy: user.sub,
       creatorNickname: user.nickname,
       likes: [user.nickname],
@@ -196,12 +198,12 @@ function SpotCreationPopup() {
                 handleOtherInputChange={handleOtherInputChange}
               />
 
-              <LevelSelector
+              {/* <LevelSelector
                 id="level"
                 level={formData.level}
                 context="popup"
                 handleOtherInputChange={handleOtherInputChange}
-              ></LevelSelector>
+              ></LevelSelector> */}
 
               <Typography component="legend">Wifi quality:</Typography>
 
@@ -211,17 +213,17 @@ function SpotCreationPopup() {
                 handleInputChange={handleInputChange}
               />
               <Typography component="legend">Life cost:</Typography>
-              <LifeCost
+              {/* <LifeCost
                 context="popup"
                 handleInputChange={handleInputChange}
                 value={formData.lifeCost}
-              ></LifeCost>
+              ></LifeCost> */}
 
-              <MonthSelector
+              {/* <MonthSelector
                 context="popup"
                 handleInputChange={handleInputChange}
                 surfSeason={formData.surfSeason}
-              />
+              /> */}
               <FormGroup>
                 <FormControlLabel
                   control={

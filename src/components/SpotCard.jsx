@@ -194,7 +194,7 @@ function SpotCard({ id }) {
                   size={20}
                   color={
                     spot.surfSeason.some((month) =>
-                      ["June", "July", "August"].includes(month)
+                      ["June", "July", "August","All year round"].includes(month)
                     )
                       ? "#05668D"
                       : "rgba(74,74,74,0.38)"
@@ -204,7 +204,7 @@ function SpotCard({ id }) {
                   size={20}
                   color={
                     spot.surfSeason.some((month) =>
-                      ["September", "October", "November"].includes(month)
+                      ["September", "October", "November","All year round"].includes(month)
                     )
                       ? "#05668D"
                       : "rgba(74,74,74,0.38)"
@@ -214,7 +214,7 @@ function SpotCard({ id }) {
                   size={20}
                   color={
                     spot.surfSeason.some((month) =>
-                      ["December", "January", "February"].includes(month)
+                      ["December", "January", "February","All year round"].includes(month)
                     )
                       ? "#05668D"
                       : "rgba(74,74,74,0.38)"
@@ -224,7 +224,7 @@ function SpotCard({ id }) {
                   size={20}
                   color={
                     spot.surfSeason.some((month) =>
-                      ["March", "April", "May"].includes(month)
+                      ["March", "April", "May","All year round"].includes(month)
                     )
                       ? "#05668D"
                       : "rgba(74,74,74,0.38)"

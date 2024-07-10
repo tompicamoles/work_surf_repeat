@@ -18,10 +18,15 @@ const countries = require("./countries.json")
     return countries[countryName].surfSeason || "good weather season not found"
   }
   
+  export function getCountryLifecost(countryName) {
+    
+    return countries[countryName].lifeCost || "lifecost not found"
+  }
+
   export function getCountriesList() {
     const countriesList = Object.keys(countries).sort()
     
     console.log("countries list :" ,countriesList)
-    return countriesList || "good weather season not found"
+    return countriesList || "country not found"
     
   }

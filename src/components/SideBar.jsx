@@ -87,12 +87,12 @@ function SideBar({setFilterButton}) {
             handleOtherInputChange={handleOtherInputChange}
           />
 
-          <LevelSelector
+          {/* <LevelSelector
             id="level"
             level={filters.level}
             context="filter"
             handleOtherInputChange={handleOtherInputChange}
-          ></LevelSelector>
+          ></LevelSelector> */}
 
           <Typography component="legend">Wifi quality:</Typography>
 
