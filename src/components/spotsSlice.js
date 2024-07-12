@@ -199,7 +199,7 @@ export const loadSpots = createAsyncThunk(
 
     const filterFormula = generatFilterFormula(filters);
 
-    const getUrl = `${url}?${filterFormula}maxRecords=12`;
+    const getUrl = `${url}?${filterFormula}maxRecords=70`;
     const response = await fetch(getUrl, {
       headers: {
         Authorization: token,

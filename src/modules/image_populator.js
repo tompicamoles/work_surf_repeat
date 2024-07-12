@@ -127,7 +127,7 @@ const updateSpots = async () => {
   try {
       const spots = await getSpots();
       const spotsArray = Object.entries(spots)
-      const firstThirtySpots = spotsArray.slice(0, 30)
+      const firstThirtySpots = spotsArray.slice(50)
 
       firstThirtySpots.forEach(async([id, spot]) =>  {
         console.log("getting image for " , spot.name)
@@ -139,5 +139,6 @@ const updateSpots = async () => {
       console.error("Error displaying spots:", error);
   }
 }
+generateImage("Ordu")
 
-updateSpots();
+//updateSpots();
