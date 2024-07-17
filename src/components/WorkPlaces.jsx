@@ -4,13 +4,12 @@ import { Grid } from "@mui/material";
 import WorkPlacesList from "./WorkPlacesList";
 import { WorkPlaceCreationPopup } from "./WorkPlaceCreationPopup";
 import WorkPlacesMap from "./WorkPlacesMap";
-import { APIProvider } from "@vis.gl/react-google-maps";
 
 export const WorkPlaces = ({ id }) => {
   return (
     <>
       {" "}
-      <APIProvider apiKey={process.env.REACT_APP_GOOGLE_MAPS_API}>
+      
         <Grid item lg={7} xs={12} id="workPlacesLists" minHeight={500}>
           <Grid item container justifyContent={"center"}>
             <WorkPlaceCreationPopup id={id} />
@@ -23,7 +22,7 @@ export const WorkPlaces = ({ id }) => {
         <Grid item container xs={12} lg={5}>
           <WorkPlacesMap id={id} />
         </Grid>
-      </APIProvider>
+      
       {/* <Grid
         item
         container

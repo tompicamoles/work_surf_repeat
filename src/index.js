@@ -8,6 +8,8 @@ import store from "./app/store";
 import { ThemeProvider } from "@mui/material";
 import { theme } from "./app/theme";
 import { Auth0Provider } from "@auth0/auth0-react";
+import { APIProvider } from "@vis.gl/react-google-maps";
+
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 const domain = process.env.REACT_APP_AUTH0_DOMAIN;
@@ -21,12 +23,13 @@ root.render(
       authorizationParams={{
         redirect_uri: window.location.origin,
       }}
-    >
+    ><APIProvider apiKey={process.env.REACT_APP_GOOGLE_MAPS_API}>
       <Provider store={store}>
         <ThemeProvider theme={theme}>
           <App />
         </ThemeProvider>
       </Provider>
+      </APIProvider>
     </Auth0Provider>
   </React.StrictMode>
 );

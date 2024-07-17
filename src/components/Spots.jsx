@@ -82,7 +82,20 @@ const Spots = ({context}) => {
     >
 
       {Object.entries(spots).length === 0 ? (<Typography variant="body">0 spots</Typography>) : Object.entries(spots).map(([id]) => (
-        <SpotCard id={id} key={id} />
+        <Grid
+        item
+        container
+        xs={12}
+        sm={6}
+        lg={4}
+        xl={3}
+        p={0.5}
+        sx={{
+          width: "100%",
+          minHeight: 250,
+          maxHeight: 300,
+        }}
+      ><SpotCard id={id} key={id} /> </Grid>
       )
     )}
       

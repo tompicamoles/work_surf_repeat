@@ -57,7 +57,7 @@ const SearchPanel = () => {
         
       >
         <Search />
-        <SpotCreationPopup />
+        
       </Stack>
     </Stack>
   );

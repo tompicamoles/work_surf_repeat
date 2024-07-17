@@ -163,9 +163,10 @@ function SpotCreationPopup() {
 
   return (
     <Box>
-      <Fab color="primary" aria-label="add" onClick={handleOpen}>
+      <Button variant="contained" color="primary" aria-label="add" onClick={handleOpen} >Add a new destination</Button>
+      {/* <Fab color="primary" aria-label="add" onClick={handleOpen}>
         <AddIcon />
-      </Fab>
+      </Fab> */}
 
       <Modal
         open={open}

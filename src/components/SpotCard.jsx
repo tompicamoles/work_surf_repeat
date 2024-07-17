@@ -69,20 +69,7 @@ function SpotCard({ id }) {
   }
 
   return (
-    <Grid
-      item
-      container
-      xs={12}
-      sm={6}
-      lg={4}
-      xl={3}
-      p={0.5}
-      sx={{
-        width: "100%",
-        minHeight: 250,
-        maxHeight: 300,
-      }}
-    >
+    <Grid item container>
       <Paper
         item
         container
@@ -337,8 +324,8 @@ function SpotCard({ id }) {
             </Grid>
           </Link>
         </Grid>
-      </Grid>
-    </Grid>
+      </Grid></Grid>
+    
   );
 }
 
