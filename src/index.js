@@ -16,7 +16,7 @@ const domain = process.env.REACT_APP_AUTH0_DOMAIN;
 const clientId = process.env.REACT_APP_AUTH0_CLIENT_ID;
 
 root.render(
-  <React.StrictMode>
+  
     <Auth0Provider
       domain={domain}
       clientId={clientId}
@@ -31,7 +31,7 @@ root.render(
       </Provider>
       </APIProvider>
     </Auth0Provider>
-  </React.StrictMode>
+
 );
 
 // If you want to start measuring performance in your app, pass a function
