@@ -14,6 +14,7 @@ import { Typography } from "@mui/material";
 
 const Spots = ({context}) => {
   const { user } = useAuth0();
+  console.log("test")
 
   let spots = useSelector(selectSpots);
 
