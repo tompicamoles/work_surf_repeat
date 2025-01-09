@@ -4,6 +4,7 @@ import { Grid } from "@mui/material";
 import WorkPlacesList from "./WorkPlacesList";
 import { WorkPlaceCreationPopup } from "./WorkPlaceCreationPopup";
 import WorkPlacesMap from "./WorkPlacesMap";
+import { WorkPlaceCreationPopup2 } from "./WorkPlaceCreationPopup2";
 
 export const WorkPlaces = ({ id }) => {
   return (
@@ -12,7 +13,7 @@ export const WorkPlaces = ({ id }) => {
       
         <Grid item lg={7} xs={12} id="workPlacesLists" minHeight={500}>
           <Grid item container justifyContent={"center"}>
-            <WorkPlaceCreationPopup id={id} />
+            <WorkPlaceCreationPopup2 id={id} />
           </Grid>
 
           <WorkPlacesList type="café" />

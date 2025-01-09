@@ -65,5 +65,10 @@
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "source-map-loader": "^5.0.0"
-  }
+  },
+  "description": "discover and submit the perfect locations to work remotely and surf.",
+  "main": "index.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }

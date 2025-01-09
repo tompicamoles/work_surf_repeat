@@ -7,19 +7,17 @@ export const WorkPlaceGoogleInfo = ({ id, savePlaceDetails, formData }) => {
 
 
 
-  const getDetails = (placeId) => {
-    console.log("getting details for;", id);
+  const saveDetails = (placeId) => {
     const service = new places.PlacesService(document.createElement("div")); // it is mandatory to pass a "map" as an argument for some wierd reasons
     service.getDetails({ placeId }, (place, status) => {
       if (status === places.PlacesServiceStatus.OK) {
-        console.log("place details:", place);
         savePlaceDetails(place);
       }
     });
   };
 
   useEffect(() => {
-    getDetails(id);
+    saveDetails(id);
         // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 

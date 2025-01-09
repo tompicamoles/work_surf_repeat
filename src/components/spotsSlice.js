@@ -209,7 +209,6 @@ export const loadSpots = createAsyncThunk(
     console.log(json);
 
     const cardsData = json.records.reduce((spots, record) => {
-      console.log("spot before:", spots);
       spots[record.id] = {
         id: record.id,
         name: record.fields.name,
@@ -226,9 +225,10 @@ export const loadSpots = createAsyncThunk(
         likes: record.fields.likes.split(","),
         latitude: parseFloat(record.fields.latitude),
         longitude: parseFloat(record.fields.longitude),
-        
+        numberOfLikes: record.fields.likes.split(",").length,
       };
-      console.log("spots after", spots);
+
+    
       return spots;
     }, {});
 

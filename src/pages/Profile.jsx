@@ -11,7 +11,9 @@ import { selectSpots } from "../components/spotsSlice";
 export const Profile = () => {
   const { user, isAuthenticated, isLoading, user_metadata } = useAuth0();
   console.log("user info:", 
-    user, user_metadata, isAuthenticated, isLoading);
+    user, 
+    //user_metadata, isAuthenticated, isLoading
+    );
   const navigate = useNavigate();
   let spots = useSelector(selectSpots);
 
@@ -22,7 +24,7 @@ export const Profile = () => {
     for (let key in spots) {
       console.log(key);
       // Check if the search parameter is included in the name or country
-      if (spots[key].submitedBy === user.sub) {
+      if (spots[key].submitedBy === user.email) {
         // If it matches, add the spot to the filteredSpots array
         console.log(key, "was created by user");
         filteredSpots[key] = spots[key];

@@ -17,7 +17,7 @@ import { createWorkPlace } from "./workPlacesSlice";
 import { createComment } from "./commentsSlice";
 import { useAuth0 } from "@auth0/auth0-react";
 import { LogInButton } from "./LogInButton";
-import { GoogleMapsIdFinder } from "./formCompents/GoogleMapsIdFinder";
+import { GoogleMapsWorkspaceIdFinder } from "./formCompents/GoogleMapsWorkspaceIdFinder";
 import { WorkPlaceGoogleInfo } from "./formCompents/WorkPlaceGoogleInfo";
 import { SpotRating } from "./formCompents/SpotRating";
 const style = {
@@ -87,7 +87,7 @@ export const CommentCreationPopup = ({ id }) => {
     dispatch(
       createComment({
         ...formData,
-        submited_by: user.sub,
+        submited_by: user.email,
         destination_id: id,
         creatorNickname: user.nickname,
         date: date,

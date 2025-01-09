@@ -5,7 +5,7 @@ import { getCountryCode } from "../../modules/countriesData";
 import {  selectSpots } from "../spotsSlice";
 import { useSelector } from "react-redux";
 
-export const GoogleMapsIdFinder = ({onChange, id}) => {
+export const GoogleMapsSpotFinder = ({onChange, id}) => {
   const [predictions, setPredictions] = useState([]);
   const inputRef = useRef(null);
   const places = useMapsLibrary("places");
@@ -26,8 +26,8 @@ export const GoogleMapsIdFinder = ({onChange, id}) => {
 
       const request = {
         input: query,
-        types: ["establishment"],
-        componentRestrictions: { country: [countryCode] },
+        types: ["locality"],
+        //componentRestrictions: { country: [countryCode] },
         fields: ["geometry", "name", "formatted_address"],
       };
 

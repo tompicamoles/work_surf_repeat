@@ -44,7 +44,7 @@ const SearchPanel = () => {
         color="white"
         sx={{ textShadow: "2px 2px 2px rgba(0, 0, 0, 0.1)",display: { xs: "none", sm: "flex" }, }}
       >
-        Find & recommand the perfect destination to work remotely and surf!{" "}
+        Find & recommand laptop-friendly cafés, coworkings and coliving near the surf{" "}
       </Typography>
       <Stack
         id="searchBar"
