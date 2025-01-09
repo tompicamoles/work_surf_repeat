@@ -1,4 +1,4 @@
-import { Grid, Typography, Button, Divider } from "@mui/material";
+import { Grid, Typography, Button, Divider, Fab,Tooltip  } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { loadWorkPlaces } from "../components/workPlacesSlice";
@@ -7,13 +7,17 @@ import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { selectSpots } from "../components/spotsSlice";
 import { WorkPlaces } from "../components/WorkPlaces";
-import { theme } from "../app/theme";
-import { SurfLine } from "../components/SurfLine";
 import {Comments} from "../components/Comments"
+import LikeSpotButton from "../components/LikeSpotButton";
+
+
 
 
 
 const Destinations = () => {
+
+  
+
   let { id } = useParams();
   const [buttonState, setButtonState] = useState("work");
 
@@ -42,8 +46,11 @@ const Destinations = () => {
           item
           container
           xs={12}
-          direction="column"
-          justifyContent="flex-end"
+          direction="row"
+          justifyContent="space-between"
+          alignContent={"flex-end"}
+          alignItems={"center"}
+          pr={2}
           
           sx={{
             backgroundSize: "cover", // Adjust the size of the background image
@@ -60,8 +67,11 @@ const Destinations = () => {
             sx={{ textShadow: "2px 2px 2px rgba(0, 0, 0, 0.5) ", padding: { xs: 1, sm: 3 } }}
           >
             {" "}
-            Destination submited by {spot.submitedBy}
+            Destination submited by {spot.creatorNickname}
           </Typography>
+          <LikeSpotButton id={id} />
+         
+
         </Grid>
         <Grid item xs={12}>
           <Typography
@@ -77,7 +87,7 @@ const Destinations = () => {
             {spot.name}, {spot.country}{" "}
           </Typography>
         </Grid>
-        <Grid item container xs={12}>
+        {/* <Grid item container xs={12}>
           <Button
             variant="text"
             sx={{
@@ -113,7 +123,7 @@ const Destinations = () => {
           >
             Comments
           </Button>
-        </Grid>
+        </Grid> */}
 
         {buttonState === "work" ? (
           <WorkPlaces id={id} />

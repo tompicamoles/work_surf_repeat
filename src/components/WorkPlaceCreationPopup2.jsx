@@ -31,7 +31,7 @@ const style = {
   p: 4,
 };
 
-export const WorkPlaceCreationPopup = ({ id }) => {
+export const WorkPlaceCreationPopup2 = ({ id }) => {
   const { user, isAuthenticated } = useAuth0();
 
   const dispatch = useDispatch();

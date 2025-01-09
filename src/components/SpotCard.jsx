@@ -27,46 +27,46 @@ import { GiMapleLeaf, GiSprout } from "react-icons/gi";
 import { FaSun, FaSnowman } from "react-icons/fa";
 
 import { GiWaveSurfer } from "react-icons/gi";
-
-
+import LikeSpotButton from "./LikeSpotButton";
 
 function SpotCard({ id }) {
-  const dispatch = useDispatch();
-  const { user, isAuthenticated } = useAuth0();
+  // const dispatch = useDispatch();
+  // const { user, isAuthenticated } = useAuth0();
 
   const spot = useSelector(selectSpots)[id];
-  const numberOfLikes = spot.likes.length;
 
-  const handleLikeButton = () => {
-    if (isAuthenticated) {
-    let newListOfLikes = [...spot.likes];
-    !spot.likes.includes(user.sub)
-      ? newListOfLikes.push(user.sub)
-      : (newListOfLikes = newListOfLikes.filter(
-          (like) => like !== user.sub
-        ));
-        newListOfLikes.length === 0 && newListOfLikes.push("tom")
+  // const numberOfLikes = spot.likes.length;
 
-    const likeData = {
-      id: id,
-      likes: newListOfLikes,
-    };
+  // const handleLikeButton = () => {
+  //   if (isAuthenticated) {
+  //     let newListOfLikes = [...spot.likes];
+  //     !spot.likes.includes(user.email)
+  //       ? newListOfLikes.push(user.email)
+  //       : (newListOfLikes = newListOfLikes.filter(
+  //           (like) => like !== user.email
+  //         ));
+  //     newListOfLikes.length === 0 && newListOfLikes.push("tom");
 
-    
-      dispatch(likeSpot(likeData));
-    } else {
-      alert(
-        "you must log in to like a spot and add it to your liked spots list"
-      );
-    }
-  };
+  //     const likeData = {
+  //       id: id,
+  //       likes: newListOfLikes,
+  //     };
 
-  let userLikedDestination = false
-  if(isAuthenticated) {
-    if(spot.likes.includes(user.sub)) { // We wait to make sure the user is logged in before getting the nickname to prevent errors linked to aysinc
-      userLikedDestination = true
-    }
-  }
+  //     dispatch(likeSpot(likeData));
+  //   } else {
+  //     alert(
+  //       "you must log in to like a spot and add it to your liked spots list"
+  //     );
+  //   }
+  // };
+
+  // let userLikedDestination = false;
+  // if (isAuthenticated) {
+  //   if (spot.likes.includes(user.email)) {
+  //     // We wait to make sure the user is logged in before getting the nickname to prevent errors linked to aysinc
+  //     userLikedDestination = true;
+  //   }
+  // }
 
   return (
     <Grid item container>
@@ -137,25 +137,37 @@ function SpotCard({ id }) {
             xs={6}
             alignContent={"flex-start"}
             justifyContent="flex-end"
-          ><Tooltip title={isAuthenticated ? "Like and add to wishlist" :  `Log in to like`}
           >
-
-         
-            <Fab
-              size="small"
-              color="secondary"
-              aria-label="add"
-              onClick={() => isAuthenticated && handleLikeButton()}
-              
-              
-            >
-              <ThumbUpAlt color={userLikedDestination ? "primary" : 'disabled'}  />
-              <Typography marginLeft={-1} marginTop={2.5} color="black">
-                {numberOfLikes}
-              </Typography>
-            </Fab>
-            </Tooltip>
+            <LikeSpotButton id={id} />
           </Grid>
+
+          {/* <Grid
+            item
+            container
+            xs={6}
+            alignContent={"flex-start"}
+            justifyContent="flex-end"
+          >
+            <Tooltip
+              title={
+                isAuthenticated ? "Like and add to wishlist" : `Log in to like`
+              }
+            >
+              <Fab
+                size="small"
+                color="secondary"
+                aria-label="add"
+                onClick={() => isAuthenticated && handleLikeButton()}
+              >
+                <ThumbUpAlt
+                  color={userLikedDestination ? "primary" : "disabled"}
+                />
+                <Typography marginLeft={-1} marginTop={2.5} color="black">
+                  {numberOfLikes}
+                </Typography>
+              </Fab>
+            </Tooltip>
+          </Grid> */}
           <Grid
             container
             item
@@ -181,7 +193,9 @@ function SpotCard({ id }) {
                   size={20}
                   color={
                     spot.surfSeason.some((month) =>
-                      ["June", "July", "August","All year round"].includes(month)
+                      ["June", "July", "August", "All year round"].includes(
+                        month
+                      )
                     )
                       ? "#05668D"
                       : "rgba(74,74,74,0.38)"
@@ -191,7 +205,12 @@ function SpotCard({ id }) {
                   size={20}
                   color={
                     spot.surfSeason.some((month) =>
-                      ["September", "October", "November","All year round"].includes(month)
+                      [
+                        "September",
+                        "October",
+                        "November",
+                        "All year round",
+                      ].includes(month)
                     )
                       ? "#05668D"
                       : "rgba(74,74,74,0.38)"
@@ -201,7 +220,12 @@ function SpotCard({ id }) {
                   size={20}
                   color={
                     spot.surfSeason.some((month) =>
-                      ["December", "January", "February","All year round"].includes(month)
+                      [
+                        "December",
+                        "January",
+                        "February",
+                        "All year round",
+                      ].includes(month)
                     )
                       ? "#05668D"
                       : "rgba(74,74,74,0.38)"
@@ -211,7 +235,9 @@ function SpotCard({ id }) {
                   size={20}
                   color={
                     spot.surfSeason.some((month) =>
-                      ["March", "April", "May","All year round"].includes(month)
+                      ["March", "April", "May", "All year round"].includes(
+                        month
+                      )
                     )
                       ? "#05668D"
                       : "rgba(74,74,74,0.38)"
@@ -324,8 +350,8 @@ function SpotCard({ id }) {
             </Grid>
           </Link>
         </Grid>
-      </Grid></Grid>
-    
+      </Grid>
+    </Grid>
   );
 }
 

@@ -87,7 +87,7 @@ export const CommentCreationPopup = ({ id }) => {
     dispatch(
       createComment({
         ...formData,
-        submited_by: user.sub,
+        submited_by: user.email,
         destination_id: id,
         creatorNickname: user.nickname,
         date: date,

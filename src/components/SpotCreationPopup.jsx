@@ -150,9 +150,9 @@ function SpotCreationPopup() {
       hasCoworking: formData.hasCoworking,
       hasColiving: formData.hasColiving,
       lifeCost: getCountryLifecost(formData.country),
-      submitedBy: user.sub,
+      submitedBy: user.email,
       creatorNickname: user.nickname,
-      likes: [user.nickname],
+      likes: [user.email],
     };
     dispatch(createSpot(spotData));
     console.log("creator:", spotData.creatorNickname);
