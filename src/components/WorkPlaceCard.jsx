@@ -70,6 +70,7 @@ function WorkPlaceCard({ type, id }) {
           >
             {place.rating} / 5
           </Typography>
+          
           <Typography sx={{ display: { xs: "block", sm: "none" } }}>
             {place.rating} / 5
           </Typography>
@@ -89,7 +90,7 @@ function WorkPlaceCard({ type, id }) {
             </Typography>
           </Fab>
         </Grid> */}
-        <Typography variant="caption"> by {place.submitedBy}</Typography>
+        <Typography variant="caption"> by {place.creatorNickname}</Typography>
       </Grid>
       <Grid item xs={12}>
         <Divider />

@@ -5,7 +5,7 @@ import { getCountryCode } from "../../modules/countriesData";
 import {  selectSpots } from "../spotsSlice";
 import { useSelector } from "react-redux";
 
-export const GoogleMapsIdFinder = ({onChange, id}) => {
+export const GoogleMapsSpotFinder = ({onChange, id}) => {
   const [predictions, setPredictions] = useState([]);
   const inputRef = useRef(null);
   const places = useMapsLibrary("places");
@@ -14,6 +14,7 @@ export const GoogleMapsIdFinder = ({onChange, id}) => {
 
   useEffect(() => {
     if (!places || !inputRef.current) return;
+    
 
     const autocomplete = new places.AutocompleteService();
 
@@ -23,10 +24,10 @@ export const GoogleMapsIdFinder = ({onChange, id}) => {
         setPredictions([]);
         return;
       }
-
+      console.log("TOM", spot.name)
       const request = {
-        input: query,
-        types: ["establishment"],
+        input:`${query} ${spot.name}`,
+        types: ["locality"],
         componentRestrictions: { country: [countryCode] },
         fields: ["geometry", "name", "formatted_address"],
       };
@@ -62,10 +63,10 @@ export const GoogleMapsIdFinder = ({onChange, id}) => {
         name="googleId"
         noOptionsText="type name to see suggestions"
         renderInput={(params) => (
-          <TextField {...params} inputRef={inputRef} label="Place name" name="googleId"  />
+          <TextField {...params} inputRef={inputRef} label="Place name" name="googleId" />
         )}
         isOptionEqualToValue={(option, value) =>
-          option.place_id === value.place_id
+          option?.place_id === value?.place_id
         }
       />
      

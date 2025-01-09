@@ -206,10 +206,8 @@ export const loadSpots = createAsyncThunk(
       },
     });
     const json = await response.json();
-    console.log(json);
 
     const cardsData = json.records.reduce((spots, record) => {
-      console.log("spot before:", spots);
       spots[record.id] = {
         id: record.id,
         name: record.fields.name,
@@ -226,9 +224,10 @@ export const loadSpots = createAsyncThunk(
         likes: record.fields.likes.split(","),
         latitude: parseFloat(record.fields.latitude),
         longitude: parseFloat(record.fields.longitude),
-        
+        numberOfLikes: record.fields.likes.split(",").length,
       };
-      console.log("spots after", spots);
+
+    
       return spots;
     }, {});
 
@@ -257,8 +256,6 @@ export const likeSpot = createAsyncThunk("spots/likeSpot", async (likeData) => {
   });
 
   const json = await response.json();
-
-  console.log(json);
 
   return { id: id, likes: likes };
 });
@@ -302,7 +299,6 @@ export const spotsSlice = createSlice({
         state.isLoadingSpots = false;
         state.failedToLoadSpots = false;
         state.spots = action.payload;
-        console.log("spots", action.payload);
       })
       .addCase(createSpot.pending, (state) => {
         state.isLoadingSpotCreation = true;
@@ -316,7 +312,6 @@ export const spotsSlice = createSlice({
         state.isLoadingSpotCreation = false;
         state.failedToCreateSpot = false;
         state.spots[action.payload.id] = action.payload;
-        console.log("new spot created:", action.payload);
       })
       .addCase(likeSpot.pending, (state) => {
         state.isLoadingLikeSpot = true;
@@ -330,7 +325,6 @@ export const spotsSlice = createSlice({
         state.isLoadingLikeSpot = false;
         state.failedToLikeSpot = false;
         state.spots[action.payload.id].likes = action.payload.likes;
-        console.log("like added:", action.payload);
       });
   },
 });

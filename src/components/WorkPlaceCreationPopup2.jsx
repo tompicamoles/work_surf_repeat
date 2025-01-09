@@ -17,6 +17,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { LogInButton } from "./LogInButton";
 import { GoogleMapsWorkspaceIdFinder } from "./formCompents/GoogleMapsWorkspaceIdFinder";
 import { WorkPlaceGoogleInfo } from "./formCompents/WorkPlaceGoogleInfo";
+import { GoogleMapsSpotFinder } from "./formCompents/GoogleMapsSpotFinder";
 const style = {
   position: "absolute",
   top: "50%",
@@ -31,7 +32,7 @@ const style = {
   p: 4,
 };
 
-export const WorkPlaceCreationPopup = ({ id }) => {
+export const WorkPlaceCreationPopup2 = ({ id }) => {
   const { user, isAuthenticated } = useAuth0();
 
   const dispatch = useDispatch();
@@ -81,16 +82,17 @@ export const WorkPlaceCreationPopup = ({ id }) => {
   //     }));
   //   };
 
-  const saveGoogleId = (event, value) => {
-    console.log("event and value are:", event, value);
+  const saveSpotGoogleId = (event, value) => { 
+    console.log("value" , value)}
+
+  const saveWorkplaceGoogleId = (event, value) => {
     setFormData((prevData) => ({
       ...prevData,
-      googleId: value?.place_id || "",
+      googleId: value.place_id,
     }));
   };
 
   const savePlaceDetails = (place) => {
-    console.log("latitude", place.geometry.location.lat);
     setFormData((prevData) => ({
       ...prevData,
 
@@ -133,6 +135,7 @@ export const WorkPlaceCreationPopup = ({ id }) => {
           {isAuthenticated ? (
             <Stack spacing={2} alignItems={"stretch"}>
               <Typography variant="h4">Submit work place</Typography>
+              <GoogleMapsSpotFinder onChange={saveSpotGoogleId} id={id} />
               <FormControl sx={{ m: 1, width: 300 }}>
                 <InputLabel required id="type">
                   Type
@@ -152,7 +155,7 @@ export const WorkPlaceCreationPopup = ({ id }) => {
                 </Select>
               </FormControl>
               {formData.type && (
-                <GoogleMapsWorkspaceIdFinder onChange={saveGoogleId} id={id} />
+                <GoogleMapsWorkspaceIdFinder onChange={saveWorkplaceGoogleId} id={id} />
               )}
               {formData.googleId !== "" && (
                 <WorkPlaceGoogleInfo
