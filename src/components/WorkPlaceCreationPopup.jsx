@@ -15,7 +15,7 @@ import { useDispatch } from "react-redux";
 import { createWorkPlace } from "./workPlacesSlice";
 import { useAuth0 } from "@auth0/auth0-react";
 import { LogInButton } from "./LogInButton";
-import { GoogleMapsIdFinder } from "./formCompents/GoogleMapsIdFinder";
+import { GoogleMapsWorkspaceIdFinder } from "./formCompents/GoogleMapsWorkspaceIdFinder";
 import { WorkPlaceGoogleInfo } from "./formCompents/WorkPlaceGoogleInfo";
 const style = {
   position: "absolute",
@@ -85,7 +85,7 @@ export const WorkPlaceCreationPopup = ({ id }) => {
     console.log("event and value are:", event, value);
     setFormData((prevData) => ({
       ...prevData,
-      googleId: value.place_id,
+      googleId: value?.place_id || "",
     }));
   };
 
@@ -152,7 +152,7 @@ export const WorkPlaceCreationPopup = ({ id }) => {
                 </Select>
               </FormControl>
               {formData.type && (
-                <GoogleMapsIdFinder onChange={saveGoogleId} id={id} />
+                <GoogleMapsWorkspaceIdFinder onChange={saveGoogleId} id={id} />
               )}
               {formData.googleId !== "" && (
                 <WorkPlaceGoogleInfo

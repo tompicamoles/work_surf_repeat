@@ -69,11 +69,11 @@ const Destinations = () => {
             {" "}
             Destination submited by {spot.creatorNickname}
           </Typography>
-          <LikeSpotButton id={id} />
+          
          
 
         </Grid>
-        <Grid item xs={12}>
+        <Grid container item xs={12} alignItems={"center"} gap={2}>
           <Typography
             sx={{
               fontSize: {
@@ -86,6 +86,7 @@ const Destinations = () => {
             {" "}
             {spot.name}, {spot.country}{" "}
           </Typography>
+          <LikeSpotButton id={id} />
         </Grid>
         {/* <Grid item container xs={12}>
           <Button

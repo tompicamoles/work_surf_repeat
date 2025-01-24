@@ -214,11 +214,11 @@ function SpotCreationPopup() {
                 handleInputChange={handleInputChange}
               />
               <Typography component="legend">Life cost:</Typography>
-              {/* <LifeCost
+              <LifeCost
                 context="popup"
                 handleInputChange={handleInputChange}
                 value={formData.lifeCost}
-              ></LifeCost> */}
+              ></LifeCost>
 
               {/* <MonthSelector
                 context="popup"

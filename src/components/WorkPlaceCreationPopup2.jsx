@@ -15,8 +15,9 @@ import { useDispatch } from "react-redux";
 import { createWorkPlace } from "./workPlacesSlice";
 import { useAuth0 } from "@auth0/auth0-react";
 import { LogInButton } from "./LogInButton";
-import { GoogleMapsIdFinder } from "./formCompents/GoogleMapsIdFinder";
+import { GoogleMapsWorkspaceIdFinder } from "./formCompents/GoogleMapsWorkspaceIdFinder";
 import { WorkPlaceGoogleInfo } from "./formCompents/WorkPlaceGoogleInfo";
+import { GoogleMapsSpotFinder } from "./formCompents/GoogleMapsSpotFinder";
 const style = {
   position: "absolute",
   top: "50%",
@@ -81,8 +82,10 @@ export const WorkPlaceCreationPopup2 = ({ id }) => {
   //     }));
   //   };
 
-  const saveGoogleId = (event, value) => {
-    console.log("event and value are:", event, value);
+  const saveSpotGoogleId = (event, value) => { 
+    console.log("value" , value)}
+
+  const saveWorkplaceGoogleId = (event, value) => {
     setFormData((prevData) => ({
       ...prevData,
       googleId: value.place_id,
@@ -90,7 +93,6 @@ export const WorkPlaceCreationPopup2 = ({ id }) => {
   };
 
   const savePlaceDetails = (place) => {
-    console.log("latitude", place.geometry.location.lat);
     setFormData((prevData) => ({
       ...prevData,
 
@@ -133,6 +135,7 @@ export const WorkPlaceCreationPopup2 = ({ id }) => {
           {isAuthenticated ? (
             <Stack spacing={2} alignItems={"stretch"}>
               <Typography variant="h4">Submit work place</Typography>
+              <GoogleMapsSpotFinder onChange={saveSpotGoogleId} id={id} />
               <FormControl sx={{ m: 1, width: 300 }}>
                 <InputLabel required id="type">
                   Type
@@ -152,7 +155,7 @@ export const WorkPlaceCreationPopup2 = ({ id }) => {
                 </Select>
               </FormControl>
               {formData.type && (
-                <GoogleMapsIdFinder onChange={saveGoogleId} id={id} />
+                <GoogleMapsWorkspaceIdFinder onChange={saveWorkplaceGoogleId} id={id} />
               )}
               {formData.googleId !== "" && (
                 <WorkPlaceGoogleInfo

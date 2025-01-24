@@ -70,6 +70,7 @@ function WorkPlaceCard({ type, id }) {
           >
             {place.rating} / 5
           </Typography>
+          
           <Typography sx={{ display: { xs: "block", sm: "none" } }}>
             {place.rating} / 5
           </Typography>
